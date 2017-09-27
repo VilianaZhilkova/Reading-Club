@@ -12,12 +12,21 @@ namespace ReadingClub.Data.Models
         [Key]
         public int Id { get; set; }
 
-        public string Author { get; set; }
+        [Required]
+        public User Author { get; set; }
 
+        [Required]
         public DateTime Date { get; set; }
 
+        [Required]
+        [MinLength(10)]
+        [MaxLength(300)]
         public string Content { get; set; }
 
+        [Required]
         public Discussion Discussion { get; set; }
+                
+        public bool IsDeleted { get; set; }
+
     }
 }

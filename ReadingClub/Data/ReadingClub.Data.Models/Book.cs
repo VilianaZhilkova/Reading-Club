@@ -14,10 +14,17 @@ namespace ReadingClub.Data.Models
         [Key]
         public int Id { get; set; }
 
+        [Required]
+        [MinLength(2)]
+        [MaxLength(100)]
         public string Title { get; set; }
 
-        public string Author { get; set; }
+        [Required]
+        public Author Author { get; set; }
 
+        [Required]
+        [MinLength(10)]
+        [MaxLength(300)]
         public string Description { get; set; }
 
         public virtual ICollection<Discussion> Discussions
@@ -32,6 +39,7 @@ namespace ReadingClub.Data.Models
             }
         }
 
+        [Required]
         public bool IsDeleted { get; set; }
     }
 }

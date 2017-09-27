@@ -11,6 +11,7 @@ namespace ReadingClub.Data
             : base("ReadingClubDb", throwIfV1Schema: false)
         {
         }
+        public DbSet<Author> Authors { get; set; }
 
         public DbSet<Book> Books { get; set; }
 
@@ -18,24 +19,14 @@ namespace ReadingClub.Data
 
         public DbSet<Comment> Comments { get; set; }
 
-        /*
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
             modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
-            
-            modelBuilder.Entity<User>()
-                .HasMany<Discussion>(s => s.Discussions)
-                .WithMany(c => c.Participants)
-                .Map(cs =>
-                {
-                    cs.MapLeftKey("UserId");
-                    cs.MapRightKey("DiscussionId");
-                    cs.ToTable("ParticipantsDiscussions");
-                });
+            base.OnModelCreating(modelBuilder);
 
-         }
-         */
+        }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
