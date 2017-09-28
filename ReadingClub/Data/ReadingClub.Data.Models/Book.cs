@@ -1,18 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
+using ReadingClub.Data.Models.Abstracts;
+
 namespace ReadingClub.Data.Models
 {
-    public class Book
+    public class Book: BaseDataModel
     {
         private ICollection<Discussion> discussions;
         public Book()
         {
             this.Discussions = new HashSet<Discussion>();
         }
-
-        [Key]
-        public int Id { get; set; }
 
         [Required]
         [MinLength(2)]
@@ -38,8 +37,5 @@ namespace ReadingClub.Data.Models
                 this.discussions = value;
             }
         }
-
-        [Required]
-        public bool IsDeleted { get; set; }
     }
 }

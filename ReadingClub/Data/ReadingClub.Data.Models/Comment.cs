@@ -1,16 +1,15 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
+using ReadingClub.Data.Models.Abstracts;
+
 namespace ReadingClub.Data.Models
 {
-    public class Comment
+    public class Comment: BaseDataModel
     {
         public Comment()
         {
         }
-
-        [Key]
-        public int Id { get; set; }
 
         [Required]
         public User Author { get; set; }
@@ -25,8 +24,5 @@ namespace ReadingClub.Data.Models
 
         [Required]
         public Discussion Discussion { get; set; }
-                
-        public bool IsDeleted { get; set; }
-
     }
 }

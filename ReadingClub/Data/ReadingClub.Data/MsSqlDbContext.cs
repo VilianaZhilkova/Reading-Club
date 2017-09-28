@@ -5,9 +5,9 @@ using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace ReadingClub.Data
 {
-    public class ApplicationDbContext : IdentityDbContext<User>
+    public class MsSqlDbContext : IdentityDbContext<User>
     {
-        public ApplicationDbContext()
+        public MsSqlDbContext()
             : base("ReadingClubDb", throwIfV1Schema: false)
         {
         }
@@ -27,9 +27,9 @@ namespace ReadingClub.Data
 
         }
 
-        public static ApplicationDbContext Create()
+        public static MsSqlDbContext Create()
         {
-            return new ApplicationDbContext();
+            return new MsSqlDbContext();
         }
 
     }

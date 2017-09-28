@@ -2,7 +2,7 @@ using System.Data.Entity.Migrations;
 
 namespace ReadingClub.Data.Migrations
 {
-    public sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext>
+    public sealed class Configuration : DbMigrationsConfiguration<MsSqlDbContext>
     {
         public Configuration()
         {
@@ -10,7 +10,7 @@ namespace ReadingClub.Data.Migrations
             this.AutomaticMigrationDataLossAllowed = false;
         }
 
-        protected override void Seed(ApplicationDbContext context)
+        protected override void Seed(MsSqlDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 

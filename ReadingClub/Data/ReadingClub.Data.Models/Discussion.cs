@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
+using ReadingClub.Data.Models.Abstracts;
+
 namespace ReadingClub.Data.Models
 {
-    public class Discussion
+    public class Discussion: BaseDataModel
     {
         private ICollection<User> users;
         private ICollection<Comment> comments;
@@ -15,9 +17,6 @@ namespace ReadingClub.Data.Models
             this.Users = new HashSet<User>();
             this.Comments = new HashSet<Comment>();
         }
-
-        [Key]
-        public int Id { get; set; }
 
         [Required]
         public Book Book { get; set; }
@@ -63,8 +62,6 @@ namespace ReadingClub.Data.Models
                 this.comments = value;
             }
         }
-
-        public bool IsDeleted { get; set; }
 
         public bool IsApproved { get; set; }
     }
