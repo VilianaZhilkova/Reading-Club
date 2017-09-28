@@ -8,8 +8,8 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using ReadingClub.Web.Models;
 using ReadingClub.Data.Models;
+using ReadingClub.Web.ViewModels.Account;
 
 namespace ReadingClub.Web.Controllers
 {

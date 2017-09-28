@@ -5,7 +5,7 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
-using ReadingClub.Web.Models;
+using ReadingClub.Web.ViewModels;
 using ReadingClub.Data.Models;
 using ReadingClub.Data;
 

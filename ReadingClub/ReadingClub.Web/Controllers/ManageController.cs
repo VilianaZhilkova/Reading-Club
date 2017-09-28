@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using ReadingClub.Web.Models;
+using ReadingClub.Web.ViewModels.Manage;
 
 namespace ReadingClub.Web.Controllers
 {

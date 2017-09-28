@@ -10,7 +10,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using ReadingClub.Web.Models;
+using ReadingClub.Web.ViewModels;
 using ReadingClub.Data.Models;
 using ReadingClub.Data;
 
