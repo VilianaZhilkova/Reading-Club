@@ -44,6 +44,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=6.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.1.1\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Glimpse.Ado, Version=1.7.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Glimpse.Ado.1.7.3\lib\net45\Glimpse.Ado.dll</HintPath>
       <Private>True</Private>
@@ -345,6 +349,14 @@
     <ProjectReference Include="..\Data\ReadingClub.Data\ReadingClub.Data.csproj">
       <Project>{fe059ad2-bbd0-4764-8872-56b94fc6750f}</Project>
       <Name>ReadingClub.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ReadingClub.Common\ReadingClub.Common.csproj">
+      <Project>{400e9783-de9b-4b66-bc38-d2b7865c2ec1}</Project>
+      <Name>ReadingClub.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ReadingClub.Web.Infrastructure\ReadingClub.Web.Infrastructure.csproj">
+      <Project>{ca2c2188-e37b-44f3-a339-65c4b955c1b8}</Project>
+      <Name>ReadingClub.Web.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

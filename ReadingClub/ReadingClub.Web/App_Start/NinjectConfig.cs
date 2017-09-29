@@ -5,12 +5,17 @@ namespace ReadingClub.Web.App_Start
 {
     using System;
     using System.Web;
+    using System.Data.Entity;
 
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 
     using Ninject;
     using Ninject.Web.Common;
+    using Ninject.Extensions.Conventions;
 
+    using Data;
+    using Data.Common;
+    using Data.Common.Contracts;
     public static class NinjectConfig 
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
@@ -61,6 +66,17 @@ namespace ReadingClub.Web.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            kernel.Bind(x =>
+            {
+                x.FromThisAssembly()
+                 .SelectAllClasses()
+                 .BindDefaultInterface();
+            });
+
+            kernel.Bind(typeof(DbContext), typeof(MsSqlDbContext)).To<MsSqlDbContext>().InRequestScope();
+            kernel.Bind(typeof(IRepository<>)).To(typeof(EfRepository<>)).InRequestScope();
+            kernel.Bind<IUnitOfWork>().To<EfUnitOfWork>().InRequestScope();
+            //kernel.Bind<IMapper>().To<Mapper>();
         }        
     }
 }
