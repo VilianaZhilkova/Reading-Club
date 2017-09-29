@@ -41,7 +41,6 @@ namespace ReadingClub.Web.Infrastructure
             foreach (var map in maps)
             {
                 mapperConfiguration.CreateMap(map.Source, map.Destination);
-                mapperConfiguration.CreateMap(map.Destination, map.Source);
             }
         }
 
