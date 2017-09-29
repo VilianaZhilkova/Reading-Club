@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
+using ReadingClub.Common;
 using ReadingClub.Data.Models.Abstracts;
 
 namespace ReadingClub.Data.Models
@@ -14,16 +15,16 @@ namespace ReadingClub.Data.Models
         }
 
         [Required]
-        [MinLength(2)]
-        [MaxLength(100)]
+        [MinLength(Constants.MinBookTitleLength)]
+        [MaxLength(Constants.MaxBookTitleLength)]
         public string Title { get; set; }
 
         [Required]
         public Author Author { get; set; }
 
         [Required]
-        [MinLength(10)]
-        [MaxLength(300)]
+        [MinLength(Constants.MinBookDescriptionLength)]
+        [MaxLength(Constants.MaxBookDescriptionLength)]
         public string Description { get; set; }
 
         public virtual ICollection<Discussion> Discussions

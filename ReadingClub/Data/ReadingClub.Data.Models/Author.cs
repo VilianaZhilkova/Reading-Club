@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
+using ReadingClub.Common;
 using ReadingClub.Data.Models.Abstracts;
 
 namespace ReadingClub.Data.Models
@@ -16,8 +17,8 @@ namespace ReadingClub.Data.Models
 
         [Required]
         [Index(IsUnique = true)]
-        [MinLength(2)]
-        [MaxLength(100)]
+        [MinLength(Constants.MinAuthorNameLength)]
+        [MaxLength(Constants.MaxAuthorNameLength)]
         public string Name { get; set; }
 
         public virtual ICollection<Book> Books

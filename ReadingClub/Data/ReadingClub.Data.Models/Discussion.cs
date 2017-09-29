@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
+using ReadingClub.Common;
 using ReadingClub.Data.Models.Abstracts;
 
 namespace ReadingClub.Data.Models
@@ -28,8 +29,8 @@ namespace ReadingClub.Data.Models
         public DateTime EndDate { get; set; }
 
         [Required]
-        [MinLength(10)]
-        [MaxLength(150)]
+        [MinLength(Constants.MinDiscussionSubjectLength)]
+        [MaxLength(Constants.MaxDiscussionSubjectLength)]
         public string Subject { get; set; }
 
         public virtual ICollection<User> Users

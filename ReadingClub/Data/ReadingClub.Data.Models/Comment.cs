@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
+using ReadingClub.Common;
 using ReadingClub.Data.Models.Abstracts;
 
 namespace ReadingClub.Data.Models
@@ -18,8 +19,8 @@ namespace ReadingClub.Data.Models
         public DateTime Date { get; set; }
 
         [Required]
-        [MinLength(10)]
-        [MaxLength(300)]
+        [MinLength(Constants.MinCommentContentLength)]
+        [MaxLength(Constants.MaxCommentContentLength)]
         public string Content { get; set; }
 
         [Required]

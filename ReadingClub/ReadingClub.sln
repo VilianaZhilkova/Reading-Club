@@ -15,6 +15,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{9EC26AB4-902
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadingClub.Web", "ReadingClub.Web\ReadingClub.Web.csproj", "{1116DE4B-534B-4E1F-BE68-4D7E4C21CDF1}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{CD502845-44DF-4F33-B925-7B2062E205E4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadingClub.Common", "ReadingClub.Common\ReadingClub.Common.csproj", "{400E9783-DE9B-4B66-BC38-D2B7865C2EC1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +41,10 @@ Global
 		{1116DE4B-534B-4E1F-BE68-4D7E4C21CDF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1116DE4B-534B-4E1F-BE68-4D7E4C21CDF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1116DE4B-534B-4E1F-BE68-4D7E4C21CDF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{400E9783-DE9B-4B66-BC38-D2B7865C2EC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{400E9783-DE9B-4B66-BC38-D2B7865C2EC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{400E9783-DE9B-4B66-BC38-D2B7865C2EC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{400E9783-DE9B-4B66-BC38-D2B7865C2EC1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
