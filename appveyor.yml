@@ -1,0 +1,6 @@
+version: 1.0.{build}
+before_build:
+- ps: nuget restore ./ReadingClub/ReadingClub.sln
+build:
+  project: ./ReadingClub/ReadingClub.sln
+verbosity: minimal
