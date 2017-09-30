@@ -16,6 +16,8 @@ namespace ReadingClub.Web.App_Start
     using Data;
     using Data.Common;
     using Data.Common.Contracts;
+    using Services.Data.Contracts;
+
     public static class NinjectConfig 
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
@@ -69,6 +71,13 @@ namespace ReadingClub.Web.App_Start
             kernel.Bind(x =>
             {
                 x.FromThisAssembly()
+                 .SelectAllClasses()
+                 .BindDefaultInterface();
+            });
+
+            kernel.Bind(x =>
+            {
+                x.FromAssemblyContaining(typeof(IService))
                  .SelectAllClasses()
                  .BindDefaultInterface();
             });
