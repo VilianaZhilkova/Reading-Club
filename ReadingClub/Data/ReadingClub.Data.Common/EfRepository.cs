@@ -42,7 +42,7 @@ namespace ReadingClub.Data.Common
             }
         }
 
-        public T GetById(object id)
+        public T GetById(int id)
         {
             var item = this.DbSet.Find(id);
             if (item.IsDeleted)

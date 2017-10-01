@@ -1,7 +1,8 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 
-using AutoMapper.QueryableExtensions;
+using AutoMapper;
+using ReadingClub.Web.Infrastructure;
 
 using ReadingClub.Data.Models;
 using ReadingClub.Services.Data.Contracts;
@@ -23,8 +24,7 @@ namespace ReadingClub.Web.Controllers
 
         public ActionResult Index()
         {
-            var books = this.booksService.GetAll().ProjectTo<BookViewModel>().ToList();
-
+            var books = this.booksService.GetAll().To<BookViewModel>().ToList();
             return View(books);
         }
 
@@ -38,7 +38,10 @@ namespace ReadingClub.Web.Controllers
 
             var book = this.booksService.GetById((int)bookId);
 
+
+
             var model = this.mapper.Map<DetailBookViewModel>(book);
+
             return View(model);
         }
     }

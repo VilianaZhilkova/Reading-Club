@@ -20,7 +20,7 @@ namespace ReadingClub.Data.Models
         public string Title { get; set; }
 
         [Required]
-        public Author Author { get; set; }
+        public virtual Author Author { get; set; }
 
         [Required]
         [MinLength(Constants.MinBookDescriptionLength)]

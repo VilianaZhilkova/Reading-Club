@@ -13,7 +13,7 @@ namespace ReadingClub.Data.Models
         }
 
         [Required]
-        public User Author { get; set; }
+        public virtual User Author { get; set; }
 
         [Required]
         public DateTime Date { get; set; }
@@ -24,6 +24,6 @@ namespace ReadingClub.Data.Models
         public string Content { get; set; }
 
         [Required]
-        public Discussion Discussion { get; set; }
+        public virtual Discussion Discussion { get; set; }
     }
 }

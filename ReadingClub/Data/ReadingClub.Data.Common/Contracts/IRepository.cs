@@ -12,7 +12,7 @@ namespace ReadingClub.Data.Common.Contracts
 
         IQueryable<T> GetAllWithDeleted { get; }
 
-        T GetById(object id);
+        T GetById(int id);
 
         void Add(T entity);
 

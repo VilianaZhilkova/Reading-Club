@@ -20,7 +20,7 @@ namespace ReadingClub.Data.Models
         }
 
         [Required]
-        public Book Book { get; set; }
+        public virtual Book Book { get; set; }
 
         [Required]
         public DateTime StartDate { get; set; }
