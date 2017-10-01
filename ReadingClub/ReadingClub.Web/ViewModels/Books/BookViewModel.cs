@@ -1,6 +1,4 @@
-﻿using System;
-
-using AutoMapper;
+﻿using AutoMapper;
 
 using ReadingClub.Data.Models;
 using ReadingClub.Web.Infrastructure.Mapping.Contracts;

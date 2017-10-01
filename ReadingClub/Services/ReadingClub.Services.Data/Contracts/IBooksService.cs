@@ -7,5 +7,6 @@ namespace ReadingClub.Services.Data.Contracts
     public interface IBooksService
     {
         IQueryable<Book> GetAll();
+        Book GetById(int id);
     }
 }

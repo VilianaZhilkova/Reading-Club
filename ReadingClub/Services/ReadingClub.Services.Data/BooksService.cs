@@ -24,5 +24,10 @@ namespace ReadingClub.Services.Data
         {
             return this.books.GetAll;
         }
+
+        public Book GetById(int id)
+        {
+            return this.books.GetById(id);
+        }
     }
 }

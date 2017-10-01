@@ -17,6 +17,8 @@ namespace ReadingClub.Web.App_Start
     using Data.Common;
     using Data.Common.Contracts;
     using Services.Data.Contracts;
+    using Infrastructure;
+    using Infrastructure.Mapping.Contracts;
 
     public static class NinjectConfig 
     {
@@ -82,10 +84,14 @@ namespace ReadingClub.Web.App_Start
                  .BindDefaultInterface();
             });
 
+
             kernel.Bind(typeof(DbContext), typeof(MsSqlDbContext)).To<MsSqlDbContext>().InRequestScope();
             kernel.Bind(typeof(IRepository<>)).To(typeof(EfRepository<>)).InRequestScope();
             kernel.Bind<IUnitOfWork>().To<EfUnitOfWork>().InRequestScope();
+
+            kernel.Bind<IMapperProvider>().To<MapperProvider>();
             //kernel.Bind<IMapper>().To<Mapper>();
+
         }        
     }
 }

@@ -9,7 +9,8 @@
     foreach(var book in Model)
     {
         <div>
-            <h1>@book.Title</h1>
+            @book.Id
+            <p>@Html.ActionLink(@book.Title, "GetById", "Books", new { bookId = book.Id }, new { @class = "action-link" })</p>
             <p>@book.Author</p>
         </div>
     }

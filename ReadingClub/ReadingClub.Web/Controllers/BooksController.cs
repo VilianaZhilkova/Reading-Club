@@ -1,31 +1,45 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
-using ReadingClub.Services.Data.Contracts;
-using AutoMapper;
+
 using AutoMapper.QueryableExtensions;
+
+using ReadingClub.Data.Models;
+using ReadingClub.Services.Data.Contracts;
 using ReadingClub.Web.ViewModels.Books;
+using ReadingClub.Web.Infrastructure.Mapping.Contracts;
 
 namespace ReadingClub.Web.Controllers
 {
     public class BooksController : Controller
     {
         private readonly IBooksService booksService;
-        private readonly IMapper mapper;
+        private readonly IMapperProvider mapper;
 
-        public BooksController(IBooksService booksService)
+        public BooksController(IBooksService booksService, IMapperProvider mapper)
         {
             this.booksService = booksService;
+            this.mapper = mapper;
         }
 
-        // GET: Books
         public ActionResult Index()
         {
             var books = this.booksService.GetAll().ProjectTo<BookViewModel>().ToList();
 
             return View(books);
+        }
+
+        [HttpGet]
+        public ActionResult GetById(int? bookId)
+        {
+            if(bookId == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            var book = this.booksService.GetById((int)bookId);
+
+            var model = this.mapper.Map<DetailBookViewModel>(book);
+            return View(model);
         }
     }
 }
