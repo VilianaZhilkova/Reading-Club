@@ -2,21 +2,20 @@
 using System.Web.Mvc;
 
 using AutoMapper;
-using ReadingClub.Web.Infrastructure;
+using ReadingClub.Web.Infrastructure.Mapping;
 
 using ReadingClub.Data.Models;
 using ReadingClub.Services.Data.Contracts;
 using ReadingClub.Web.ViewModels.Books;
-using ReadingClub.Web.Infrastructure.Mapping.Contracts;
 
 namespace ReadingClub.Web.Controllers
 {
     public class BooksController : Controller
     {
         private readonly IBooksService booksService;
-        private readonly IMapperProvider mapper;
+        private readonly IMapper mapper;
 
-        public BooksController(IBooksService booksService, IMapperProvider mapper)
+        public BooksController(IBooksService booksService, IMapper mapper)
         {
             this.booksService = booksService;
             this.mapper = mapper;

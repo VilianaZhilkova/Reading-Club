@@ -4,7 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-using ReadingClub.Web.Infrastructure.Mapping.Contracts;
+using AutoMapper;
+
+using ReadingClub.Web.Infrastructure.Mapping;
 using ReadingClub.Web.ViewModels.Discussions;
 using ReadingClub.Services.Data.Contracts;
 
@@ -13,9 +15,9 @@ namespace ReadingClub.Web.Controllers
     public class DiscussionsController : Controller
     {
         private readonly IDiscussionsService discussionsService;
-        private readonly IMapperProvider mapper;
+        private readonly IMapper mapper;
 
-        public DiscussionsController(IDiscussionsService discussionsService, IMapperProvider mapper)
+        public DiscussionsController(IDiscussionsService discussionsService, IMapper mapper)
         {
             this.discussionsService = discussionsService;
             this.mapper = mapper;

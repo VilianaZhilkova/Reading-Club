@@ -9,6 +9,8 @@ namespace ReadingClub.Web.App_Start
 
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 
+    using AutoMapper;
+
     using Ninject;
     using Ninject.Web.Common;
     using Ninject.Extensions.Conventions;
@@ -17,8 +19,6 @@ namespace ReadingClub.Web.App_Start
     using Data.Common;
     using Data.Common.Contracts;
     using Services.Data.Contracts;
-    using Infrastructure;
-    using Infrastructure.Mapping.Contracts;
 
     public static class NinjectConfig 
     {
@@ -89,9 +89,7 @@ namespace ReadingClub.Web.App_Start
             kernel.Bind(typeof(IRepository<>)).To(typeof(EfRepository<>)).InRequestScope();
             kernel.Bind<IUnitOfWork>().To<EfUnitOfWork>().InRequestScope();
 
-            kernel.Bind<IMapperProvider>().To<MapperProvider>();
-            //kernel.Bind<IMapper>().To<Mapper>();
-
+            kernel.Bind<IMapper>().ToMethod(ctx => Mapper.Instance);
         }        
     }
 }

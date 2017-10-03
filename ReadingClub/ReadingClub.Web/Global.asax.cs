@@ -11,6 +11,7 @@ using System.Web.Routing;
 using ReadingClub.Data;
 using ReadingClub.Data.Migrations;
 using ReadingClub.Web.Infrastructure;
+using ReadingClub.Web.Infrastructure.Mapping;
 
 namespace ReadingClub.Web
 {

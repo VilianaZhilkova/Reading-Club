@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 
 using AutoMapper.QueryableExtensions;
 
-namespace ReadingClub.Web.Infrastructure
+namespace ReadingClub.Web.Infrastructure.Mapping
 {
     public static class QueryableExtensions
     {

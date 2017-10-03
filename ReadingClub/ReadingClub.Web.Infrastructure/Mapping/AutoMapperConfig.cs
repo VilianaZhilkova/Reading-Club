@@ -6,7 +6,7 @@ using System.Reflection;
 using AutoMapper;
 using ReadingClub.Web.Infrastructure.Mapping.Contracts;
 
-namespace ReadingClub.Web.Infrastructure
+namespace ReadingClub.Web.Infrastructure.Mapping
 {
     public class AutoMapperConfig
     {
