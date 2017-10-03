@@ -23,25 +23,18 @@
             <div class="form-group">
                 @Html.LabelFor(d => d.StartDate, new { @class = "col-lg-2 control-label" })
                 <div class="col-lg-10">
-                    @Html.TextBoxFor(d => d.StartDate, new { @class = "form-control", type = "date" })
-                </div>
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(d => d.StartTime, new { @class = "col-lg-2 control-label" })
-                <div class="col-lg-10">
-                    @Html.TextBoxFor(d => d.StartTime, new { @class = "form-control", type = "time" })
+                    @Html.TextBoxFor(d => d.StartDate, new { @class = "form-control", type = "datetime-local" })
                 </div>
             </div>
             <div class="form-group">
                 @Html.LabelFor(d => d.EndDate, new { @class = "col-lg-2 control-label" })
                 <div class="col-lg-10">
-                    @Html.TextBoxFor(d => d.EndDate, new { @class = "form-control", type = "date" })
+                    @Html.TextBoxFor(d => d.EndDate, new { @class = "form-control", type = "datetime-local" })
                 </div>
             </div>
-            <div class="form-group">
-                @Html.LabelFor(d => d.EndTime, new { @class = "col-lg-2 control-label" })
+            <div class="form-group hidden">
                 <div class="col-lg-10">
-                    @Html.TextBoxFor(d => d.EndTime, new { @class = "form-control", type = "time" })
+                    @Html.TextBoxFor(d => d.TimezoneOffset, new { @class = "form-control", id="timezoneOffset" })
                 </div>
             </div>
             <div class="form-group">
@@ -50,5 +43,8 @@
                 </div>
             </div>
         </fieldset>
+    }
+    @section Scripts {
+        @Scripts.Render("~/bundles/getTimezoneOffset")
     }
 }

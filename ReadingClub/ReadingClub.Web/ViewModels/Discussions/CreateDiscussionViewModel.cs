@@ -18,15 +18,9 @@ namespace ReadingClub.Web.ViewModels.Discussions
         public DateTime StartDate { get; set; }
 
         [Required]
-        [DisplayName("Starting Time")]
-        public DateTime StartTime { get; set; }
-
-        [Required]
         [DisplayName("End Date")]
         public DateTime EndDate { get; set; }
 
-        [Required]
-        [DisplayName("End Time")]
-        public DateTime EndTime { get; set; }
+        public int TimezoneOffset { get; set; }
     }
 }
