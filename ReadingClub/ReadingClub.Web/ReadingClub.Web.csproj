@@ -260,6 +260,7 @@
     <Compile Include="ViewModels\Account\VerifyCodeViewModel.cs" />
     <Compile Include="ViewModels\Books\BookViewModel.cs" />
     <Compile Include="ViewModels\Books\DetailBookViewModel.cs" />
+    <Compile Include="ViewModels\Discussions\CreateDiscussionViewModel.cs" />
     <Compile Include="ViewModels\Manage\AddPhoneNumberViewModel.cs" />
     <Compile Include="ViewModels\Manage\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModels\Manage\ConfigureTwoFactorViewModel.cs" />
@@ -330,6 +331,7 @@
     <Content Include="Views\Books\Index.cshtml" />
     <Content Include="Views\Books\GetById.cshtml" />
     <Content Include="Views\Discussions\Index.cshtml" />
+    <Content Include="Views\Discussions\CreateDiscussion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

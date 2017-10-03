@@ -1,0 +1,54 @@
+﻿@using ReadingClub.Web.ViewModels.Discussions
+@model CreateDiscussionViewModel
+
+@{
+    ViewBag.Title = "Create Discussion";
+}
+
+<h2>Create Discussion for @Session["BookTitle"]</h2>
+
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("CreateDiscussion", "Discussions", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <fieldset>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(d => d.Subject, new { @class = "col-lg-2 control-label" })
+                <div class="col-lg-10">
+                    @Html.TextAreaFor(d => d.Subject, new {@class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(d => d.StartDate, new { @class = "col-lg-2 control-label" })
+                <div class="col-lg-10">
+                    @Html.TextBoxFor(d => d.StartDate, new { @class = "form-control", type = "date" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(d => d.StartTime, new { @class = "col-lg-2 control-label" })
+                <div class="col-lg-10">
+                    @Html.TextBoxFor(d => d.StartTime, new { @class = "form-control", type = "time" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(d => d.EndDate, new { @class = "col-lg-2 control-label" })
+                <div class="col-lg-10">
+                    @Html.TextBoxFor(d => d.EndDate, new { @class = "form-control", type = "date" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(d => d.EndTime, new { @class = "col-lg-2 control-label" })
+                <div class="col-lg-10">
+                    @Html.TextBoxFor(d => d.EndTime, new { @class = "form-control", type = "time" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-10 col-lg-offset-2">
+                    <input type="submit" value="Create" class="btn btn-success btn-sm" />                   
+                </div>
+            </div>
+        </fieldset>
+    }
+}

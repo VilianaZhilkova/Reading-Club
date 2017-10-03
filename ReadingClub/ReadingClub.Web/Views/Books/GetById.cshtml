@@ -1,14 +1,18 @@
 ﻿@using ReadingClub.Web.ViewModels.Books
 @model DetailBookViewModel
 @{
-    ViewBag.Title = Model.Title;
+    ViewBag.Title = "Books";
+    Session["BookId"] = Model.Id;
+    Session["BookTitle"] = Model.Title;
 }
 
 <h3>@Model.Author</h3>
 <h3>@Model.Description</h3>
 
-
-@*button - create discussion for this book *@
+@if (User.Identity.IsAuthenticated)
+{
+    @Html.ActionLink("Create discussion", "CreateDiscussion", "Discussions", null, new { @class = "btn btn-success btn-sm", role = "button" })
+}
 
 @* upcoming discussions *@
 @* current discussions *@
