@@ -37,6 +37,7 @@ namespace ReadingClub.Web.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult CreateDiscussion(int bookId, string bookTitle)
         {
             return View();
@@ -67,7 +68,7 @@ namespace ReadingClub.Web.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            return View();
+            return View(model);
 
         }
     }
