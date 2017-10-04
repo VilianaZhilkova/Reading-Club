@@ -39,7 +39,6 @@ namespace ReadingClub.Data
 
         private void ApplyAuditInfoRules()
         {
-            // Approach via @julielerman: http://bit.ly/123661P
             foreach (var entry in
                 this.ChangeTracker.Entries()
                     .Where(
@@ -47,7 +46,7 @@ namespace ReadingClub.Data
                         e.Entity is IAuditable && ((e.State == EntityState.Added) || (e.State == EntityState.Modified))))
             {
                 var entity = (IAuditable)entry.Entity;
-                if (entry.State == EntityState.Added && entity.CreatedOn == default(DateTime))
+                if (entry.State == EntityState.Added && entity.CreatedOn == null)// default(DateTime))
                 {
                     entity.CreatedOn = DateTime.UtcNow;
                 }
