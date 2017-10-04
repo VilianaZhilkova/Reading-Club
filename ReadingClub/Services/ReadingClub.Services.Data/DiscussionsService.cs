@@ -20,6 +20,11 @@ namespace ReadingClub.Services.Data
             this.unitOfWork = unitOfWork;
         }
 
+        public IQueryable<Discussion> GetAllApprovedDiscussions()
+        {
+            return this.discussions.GetAll.Where(x => x.IsApproved);
+        }
+
         public void AddDiscussion(Discussion discussion)
         {
             this.discussions.Add(discussion);

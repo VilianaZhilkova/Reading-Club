@@ -7,8 +7,8 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 
 using AutoMapper;
-
 using ReadingClub.Web.Infrastructure.Mapping;
+
 using ReadingClub.Web.ViewModels.Discussions;
 using ReadingClub.Services.Data.Contracts;
 using ReadingClub.Data.Models;
@@ -33,7 +33,8 @@ namespace ReadingClub.Web.Controllers
         // GET: Discussions
         public ActionResult Index()
         {
-            return View();
+            var discussions = this.discussionsService.GetAllApprovedDiscussions().To<DiscussionViewModel>().ToList();
+            return View(discussions);
         }
 
         [HttpGet]
