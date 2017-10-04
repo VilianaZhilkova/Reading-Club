@@ -2,8 +2,8 @@
 
 namespace ReadingClub.Services.Data.Contracts
 {
-    public interface IDiscussionsService
+    public interface IUsersService
     {
-        void AddDiscussion(Discussion discussion);
+        User GetUserByUserName(string userName);
     }
 }

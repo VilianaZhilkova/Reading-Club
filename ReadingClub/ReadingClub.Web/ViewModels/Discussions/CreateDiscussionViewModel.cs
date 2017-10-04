@@ -22,5 +22,7 @@ namespace ReadingClub.Web.ViewModels.Discussions
         public DateTime EndDate { get; set; }
 
         public int TimezoneOffset { get; set; }
+
+        public int BookId { get; set; }
     }
 }

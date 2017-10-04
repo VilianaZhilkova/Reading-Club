@@ -2,8 +2,6 @@
 @model DetailBookViewModel
 @{
     ViewBag.Title = "Books";
-    Session["BookId"] = Model.Id;
-    Session["BookTitle"] = Model.Title;
 }
 
 <h3>@Model.Author</h3>
@@ -11,7 +9,7 @@
 
 @if (User.Identity.IsAuthenticated)
 {
-    @Html.ActionLink("Create discussion", "CreateDiscussion", "Discussions", null, new { @class = "btn btn-success btn-sm", role = "button" })
+    @Html.ActionLink("Create discussion", "CreateDiscussion", "Discussions", new { bookId = Model.Id, bookTitle = Model.Title }, new { @class = "btn btn-success btn-sm", role = "button" })
 }
 
 @* upcoming discussions *@

@@ -19,5 +19,11 @@ namespace ReadingClub.Services.Data
             this.discussions = discussions;
             this.unitOfWork = unitOfWork;
         }
+
+        public void AddDiscussion(Discussion discussion)
+        {
+            this.discussions.Add(discussion);
+            this.unitOfWork.Commit();
+        }
     }
 }
