@@ -1,0 +1,42 @@
+﻿@using ReadingClub.Web.ViewModels.Books
+@model AddBookViewModel
+
+@{
+    ViewBag.Title = "Add Book";
+}
+
+@if (Request.IsAuthenticated)
+{
+    <h2>Add Book</h2>
+
+    using (Html.BeginForm("AddBook", "Books", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <fieldset>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(b => b.Title, new { @class = "col-lg-2 control-label" })
+                <div class="col-lg-10">
+                    @Html.TextBoxFor(b => b.Title, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(b => b.AuthorName, new { @class = "col-lg-2 control-label" })
+                <div class="col-lg-10">
+                    @Html.TextBoxFor(b => b.AuthorName, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(d => d.Description, new { @class = "col-lg-2 control-label" })
+                <div class="col-lg-10">
+                    @Html.TextAreaFor(b => b.Description, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-10 col-lg-offset-2">
+                    <input type="submit" value="Create" class="btn btn-success btn-sm" />
+                </div>
+            </div>
+        </fieldset>
+    }
+}

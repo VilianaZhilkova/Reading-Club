@@ -6,7 +6,8 @@ namespace ReadingClub.Services.Data.Contracts
 {
     public interface IBooksService
     {
-        IQueryable<Book> GetAll();
+        IQueryable<Book> GetAllApprovedBooks();
         Book GetById(int id);
+        void AddBook(Book book);
     }
 }

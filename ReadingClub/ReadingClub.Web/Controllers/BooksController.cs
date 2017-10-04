@@ -13,17 +13,19 @@ namespace ReadingClub.Web.Controllers
     public class BooksController : Controller
     {
         private readonly IBooksService booksService;
+        private readonly IAuthorsService authorsService;
         private readonly IMapper mapper;
 
-        public BooksController(IBooksService booksService, IMapper mapper)
+        public BooksController(IBooksService booksService, IAuthorsService authorsService, IMapper mapper)
         {
             this.booksService = booksService;
+            this.authorsService = authorsService;
             this.mapper = mapper;
         }
 
         public ActionResult Index()
         {
-            var books = this.booksService.GetAll().To<BookViewModel>().ToList();
+            var books = this.booksService.GetAllApprovedBooks().To<BookViewModel>().ToList();
             return View(books);
         }
 
@@ -36,12 +38,40 @@ namespace ReadingClub.Web.Controllers
             }
 
             var book = this.booksService.GetById((int)bookId);
-
-
-
             var model = this.mapper.Map<DetailBookViewModel>(book);
 
             return View(model);
+        }
+
+        [HttpGet]
+        [Authorize]
+        public ActionResult AddBook()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddBook(AddBookViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var book = mapper.Map<Book>(model);
+
+                var author = this.authorsService.GetBookAuthorByName(model.AuthorName);
+                if(author == null)
+                {
+                    author = new Author { Name = model.AuthorName };
+                }
+                book.Author = author;
+
+                this.booksService.AddBook(book);
+
+                return RedirectToAction("GetById", "Books", new { bookId = book.Id });
+            }
+
+            return View(model);
+
         }
     }
 }

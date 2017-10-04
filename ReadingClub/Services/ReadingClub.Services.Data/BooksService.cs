@@ -20,14 +20,20 @@ namespace ReadingClub.Services.Data
             this.unitOfWork = unitOfWork;
         }
 
-        public IQueryable<Book> GetAll()
+        public IQueryable<Book> GetAllApprovedBooks()
         {
-            return this.books.GetAll;
+            return this.books.GetAll.Where(x => x.IsApproved == true);
         }
 
         public Book GetById(int id)
         {
             return this.books.GetById(id);
+        }
+
+        public void AddBook(Book book)
+        {
+            this.books.Add(book);
+            this.unitOfWork.Commit();
         }
     }
 }

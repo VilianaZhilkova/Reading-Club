@@ -18,6 +18,8 @@ namespace ReadingClub.Web.ViewModels.Books
 
         public string Description { get; set; }
 
+        public bool IsApproved { get; set; }
+
         // upcoming discussions
         // current discussions
         // passed discussions

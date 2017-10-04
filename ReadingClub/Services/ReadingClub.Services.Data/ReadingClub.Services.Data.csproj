@@ -46,6 +46,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BooksService.cs" />
+    <Compile Include="AuthorsService.cs" />
+    <Compile Include="Contracts\IAuthorsService.cs" />
     <Compile Include="Contracts\IBooksService.cs" />
     <Compile Include="Contracts\IDiscussionsService.cs" />
     <Compile Include="Contracts\IService.cs" />
