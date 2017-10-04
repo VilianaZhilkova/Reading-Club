@@ -66,6 +66,10 @@
     <Compile Include="Migrations\201710011442050_FixedModels.Designer.cs">
       <DependentUpon>201710011442050_FixedModels.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710041415302_AddedMaxNumberOfParticipantsInDiscussionModel.cs" />
+    <Compile Include="Migrations\201710041415302_AddedMaxNumberOfParticipantsInDiscussionModel.Designer.cs">
+      <DependentUpon>201710041415302_AddedMaxNumberOfParticipantsInDiscussionModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="MsSqlDbContext.cs" />
     <Compile Include="Migrations\201709280702043_Initial.cs" />
     <Compile Include="Migrations\201709280702043_Initial.Designer.cs">
@@ -93,6 +97,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710011442050_FixedModels.resx">
       <DependentUpon>201710011442050_FixedModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710041415302_AddedMaxNumberOfParticipantsInDiscussionModel.resx">
+      <DependentUpon>201710041415302_AddedMaxNumberOfParticipantsInDiscussionModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

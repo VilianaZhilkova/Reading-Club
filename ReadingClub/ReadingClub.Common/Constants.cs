@@ -13,5 +13,10 @@
         public const int MaxCommentContentLength = 300;
         public const int MinDiscussionSubjectLength = 10;
         public const int MaxDiscussionSubjectLength = 150;
+
+        // int values
+
+        public const int MinNumberOfParticipants = 3;
+        public const int MaxNumberOfParticipants = 30;
     }
 }

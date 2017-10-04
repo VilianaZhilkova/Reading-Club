@@ -38,5 +38,7 @@ namespace ReadingClub.Data.Models
                 this.discussions = value;
             }
         }
+
+        public bool IsApproved { get; set; }
     }
 }

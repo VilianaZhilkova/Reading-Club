@@ -33,6 +33,10 @@ namespace ReadingClub.Data.Models
         [MaxLength(Constants.MaxDiscussionSubjectLength)]
         public string Subject { get; set; }
 
+        [Required]
+        [Range(Constants.MinNumberOfParticipants, Constants.MaxNumberOfParticipants)]
+        public int MaximumNumberOfParticipants { get; set; }
+
         public virtual ICollection<User> Users
         {
             get
