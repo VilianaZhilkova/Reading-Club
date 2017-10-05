@@ -14,9 +14,13 @@
         <div>
             <p>@Html.ActionLink(@discussion.Subject, "GetById", "Discussion", new { discussionId = discussion.Id }, new { @class = "action-link" })</p>
             <p>Book: @discussion.BookTitle, Author: @discussion.BookAuthor</p>
-            <p>Start date: @discussion.StartDate</p>
-            <p>End Date: @discussion.EndDate</p>
+            <p>Start date: @Html.DisplayFor(duscussion => discussion.StartDate)</p>
+            <p>End Date: @Html.DisplayFor(duscussion => discussion.EndDate)</p>
         </div>
     }
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/timeParser")
 }
 

@@ -26,6 +26,9 @@ namespace ReadingClub.Web
             bundles.Add(new ScriptBundle("~/bundles/getTimezoneOffset").Include(
                       "~/Scripts/js/getTimezoneOffset.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/timeParser").Include(
+                      "~/Scripts/js/timeParser.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));

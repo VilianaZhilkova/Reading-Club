@@ -293,6 +293,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\js\timeParser.js" />
     <Content Include="Scripts\js\getTimezoneOffset.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
@@ -336,6 +337,7 @@
     <Content Include="Views\Discussions\Index.cshtml" />
     <Content Include="Views\Discussions\CreateDiscussion.cshtml" />
     <Content Include="Views\Books\AddBook.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
