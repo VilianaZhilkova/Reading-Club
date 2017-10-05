@@ -18,5 +18,10 @@
 
         public const int MinNumberOfParticipants = 3;
         public const int MaxNumberOfParticipants = 30;
+
+        // controllers constants
+
+        public const string DiscussionStatusUpcoming = "upcoming";
+        public const string DiscussionStatusCurrent = "current";
     }
 }

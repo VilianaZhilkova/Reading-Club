@@ -7,8 +7,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 
 using AutoMapper;
-using ReadingClub.Web.Infrastructure.Mapping;
 
+using ReadingClub.Common;
+using ReadingClub.Web.Infrastructure.Mapping;
 using ReadingClub.Web.ViewModels.Discussions;
 using ReadingClub.Services.Data.Contracts;
 using ReadingClub.Data.Models;
@@ -31,9 +32,35 @@ namespace ReadingClub.Web.Controllers
         }
 
         // GET: Discussions
-        public ActionResult Index()
+        public ActionResult Index(string discussionStatus)
         {
-            var discussions = this.discussionsService.GetAllApprovedDiscussions().To<DiscussionViewModel>().ToList();
+            var currentDate = DateTime.UtcNow;
+            var discussions = new List<DiscussionViewModel>();
+            if (discussionStatus == Common.Constants.DiscussionStatusUpcoming)
+            {
+                discussions = this.discussionsService.GetAllApprovedDiscussions()
+                    .To<DiscussionViewModel>()
+                    .Where(d => d.StartDate > currentDate)
+                    .OrderBy(d => d.StartDate)
+                    .ToList();
+            }
+            else if(discussionStatus == Common.Constants.DiscussionStatusCurrent)
+            {
+               discussions = this.discussionsService.GetAllApprovedDiscussions()
+                    .To<DiscussionViewModel>()
+                    .Where(d => d.StartDate <= currentDate && currentDate <= d.EndDate)
+                    .OrderBy(d => d.StartDate)
+                    .ToList();
+            }
+            else
+            {
+                discussions = this.discussionsService.GetAllApprovedDiscussions()
+                    .To<DiscussionViewModel>()
+                    .Where(d => d.StartDate < currentDate)
+                    .OrderByDescending(d => d.StartDate)
+                    .ToList();
+            }
+
             return View(discussions);
         }
 
