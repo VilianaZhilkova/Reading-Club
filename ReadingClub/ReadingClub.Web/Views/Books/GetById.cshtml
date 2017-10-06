@@ -6,11 +6,14 @@
 
 @if(Model.IsApproved == false)
 {
-    <h3>Thank you for adding a new book. After being approved by an administrator, it will be added to our book catalog.</h3>
+    <h3>Currently this book is not approved by an administrator. After being approved by an administrator, it will be added to our book catalog.</h3>
 }
-<h3>@Model.Title</h3>
-<h3>@Model.Author</h3>
-<h3>@Model.Description</h3>
+else
+{
+    <h3>@Model.Title</h3>
+    <h3>@Model.Author</h3>
+    <h3>@Model.Description</h3>
+}
 
 @if (User.Identity.IsAuthenticated && Model.IsApproved == true)
 {

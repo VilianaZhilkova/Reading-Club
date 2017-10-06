@@ -34,6 +34,11 @@ namespace ReadingClub.Web.Controllers
         // GET: Discussions
         public ActionResult Index(string discussionStatus)
         {
+            if(discussionStatus == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             var currentDate = DateTime.UtcNow;
             var discussions = new List<DiscussionViewModel>();
             if (discussionStatus == Common.Constants.DiscussionStatusUpcoming)
@@ -65,6 +70,20 @@ namespace ReadingClub.Web.Controllers
         }
 
         [HttpGet]
+        public ActionResult GetById(int? discussionId)
+        {
+            if (discussionId == null)
+            {
+                return RedirectToAction("Index", new { discussionStatus = Common.Constants.DiscussionStatusUpcoming });
+            }
+
+            var discussion = this.discussionsService.GetById((int)discussionId);
+            var model = this.mapper.Map<DetailDiscussionViewModel>(discussion);
+
+            return View(model);
+        }
+
+        [HttpGet]
         [Authorize]
         public ActionResult CreateDiscussion(int bookId, string bookTitle)
         {
@@ -72,6 +91,7 @@ namespace ReadingClub.Web.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public ActionResult CreateDiscussion(CreateDiscussionViewModel model)
         {

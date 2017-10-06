@@ -25,6 +25,10 @@ namespace ReadingClub.Services.Data
             return this.discussions.GetAll.Where(x => x.IsApproved);
         }
 
+        public Discussion GetById(int id)
+        {
+            return this.discussions.GetById(id);
+        }
         public void AddDiscussion(Discussion discussion)
         {
             this.discussions.Add(discussion);

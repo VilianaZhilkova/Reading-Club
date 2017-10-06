@@ -1,0 +1,34 @@
+﻿@using ReadingClub.Web.ViewModels.Discussions
+@model DetailDiscussionViewModel
+
+@{
+    ViewBag.Title = "GetById";
+}
+
+@if (Model.IsApproved == false)
+{
+    <h3>Currently this discussion is not approved by an administrator.</h3>
+}
+else
+{
+    <h3>Subject: @Model.Subject</h3>
+    <p>
+        Book: @Html.ActionLink(Model.Book.Title, "GetById", "Books", new { bookId = Model.Book.Id }, new { @class = "action-link" }),
+        Author: @Model.Book.Author
+    </p>
+    <p>Start date: @Html.DisplayFor(d => Model.StartDate)</p>
+    <p>End Date: @Html.DisplayFor(d => Model.EndDate)</p>
+    <p>Created by: @Model.Creator</p>
+    <p>Participants: @Model.Users.Count() / @Model.MaximumNumberOfParticipants </p>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/timeParser")
+}
+
+
+
+
+
+
+

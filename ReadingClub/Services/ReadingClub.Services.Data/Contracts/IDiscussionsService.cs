@@ -7,6 +7,7 @@ namespace ReadingClub.Services.Data.Contracts
     {
         IQueryable<Discussion> GetAllApprovedDiscussions();
 
+        Discussion GetById(int id);
         void AddDiscussion(Discussion discussion);
     }
 }

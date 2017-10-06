@@ -51,6 +51,7 @@ namespace ReadingClub.Web.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public ActionResult AddBook(AddBookViewModel model)
         {

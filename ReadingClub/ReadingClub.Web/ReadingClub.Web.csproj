@@ -270,6 +270,7 @@
     <Compile Include="ViewModels\Books\AddBookViewModel.cs" />
     <Compile Include="ViewModels\Books\DetailBookViewModel.cs" />
     <Compile Include="ViewModels\Discussions\CreateDiscussionViewModel.cs" />
+    <Compile Include="ViewModels\Discussions\DetailDiscussionViewModel.cs" />
     <Compile Include="ViewModels\Discussions\DiscussionViewModel.cs" />
     <Compile Include="ViewModels\Manage\AddPhoneNumberViewModel.cs" />
     <Compile Include="ViewModels\Manage\ChangePasswordViewModel.cs" />
@@ -281,6 +282,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\Manage\SetPasswordViewModel.cs" />
     <Compile Include="ViewModels\Manage\VerifyPhoneNumberViewModel.cs" />
+    <Compile Include="ViewModels\Users\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -348,6 +350,7 @@
     <Content Include="Views\Discussions\CreateDiscussion.cshtml" />
     <Content Include="Views\Books\AddBook.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
+    <Content Include="Views\Discussions\GetById.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
