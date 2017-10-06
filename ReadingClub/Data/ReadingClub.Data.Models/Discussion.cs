@@ -37,6 +37,7 @@ namespace ReadingClub.Data.Models
         [Range(Constants.MinNumberOfParticipants, Constants.MaxNumberOfParticipants)]
         public int MaximumNumberOfParticipants { get; set; }
 
+        [InverseProperty("Discussions")]
         public virtual ICollection<User> Users
         {
             get

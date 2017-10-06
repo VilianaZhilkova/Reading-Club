@@ -34,5 +34,17 @@ namespace ReadingClub.Services.Data
             this.discussions.Add(discussion);
             this.unitOfWork.Commit();
         }
+
+        public void AddUserToDiscussion(Discussion discussion, User user)
+        {
+            discussion.Users.Add(user);
+            this.unitOfWork.Commit();
+        }
+
+        public void RemoveUserFromDiscussion(Discussion discussion, User user)
+        {
+            discussion.Users.Remove(user);
+            this.unitOfWork.Commit();
+        }
     }
 }

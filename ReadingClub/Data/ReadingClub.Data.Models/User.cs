@@ -26,6 +26,7 @@ namespace ReadingClub.Data.Models
             this.CreatedDiscussions = new HashSet<Discussion>();
         }
 
+        [InverseProperty("Users")]
         public virtual ICollection<Discussion> Discussions
         {
             get

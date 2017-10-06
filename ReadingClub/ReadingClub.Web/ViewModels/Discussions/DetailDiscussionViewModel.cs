@@ -12,6 +12,7 @@ namespace ReadingClub.Web.ViewModels.Discussions
 {
     public class DetailDiscussionViewModel : IMapFrom<Discussion>, IHaveCustomMappings
     {
+        public int Id { get; set; }
 
         public BookViewModel Book { get; set; }
 

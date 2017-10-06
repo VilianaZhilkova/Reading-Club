@@ -119,5 +119,44 @@ namespace ReadingClub.Web.Controllers
             return View(model);
 
         }
+
+        [HttpPost]
+        [Authorize]
+        public PartialViewResult Join(int id)
+        {
+            var discussion = this.discussionsService.GetById(id);
+
+            if (discussion.Users.Count() >= discussion.MaximumNumberOfParticipants)
+            {
+                return PartialView("_ButtonsPartial", discussion);
+            }
+            else
+            {
+                var currentUserUserName = System.Web.HttpContext.Current.User.Identity.GetUserName();
+                var currentUser = this.usersService.GetUserByUserName(currentUserUserName);
+
+                this.discussionsService.AddUserToDiscussion(discussion, currentUser);
+
+                var model = mapper.Map<DetailDiscussionViewModel>(discussion);
+
+                return PartialView("_ButtonsPartial", model);
+            }
+            
+        }
+
+        [HttpPost]
+        [Authorize]
+        public PartialViewResult Leave(int id)
+        {
+            var discussion = this.discussionsService.GetById(id);
+            var currentUserUserName = System.Web.HttpContext.Current.User.Identity.GetUserName();
+            var currentUser = this.usersService.GetUserByUserName(currentUserUserName);
+
+            this.discussionsService.RemoveUserFromDiscussion(discussion, currentUser);
+
+            var model = mapper.Map<DetailDiscussionViewModel>(discussion);
+
+            return PartialView("_ButtonsPartial", model);
+        }
     }
 }
