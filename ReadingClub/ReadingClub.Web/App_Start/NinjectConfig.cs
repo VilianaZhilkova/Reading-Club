@@ -4,9 +4,11 @@
 namespace ReadingClub.Web.App_Start
 {
     using System;
-    using System.Web;
+    using System.Linq;
     using System.Data.Entity;
+    using System.Web;
 
+    using Microsoft.AspNet.SignalR;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 
     using AutoMapper;
@@ -54,7 +56,9 @@ namespace ReadingClub.Web.App_Start
                 kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
                 kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
 
+                GlobalHost.DependencyResolver = new NinjectSignalRDependencyResolver(kernel);
                 RegisterServices(kernel);
+
                 return kernel;
             }
             catch
@@ -84,12 +88,30 @@ namespace ReadingClub.Web.App_Start
                  .BindDefaultInterface();
             });
 
-
             kernel.Bind(typeof(DbContext), typeof(MsSqlDbContext)).To<MsSqlDbContext>().InRequestScope();
             kernel.Bind(typeof(IRepository<>)).To(typeof(EfRepository<>)).InRequestScope();
             kernel.Bind<IUnitOfWork>().To<EfUnitOfWork>().InRequestScope();
 
             kernel.Bind<IMapper>().ToMethod(ctx => Mapper.Instance);
-        }        
+        }
+
+        private class NinjectSignalRDependencyResolver : DefaultDependencyResolver
+        {
+            private readonly IKernel kernel;
+            public NinjectSignalRDependencyResolver(IKernel kernel)
+            {
+                this.kernel = kernel;
+            }
+
+            public override object GetService(Type serviceType)
+            {
+                return kernel.TryGet(serviceType) ?? base.GetService(serviceType);
+            }
+
+            public override System.Collections.Generic.IEnumerable<object> GetServices(Type serviceType)
+            {
+                return kernel.GetAll(serviceType).Concat(base.GetServices(serviceType));
+            }
+        }
     }
 }

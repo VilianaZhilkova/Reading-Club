@@ -13,6 +13,7 @@ else
 {
     <div class="container">
         <div>
+            <p id="discussionId" class="hidden">@Model.Id</p>
             <h3>Subject: @Model.Subject</h3>
             <p>
                 Book: @Html.ActionLink(Model.Book.Title, "GetById", "Books", new { bookId = Model.Book.Id }, new { @class = "action-link" }),
@@ -21,7 +22,7 @@ else
             <p>Start date: @Html.DisplayFor(d => Model.StartDate)</p>
             <p>End Date: @Html.DisplayFor(d => Model.EndDate)</p>
             <p>Created by: @Model.Creator</p>
-
+            <p>Participants: <span id="users-count">@Model.Users.Count()</span> / @Model.MaximumNumberOfParticipants </p>
             @if ((Model.StartDate > DateTime.UtcNow || DateTime.UtcNow <= Model.EndDate))
             {
                 <div id="discussion-buttons">
@@ -35,11 +36,7 @@ else
 
 @section Scripts {
     @Scripts.Render("~/bundles/timeParser")
+    @Scripts.Render("~/bundles/jquerysignalR")
+    @Scripts.Render("~/SignalR/hubs")
+    @Scripts.Render("~/bundles/participantsHub")
 }
-
-
-
-
-
-
-

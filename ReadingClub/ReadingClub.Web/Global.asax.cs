@@ -12,6 +12,8 @@ using ReadingClub.Data;
 using ReadingClub.Data.Migrations;
 using ReadingClub.Web.Infrastructure;
 using ReadingClub.Web.Infrastructure.Mapping;
+using System.Configuration;
+using System.Data.SqlClient;
 
 namespace ReadingClub.Web
 {
@@ -19,7 +21,7 @@ namespace ReadingClub.Web
     {
         protected void Application_Start()
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<MsSqlDbContext, Configuration>());
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<MsSqlDbContext, Data.Migrations.Configuration>());
 
             ViewEngines.Engines.Clear();
             ViewEngines.Engines.Add(new RazorViewEngine());
@@ -30,6 +32,13 @@ namespace ReadingClub.Web
 
             var mapper = new AutoMapperConfig();
             mapper.Execute(Assembly.GetExecutingAssembly());
+
+            SqlDependency.Start(ConfigurationManager.ConnectionStrings["ReadingClubDb"].ConnectionString);
+        }
+
+        protected void Application_End()
+        {
+            SqlDependency.Stop(ConfigurationManager.ConnectionStrings["ReadingClubDb"].ConnectionString);
         }
     }
 }

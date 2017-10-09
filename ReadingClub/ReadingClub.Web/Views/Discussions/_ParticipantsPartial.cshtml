@@ -3,8 +3,11 @@
 
 <div id="participants">
     <h3>Participants: </h3>
-    @foreach (var participant in Model)
-    {
-        <p>@participant.UserName</p>
-    }
+
+    <ul id="participants-list">
+        @foreach (var participant in Model)
+        {
+            <li id=@participant.Id>@participant.UserName</li>
+        }
+    </ul>
 </div>

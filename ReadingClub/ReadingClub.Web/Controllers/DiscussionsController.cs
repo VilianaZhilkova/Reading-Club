@@ -13,6 +13,7 @@ using ReadingClub.Web.Infrastructure.Mapping;
 using ReadingClub.Web.ViewModels.Discussions;
 using ReadingClub.Services.Data.Contracts;
 using ReadingClub.Data.Models;
+using ReadingClub.Web.Hubs.Data;
 
 namespace ReadingClub.Web.Controllers
 {
@@ -21,13 +22,15 @@ namespace ReadingClub.Web.Controllers
         private readonly IDiscussionsService discussionsService;
         private readonly IUsersService usersService;
         private readonly IBooksService booksService;
+        private readonly IDiscussionUsersData discussionUsersData;
         private readonly IMapper mapper;
 
-        public DiscussionsController(IDiscussionsService discussionsService, IUsersService usersService, IBooksService booksService, IMapper mapper)
+        public DiscussionsController(IDiscussionsService discussionsService, IUsersService usersService, IBooksService booksService, IDiscussionUsersData discussionUsersData, IMapper mapper)
         {
             this.discussionsService = discussionsService;
             this.usersService = usersService;
             this.booksService = booksService;
+            this.discussionUsersData = discussionUsersData;
             this.mapper = mapper;
         }
 
@@ -72,6 +75,7 @@ namespace ReadingClub.Web.Controllers
         [HttpGet]
         public ActionResult GetById(int? discussionId)
         {
+            this.discussionUsersData.GetData();
             if (discussionId == null)
             {
                 return RedirectToAction("Index", new { discussionStatus = Common.Constants.DiscussionStatusUpcoming });
@@ -124,6 +128,7 @@ namespace ReadingClub.Web.Controllers
         [Authorize]
         public PartialViewResult Join(int id)
         {
+            this.discussionUsersData.GetData();
             var discussion = this.discussionsService.GetById(id);
 
             if (discussion.Users.Count() >= discussion.MaximumNumberOfParticipants)
@@ -134,9 +139,9 @@ namespace ReadingClub.Web.Controllers
             {
                 var currentUserUserName = System.Web.HttpContext.Current.User.Identity.GetUserName();
                 var currentUser = this.usersService.GetUserByUserName(currentUserUserName);
-
+                  
                 this.discussionsService.AddUserToDiscussion(discussion, currentUser);
-
+ 
                 var model = mapper.Map<DetailDiscussionViewModel>(discussion);
 
                 return PartialView("_ButtonsPartial", model);
@@ -148,6 +153,7 @@ namespace ReadingClub.Web.Controllers
         [Authorize]
         public PartialViewResult Leave(int id)
         {
+            this.discussionUsersData.GetData();
             var discussion = this.discussionsService.GetById(id);
             var currentUserUserName = System.Web.HttpContext.Current.User.Identity.GetUserName();
             var currentUser = this.usersService.GetUserByUserName(currentUserUserName);

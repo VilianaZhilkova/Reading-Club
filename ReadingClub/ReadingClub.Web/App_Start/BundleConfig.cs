@@ -1,5 +1,4 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
 namespace ReadingClub.Web
 {
@@ -15,9 +14,10 @@ namespace ReadingClub.Web
                         "~/Scripts/jquery.validate*"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryajax").Include(
-              "~/Scripts/jquery.unobtrusive-ajax.js",
-              "~/Scripts/jquery.unobtrusive-ajax.min.js"));
+                        "~/Scripts/jquery.unobtrusive-ajax.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/jquerysignalR").Include(
+                      "~/Scripts/jquery.signalR-2.1.1.js"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
@@ -33,6 +33,9 @@ namespace ReadingClub.Web
 
             bundles.Add(new ScriptBundle("~/bundles/timeParser").Include(
                       "~/Scripts/js/timeParser.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/participantsHub").Include(
+                      "~/Scripts/js/participantsHub.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
