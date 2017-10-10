@@ -15,14 +15,12 @@ namespace ReadingClub.Web.Hubs
         private readonly ICommentsService commentsService;
         private readonly IUsersService usersService;
         private readonly IDiscussionsService discussionsService;
-        private readonly IMapper mapper;
 
-        public ChatHub(ICommentsService commentsService, IUsersService usersService, IDiscussionsService discussionsService, IMapper mapper)
+        public ChatHub(ICommentsService commentsService, IUsersService usersService, IDiscussionsService discussionsService)
         {
             this.commentsService = commentsService;
             this.usersService = usersService;
             this.discussionsService = discussionsService;
-            this.mapper = mapper;
         }
 
         public void JoinVisitor(int discussionId)
