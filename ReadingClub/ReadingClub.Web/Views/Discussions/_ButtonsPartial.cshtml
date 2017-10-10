@@ -5,22 +5,29 @@
 <div>
     @if (Model.Users.Any(x => x.Id == User.Identity.GetUserId()))
     {
-        @Ajax.ActionLink("Leave", "Leave", "Discussions", new { id = Model.Id },
+        <div>
+            @Ajax.ActionLink("Leave", "Leave", "Discussions", new { id = Model.Id },
           new AjaxOptions()
           {
               HttpMethod = "POST",
               UpdateTargetId = "discussion-buttons",
               InsertionMode = InsertionMode.Replace
           }, new { @class = "btn btn-danger", @role = "button" })
+        </div>
+        <div>
+            @Html.Partial("_CreateCommentPartial", Model)
+        </div>
     }
     else if (User.Identity.IsAuthenticated && Model.Users.Count() < Model.MaximumNumberOfParticipants)
     {
-        @Ajax.ActionLink("Join", "Join", "Discussions", new { id = Model.Id },
+        <div>
+          @Ajax.ActionLink("Join", "Join", "Discussions", new { id = Model.Id },
           new AjaxOptions()
           {
               HttpMethod = "POST",
               UpdateTargetId = "discussion-buttons",
               InsertionMode = InsertionMode.Replace
-          }, new { @class = "btn btn-success", @role = "button" });
+          }, new { @class = "btn btn-success", @role = "button" })
+        </div>
     }
 </div>

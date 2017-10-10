@@ -257,6 +257,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Hubs\ChatHub.cs" />
     <Compile Include="Hubs\Data\DiscussionUsersData.cs" />
     <Compile Include="Hubs\Data\IDiscussionUsersData.cs" />
     <Compile Include="Hubs\ParticipantsHub.cs" />
@@ -272,6 +273,8 @@
     <Compile Include="ViewModels\Books\BookViewModel.cs" />
     <Compile Include="ViewModels\Books\AddBookViewModel.cs" />
     <Compile Include="ViewModels\Books\DetailBookViewModel.cs" />
+    <Compile Include="ViewModels\Comments\CommentViewModel.cs" />
+    <Compile Include="ViewModels\Comments\CreateCommentViewModel.cs" />
     <Compile Include="ViewModels\Discussions\CreateDiscussionViewModel.cs" />
     <Compile Include="ViewModels\Discussions\DetailDiscussionViewModel.cs" />
     <Compile Include="ViewModels\Discussions\DiscussionViewModel.cs" />
@@ -310,6 +313,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\js\chatHub.js" />
     <Content Include="Scripts\js\participantsHub.js" />
     <Content Include="Scripts\js\timeParser.js" />
     <Content Include="Scripts\js\getTimezoneOffset.js" />
@@ -359,6 +363,8 @@
     <Content Include="Views\Discussions\GetById.cshtml" />
     <Content Include="Views\Discussions\_ParticipantsPartial.cshtml" />
     <Content Include="Views\Discussions\_ButtonsPartial.cshtml" />
+    <Content Include="Views\Discussions\_CommentsPartial.cshtml" />
+    <Content Include="Views\Discussions\_CreateCommentPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

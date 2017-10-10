@@ -37,6 +37,9 @@ namespace ReadingClub.Web
             bundles.Add(new ScriptBundle("~/bundles/participantsHub").Include(
                       "~/Scripts/js/participantsHub.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/chatHub").Include(
+                      "~/Scripts/js/chatHub.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));

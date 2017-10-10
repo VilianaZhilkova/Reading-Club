@@ -30,6 +30,7 @@ else
                 </div>
             }
             @Html.Partial("_ParticipantsPartial", Model.Users)
+            @Html.Partial("_CommentsPartial", Model.Comments)
         </div>
     </div>
 }
@@ -39,4 +40,5 @@ else
     @Scripts.Render("~/bundles/jquerysignalR")
     @Scripts.Render("~/SignalR/hubs")
     @Scripts.Render("~/bundles/participantsHub")
+    @Scripts.Render("~/bundles/chatHub")
 }

@@ -1,0 +1,12 @@
+﻿@using ReadingClub.Web.ViewModels.Comments
+@model ICollection<CommentViewModel>
+
+<div id="comments">
+    @foreach (var comment in Model)
+    {
+        <p>
+            <span id="comment-author"><strong>@comment.Author: </strong></span>
+            <span id="comment-content">@comment.Content</span>
+        </p>
+    }
+</div>

@@ -50,6 +50,7 @@ namespace ReadingClub.Web.Controllers
                     .To<DiscussionViewModel>()
                     .Where(d => d.StartDate > currentDate)
                     .OrderBy(d => d.StartDate)
+                    .ThenBy(d => d.EndDate)
                     .ToList();
             }
             else if(discussionStatus == Common.Constants.DiscussionStatusCurrent)
@@ -58,14 +59,16 @@ namespace ReadingClub.Web.Controllers
                     .To<DiscussionViewModel>()
                     .Where(d => d.StartDate <= currentDate && currentDate <= d.EndDate)
                     .OrderBy(d => d.StartDate)
+                    .ThenBy(d => d.EndDate)
                     .ToList();
             }
             else
             {
                 discussions = this.discussionsService.GetAllApprovedDiscussions()
                     .To<DiscussionViewModel>()
-                    .Where(d => d.StartDate < currentDate)
+                    .Where(d => d.EndDate < currentDate)
                     .OrderByDescending(d => d.StartDate)
+                    .ThenByDescending(d => d.EndDate)
                     .ToList();
             }
 
@@ -82,8 +85,8 @@ namespace ReadingClub.Web.Controllers
             }
 
             var discussion = this.discussionsService.GetById((int)discussionId);
+            discussion.Comments = discussion.Comments.Where(x => x.IsDeleted == false).OrderBy(x => x.Date).ToList();
             var model = this.mapper.Map<DetailDiscussionViewModel>(discussion);
-
             return View(model);
         }
 

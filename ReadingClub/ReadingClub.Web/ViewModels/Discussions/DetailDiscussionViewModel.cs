@@ -7,6 +7,7 @@ using ReadingClub.Data.Models;
 using ReadingClub.Web.ViewModels.Books;
 using ReadingClub.Web.ViewModels.Users;
 using ReadingClub.Web.Infrastructure.Mapping.Contracts;
+using ReadingClub.Web.ViewModels.Comments;
 
 namespace ReadingClub.Web.ViewModels.Discussions
 {
@@ -28,7 +29,10 @@ namespace ReadingClub.Web.ViewModels.Discussions
 
         public ICollection<UserViewModel> Users { get; set; }
 
-        //public ICollection<Comment> Comments { get; set; }
+        public CreateCommentViewModel CreateCommentViewModel { get; set; }
+
+        public ICollection<CommentViewModel> Comments { get; set; }
+
         public bool IsApproved { get; set; }
 
         public void CreateMappings(IMapperConfigurationExpression configuration)
