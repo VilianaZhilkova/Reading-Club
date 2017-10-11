@@ -40,8 +40,15 @@ namespace ReadingClub.Web.Controllers
             if(discussionStatus == null)
             {
                 return RedirectToAction("Index", "Home");
-            }
+            }      
 
+            return View();
+        }
+
+        [OutputCache(Duration = 60, VaryByParam = "discussionStatus")]
+        [ChildActionOnly]
+        public ActionResult AllDiscussionsPartial(string discussionStatus)
+        {
             var currentDate = DateTime.UtcNow;
             var discussions = new List<DiscussionViewModel>();
             if (discussionStatus == Common.Constants.DiscussionStatusUpcoming)
@@ -53,14 +60,14 @@ namespace ReadingClub.Web.Controllers
                     .ThenBy(d => d.EndDate)
                     .ToList();
             }
-            else if(discussionStatus == Common.Constants.DiscussionStatusCurrent)
+            else if (discussionStatus == Common.Constants.DiscussionStatusCurrent)
             {
-               discussions = this.discussionsService.GetAllApprovedDiscussions()
-                    .To<DiscussionViewModel>()
-                    .Where(d => d.StartDate <= currentDate && currentDate <= d.EndDate)
-                    .OrderBy(d => d.StartDate)
-                    .ThenBy(d => d.EndDate)
-                    .ToList();
+                discussions = this.discussionsService.GetAllApprovedDiscussions()
+                     .To<DiscussionViewModel>()
+                     .Where(d => d.StartDate <= currentDate && currentDate <= d.EndDate)
+                     .OrderBy(d => d.StartDate)
+                     .ThenBy(d => d.EndDate)
+                     .ToList();
             }
             else
             {
@@ -71,8 +78,7 @@ namespace ReadingClub.Web.Controllers
                     .ThenByDescending(d => d.EndDate)
                     .ToList();
             }
-
-            return View(discussions);
+            return this.PartialView(discussions);
         }
 
         [HttpGet]

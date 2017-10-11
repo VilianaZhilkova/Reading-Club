@@ -367,6 +367,7 @@
     <Content Include="Views\Discussions\_ButtonsPartial.cshtml" />
     <Content Include="Views\Discussions\_CommentsPartial.cshtml" />
     <Content Include="Views\Discussions\_CreateCommentPartial.cshtml" />
+    <Content Include="Views\Discussions\AllDiscussionsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -407,6 +408,10 @@
     <ProjectReference Include="..\Services\ReadingClub.Services.Data\ReadingClub.Services.Data.csproj">
       <Project>{3fe56afd-9dfd-471e-ac81-1b70294aa18b}</Project>
       <Name>ReadingClub.Services.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Services\ReadingClub.Services.Web\ReadingClub.Services.Web.csproj">
+      <Project>{c6f6a37b-fb1f-4fcf-9f7a-dfe40b3706b1}</Project>
+      <Name>ReadingClub.Services.Web</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

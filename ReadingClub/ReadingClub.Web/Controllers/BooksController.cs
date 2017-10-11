@@ -6,6 +6,7 @@ using ReadingClub.Web.Infrastructure.Mapping;
 
 using ReadingClub.Data.Models;
 using ReadingClub.Services.Data.Contracts;
+using ReadingClub.Services.Web.Contracts;
 using ReadingClub.Web.ViewModels.Books;
 
 namespace ReadingClub.Web.Controllers
@@ -14,18 +15,21 @@ namespace ReadingClub.Web.Controllers
     {
         private readonly IBooksService booksService;
         private readonly IAuthorsService authorsService;
+        private readonly ICacheService cacheService;
         private readonly IMapper mapper;
 
-        public BooksController(IBooksService booksService, IAuthorsService authorsService, IMapper mapper)
+        public BooksController(IBooksService booksService, IAuthorsService authorsService, ICacheService cacheService, IMapper mapper)
         {
             this.booksService = booksService;
             this.authorsService = authorsService;
+            this.cacheService = cacheService;
             this.mapper = mapper;
         }
 
         public ActionResult Index()
         {
-            var books = this.booksService.GetAllApprovedBooks().To<BookViewModel>().ToList();
+            var books = this.cacheService.Get("books", () =>
+            this.booksService.GetAllApprovedBooks().To<BookViewModel>().ToList(), 30 * 60);
             return View(books);
         }
 

@@ -21,6 +21,8 @@ namespace ReadingClub.Web.App_Start
     using Data.Common;
     using Data.Common.Contracts;
     using Services.Data.Contracts;
+    using Services.Web;
+    using Services.Web.Contracts;
 
     public static class NinjectConfig 
     {
@@ -93,6 +95,7 @@ namespace ReadingClub.Web.App_Start
             kernel.Bind<IUnitOfWork>().To<EfUnitOfWork>().InRequestScope();
 
             kernel.Bind<IMapper>().ToMethod(ctx => Mapper.Instance);
+            kernel.Bind<ICacheService>().To<HttpCacheService>().InRequestScope();
         }
 
         private class NinjectSignalRDependencyResolver : DefaultDependencyResolver
