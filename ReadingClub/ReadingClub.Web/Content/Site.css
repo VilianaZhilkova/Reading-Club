@@ -1,7 +1,8 @@
 ﻿body {
     background-image: url('images/background.jpg');
     padding-top: 50px;
-    padding-bottom: 20px;
+
+    margin-bottom: 120px;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -27,4 +28,21 @@ textarea {
 #participants {
     float: right;
 
+}
+
+.carousel-inner {
+    margin-top: 50px;
+}
+
+footer {
+    position: fixed;
+    height: 100px;
+    bottom: 0px;
+    left: 30px;
+    right: 30px;
+    margin-bottom: 20px;
+}
+
+.row {
+    margin: 50px;
 }

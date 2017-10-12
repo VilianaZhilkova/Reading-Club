@@ -280,6 +280,7 @@
     <Compile Include="ViewModels\Discussions\CreateDiscussionViewModel.cs" />
     <Compile Include="ViewModels\Discussions\DetailDiscussionViewModel.cs" />
     <Compile Include="ViewModels\Discussions\DiscussionViewModel.cs" />
+    <Compile Include="ViewModels\Home\HomePageViewModel.cs" />
     <Compile Include="ViewModels\Manage\AddPhoneNumberViewModel.cs" />
     <Compile Include="ViewModels\Manage\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModels\Manage\ConfigureTwoFactorViewModel.cs" />

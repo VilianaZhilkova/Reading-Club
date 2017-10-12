@@ -1,6 +1,5 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-}
+﻿@using ReadingClub.Web.ViewModels.Home
+@model HomePageViewModel
 
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
 <!-- Wrapper for slides -->
@@ -21,22 +20,36 @@
 
 <div class="row">
     <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        <h2>Current discussions</h2>
+        @foreach (var discussion in Model.CurrentDiscussions)
+        {
+            <p><strong>@Html.ActionLink(@discussion.Subject, "GetById", "Discussions", new { discussionId = discussion.Id }, new { @class = "action-link" })</strong></p>
+            <p>@discussion.BookTitle</p>
+            <p>End Date: @Html.DisplayFor(d => discussion.EndDate)</p>
+        }
+        <p>@Html.ActionLink("Learn more \u00BB", "Index", "Discussions", new { discussionStatus = "current" }, new { @class = "btn btn-default" })</p>
     </div>
     <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+        <h2>Upcoming discussions</h2>
+        @foreach(var discussion in Model.UpcomingDiscussions)
+        {
+            <p><strong>@Html.ActionLink(@discussion.Subject, "GetById", "Discussions", new { discussionId = discussion.Id }, new { @class = "action-link" })</strong></p>
+            <p>@discussion.BookTitle</p>
+            <p>Start date: @Html.DisplayFor(d => discussion.StartDate)</p>
+        }
+        <p>@Html.ActionLink("Learn more \u00BB", "Index", "Discussions", new { discussionStatus = "upcoming"}, new { @class = "btn btn-default" })</p>
     </div>
     <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+        <h2>Books</h2>
+        @foreach (var book in Model.Books)
+        {
+            <p><strong>@Html.ActionLink(@book.Title, "GetById", "Books", new { bookId = book.Id }, new { @class = "action-link" })</strong></p>
+            <p>@book.Author</p>
+        }
+        <p>@Html.ActionLink("Learn more \u00BB", "Index", "Books", null, new { @class = "btn btn-default" })</p>
     </div>
 </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/timeParser")
+}
