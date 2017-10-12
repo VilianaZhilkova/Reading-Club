@@ -29,7 +29,11 @@ namespace ReadingClub.Web.Controllers
         public ActionResult Index()
         {
             var books = this.cacheService.Get("books", () =>
-            this.booksService.GetAllApprovedBooks().To<BookViewModel>().ToList(), 30 * 60);
+            this.booksService.GetAllApprovedBooks()
+                                .OrderBy(b => b.Title)
+                                .ThenBy(b => b.Author)
+                                .To<BookViewModel>()
+                                .ToList(), 30 * 60);
             return View(books);
         }
 

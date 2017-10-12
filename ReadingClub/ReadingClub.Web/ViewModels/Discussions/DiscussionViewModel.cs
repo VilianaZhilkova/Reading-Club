@@ -22,8 +22,7 @@ namespace ReadingClub.Web.ViewModels.Discussions
           public void CreateMappings(IMapperConfigurationExpression configuration)
         {
             configuration.CreateMap<Discussion, DiscussionViewModel>()
-                .ForMember(x => x.BookTitle, opt => opt.MapFrom(x => x.Book.Author));
-            configuration.CreateMap<Discussion, DiscussionViewModel>()
+                .ForMember(x => x.BookTitle, opt => opt.MapFrom(x => x.Book.Title))
                 .ForMember(x => x.BookAuthor, opt => opt.MapFrom(x => x.Book.Author.Name));
         }
     }

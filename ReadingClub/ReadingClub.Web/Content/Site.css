@@ -1,7 +1,7 @@
 ﻿body {
     background-image: url('images/background.jpg');
     padding-top: 50px;
-
+    margin-top: 50px;
     margin-bottom: 120px;
 }
 
@@ -30,8 +30,12 @@ textarea {
 
 }
 
-.carousel-inner {
+#comment-content {
     margin-top: 50px;
+}
+
+.row {
+    margin: 50px;
 }
 
 footer {
@@ -41,8 +45,4 @@ footer {
     left: 30px;
     right: 30px;
     margin-bottom: 20px;
-}
-
-.row {
-    margin: 50px;
 }

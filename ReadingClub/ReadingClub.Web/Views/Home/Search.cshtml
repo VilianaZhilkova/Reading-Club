@@ -1,0 +1,20 @@
+﻿@using ReadingClub.Web.ViewModels.Home
+@model SearchViewModel
+
+@if(@Model.Discussions.Count() > 0)
+{
+    @Html.Partial("_SearchInDiscussionsPartial", Model)
+}
+else if(@Model.Books.Count() > 0)
+{
+    @Html.Partial("_SearchInBooksPartial", Model)
+}
+else 
+{
+    <h4>Sorry, no results were found.</h4>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/timeParser")
+}
+

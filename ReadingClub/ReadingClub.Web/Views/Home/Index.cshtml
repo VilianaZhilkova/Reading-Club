@@ -1,55 +1,50 @@
 ﻿@using ReadingClub.Web.ViewModels.Home
 @model HomePageViewModel
 
-<div id="myCarousel" class="carousel slide" data-ride="carousel">
-<!-- Wrapper for slides -->
-    <div class="carousel-inner">
-        <div class="item active">
-            <img src="~/Content/images/quote1.png">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+            <div class="item active">
+                <img src="~/Content/images/quote1.png">
+            </div>
+
+            <div class="item">
+                <img src="~/Content/images/quote2.png">
+            </div>
+
+            <div class="item">
+                <img src="~/Content/images/quote3.png">
+            </div>
         </div>
-
-        <div class="item">
-            <img src="~/Content/images/quote2.png">
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Current discussions</h2>
+            @foreach (var discussion in Model.CurrentDiscussions)
+            {
+                <p><strong>@Html.ActionLink(@discussion.Subject, "GetById", "Discussions", new { discussionId = discussion.Id }, new { @class = "action-link" })</strong></p>
+                <p>@discussion.BookTitle</p>
+                <p>End Date: @Html.DisplayFor(d => discussion.EndDate)</p>
+            }
+            <p>@Html.ActionLink("Learn more \u00BB", "Index", "Discussions", new { discussionStatus = "current" }, new { @class = "btn btn-default" })</p>
         </div>
-
-        <div class="item">
-            <img src="~/Content/images/quote3.png">
+        <div class="col-md-4">
+            <h2>Upcoming discussions</h2>
+            @foreach (var discussion in Model.UpcomingDiscussions)
+            {
+                <p><strong>@Html.ActionLink(@discussion.Subject, "GetById", "Discussions", new { discussionId = discussion.Id }, new { @class = "action-link" })</strong></p>
+                <p>@discussion.BookTitle</p>
+                <p>Start date: @Html.DisplayFor(d => discussion.StartDate)</p>
+            }
+            <p>@Html.ActionLink("Learn more \u00BB", "Index", "Discussions", new { discussionStatus = "upcoming" }, new { @class = "btn btn-default" })</p>
+        </div>
+        <div class="col-md-4">
+            <h2>Books</h2>
+            @foreach (var book in Model.Books)
+            {
+                <p><strong>@Html.ActionLink(@book.Title, "GetById", "Books", new { bookId = book.Id }, new { @class = "action-link" })</strong></p>
+                <p>@book.Author</p>
+            }
+            <p>@Html.ActionLink("Learn more \u00BB", "Index", "Books", null, new { @class = "btn btn-default" })</p>
         </div>
     </div>
-</div>
-
-<div class="row">
-    <div class="col-md-4">
-        <h2>Current discussions</h2>
-        @foreach (var discussion in Model.CurrentDiscussions)
-        {
-            <p><strong>@Html.ActionLink(@discussion.Subject, "GetById", "Discussions", new { discussionId = discussion.Id }, new { @class = "action-link" })</strong></p>
-            <p>@discussion.BookTitle</p>
-            <p>End Date: @Html.DisplayFor(d => discussion.EndDate)</p>
-        }
-        <p>@Html.ActionLink("Learn more \u00BB", "Index", "Discussions", new { discussionStatus = "current" }, new { @class = "btn btn-default" })</p>
-    </div>
-    <div class="col-md-4">
-        <h2>Upcoming discussions</h2>
-        @foreach(var discussion in Model.UpcomingDiscussions)
-        {
-            <p><strong>@Html.ActionLink(@discussion.Subject, "GetById", "Discussions", new { discussionId = discussion.Id }, new { @class = "action-link" })</strong></p>
-            <p>@discussion.BookTitle</p>
-            <p>Start date: @Html.DisplayFor(d => discussion.StartDate)</p>
-        }
-        <p>@Html.ActionLink("Learn more \u00BB", "Index", "Discussions", new { discussionStatus = "upcoming"}, new { @class = "btn btn-default" })</p>
-    </div>
-    <div class="col-md-4">
-        <h2>Books</h2>
-        @foreach (var book in Model.Books)
-        {
-            <p><strong>@Html.ActionLink(@book.Title, "GetById", "Books", new { bookId = book.Id }, new { @class = "action-link" })</strong></p>
-            <p>@book.Author</p>
-        }
-        <p>@Html.ActionLink("Learn more \u00BB", "Index", "Books", null, new { @class = "btn btn-default" })</p>
-    </div>
-</div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/timeParser")
-}

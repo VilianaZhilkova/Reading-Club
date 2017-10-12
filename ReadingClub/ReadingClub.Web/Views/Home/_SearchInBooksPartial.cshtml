@@ -1,0 +1,13 @@
+﻿@using ReadingClub.Web.ViewModels.Home
+@model SearchViewModel
+
+@if (Model.Books.Count() > 0)
+{
+    foreach (var book in Model.Books)
+    {
+        <div>
+            <p>@Html.ActionLink(@book.Title, "GetById", "Books", new { bookId = book.Id }, new { @class = "action-link" })</p>
+            <p>@book.Author</p>
+        </div>
+    }
+}

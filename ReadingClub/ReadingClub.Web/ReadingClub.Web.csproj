@@ -281,6 +281,7 @@
     <Compile Include="ViewModels\Discussions\DetailDiscussionViewModel.cs" />
     <Compile Include="ViewModels\Discussions\DiscussionViewModel.cs" />
     <Compile Include="ViewModels\Home\HomePageViewModel.cs" />
+    <Compile Include="ViewModels\Home\SearchViewModel.cs" />
     <Compile Include="ViewModels\Manage\AddPhoneNumberViewModel.cs" />
     <Compile Include="ViewModels\Manage\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModels\Manage\ConfigureTwoFactorViewModel.cs" />
@@ -377,6 +378,9 @@
     <Content Include="Views\Discussions\_CommentsPartial.cshtml" />
     <Content Include="Views\Discussions\_CreateCommentPartial.cshtml" />
     <Content Include="Views\Discussions\AllDiscussionsPartial.cshtml" />
+    <Content Include="Views\Home\_SearchInBooksPartial.cshtml" />
+    <Content Include="Views\Home\_SearchInDiscussionsPartial.cshtml" />
+    <Content Include="Views\Home\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

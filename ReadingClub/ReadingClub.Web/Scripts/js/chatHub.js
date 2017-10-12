@@ -7,10 +7,10 @@
 
     $("#discussion-buttons").on("submit", function (ev) {
         ev.preventDefault();
-        var content = $("#content").val();
-        console.log(content);
+        var content = $("#comment-content").val();
+        console.log($("#comment-content").val());
         chatHub.server.addComment(content, discussionId);
-        $("#content").val("");
+        $("#comment-content").val("");
     });
 
     $.connection.hub.start().done(function () {

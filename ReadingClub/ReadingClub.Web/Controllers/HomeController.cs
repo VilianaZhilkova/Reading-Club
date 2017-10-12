@@ -64,6 +64,39 @@ namespace ReadingClub.Web.Controllers
             return View(model);
         }
 
+        public ActionResult Search(string searchIn, string searchText)
+        {
+            if(searchIn == null || searchText == null)
+            {
+                return RedirectToAction("Index");
+            }
+            var model = new SearchViewModel();
+            searchIn = searchIn.ToLower();
+            searchText = searchText.ToLower();
+            if(searchIn == "books")
+            {
+                var books = this.booksService.GetAllApprovedBooks()
+                    .Where(x => x.Title.Contains(searchText))
+                    .OrderBy(b => b.Discussions.Count)
+                    .To<BookViewModel>()
+                    .ToList();
+                model.Books = books;
+                model.Discussions = new HashSet<DiscussionViewModel>();
+                return View(model);
+            }
+
+            var discussions = this.discussionsService.GetAllApprovedDiscussions()
+                    .Where(x => x.Book.Title.Contains(searchText))
+                    .To<DiscussionViewModel>()                
+                    .OrderBy(d => d.StartDate)
+                    .ThenBy(d => d.EndDate)
+                    .ToList();
+            model.Discussions = discussions;
+            model.Books = new HashSet<BookViewModel>();
+
+            return View(model);
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

@@ -1,0 +1,16 @@
+﻿@using ReadingClub.Web.ViewModels.Home
+@model SearchViewModel
+
+@if (Model.Discussions.Count() > 0)
+{
+    foreach (var discussion in Model.Discussions)
+    {
+        <div>
+            <p>@Html.ActionLink(@discussion.Subject, "GetById", "Discussions", new { discussionId = discussion.Id }, new { @class = "action-link" })</p>
+            <p>Book: @discussion.BookTitle, Author: @discussion.BookAuthor</p>
+            <p>Start date: @Html.DisplayFor(duscussion => discussion.StartDate)</p>
+            <p>End Date: @Html.DisplayFor(duscussion => discussion.EndDate)</p>
+        </div>
+    }
+}
+
