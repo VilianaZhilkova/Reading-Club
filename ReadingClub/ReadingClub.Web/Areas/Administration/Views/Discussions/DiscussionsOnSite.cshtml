@@ -1,0 +1,57 @@
+﻿@using GridMvc.Html
+@using ReadingClub.Web.Areas.Administration.ViewModels.Discussions
+@model IEnumerable<AdminDiscussionViewModel>
+
+@if (Request.IsAuthenticated && User.IsInRole("Admin"))
+{
+    @Html.Grid(Model).Columns(columns =>
+{
+    columns.Add(d => d.Id).Titled("Id").SetWidth(10).Sortable(true);
+    columns.Add(d => d.Subject).Titled("Subject").Sortable(true).Css("grid-colums");
+    columns.Add(d => d.StartDate).Titled("Start Date")
+    .RenderValueAs(d => Html.DisplayFor(x => d.StartDate))
+    .SetWidth(500)
+    .Sortable(true)
+    .Filterable(true)
+    .Sanitized(false)
+    .Encoded(false)
+    .Css("grid-colums ");
+    columns.Add(d => d.EndDate).Titled("End Date")
+    .RenderValueAs(d => Html.DisplayFor(x => d.StartDate))
+    .Sortable(true)
+    .SetWidth(200)
+    .Sortable(true)
+    .Filterable(true)
+    .Sanitized(false)
+    .Encoded(false)
+    .SetWidth(500)
+    .Css("grid-colums");
+    columns.Add(d => d.NumberOfParticipants).Titled("Participants").Sortable(true).Css("grid-colums");
+    columns.Add(d => d.MaximumNumberOfParticipants).Titled("Maximum Participants").Sortable(true).Css("grid-colums");
+    columns.Add(d => d.NumberOfComments).Titled("Comments").Sortable(true).Css("grid-colums");
+    columns.Add(d => d.Book.Title).Titled("Book Title").SetWidth(200).Sortable(true).Css("grid-colums");
+    columns.Add(d => d.Book.Author).Titled("Book Author").SetWidth(200).Sortable(true).Css("grid-colums");
+    columns.Add(d => d.Creator).Titled("Creator").SetWidth(200).Sortable(true).Css("grid-colums");
+
+    columns.Add(d => d.IsApproved).Titled("Disapprove")
+    .Filterable(true)
+    .Sanitized(false)
+    .Encoded(false)
+    .SetWidth(200)
+    .RenderValueAs(x => @Html.ActionLink("Disapprove", "DisapproveDiscussion", "Discussions", new { discussionId = x.Id }, new { onclick = "return confirm('Are you sure you want to disapprove this discussion?');", @class = "btn btn-danger", @role = "button" }))
+    .Css("grid-colums");
+
+    columns.Add(d => d.IsDeleted).Titled("Delete")
+    .SetWidth(200)
+    .Filterable(true)
+    .Sanitized(false)
+    .Encoded(false)
+    .RenderValueAs(x => @Html.ActionLink("Delete", "DeleteDiscussion", "Discussions", new { discussionId = x.Id }, new { onclick = "return confirm('Are you sure you want to delete this discussion?');", @class = "btn btn-danger", @role = "button" }))
+    .Css("grid-colums");
+    }).WithPaging(4)
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/timeParser")
+}

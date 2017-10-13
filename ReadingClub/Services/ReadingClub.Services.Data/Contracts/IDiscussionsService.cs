@@ -14,5 +14,11 @@ namespace ReadingClub.Services.Data.Contracts
         void AddUserToDiscussion(Discussion discussion, User user);
 
         void RemoveUserFromDiscussion(Discussion discussion, User user);
+
+        IQueryable<Discussion> GetAllDeletedDiscussion();
+
+        IQueryable<Discussion> GetAllDiscussionsWaitingForApprovement();
+
+        void Update(Discussion discussion);
     }
 }

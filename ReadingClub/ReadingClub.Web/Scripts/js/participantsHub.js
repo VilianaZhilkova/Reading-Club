@@ -1,6 +1,14 @@
 ﻿$(function () {
+
+
     var discussionId = $("#discussionId").text();
     var participantsHub = $.connection.participantsHub;
+
+    $.connection.hub.start().done(function () {
+        var room = discussionId;
+        participantsHub.server.joinVisitor(room);
+    });
+
     participantsHub.client.checkForChanges = function () {
         participantsHub.server.updateParticipants(discussionId);
     };
@@ -12,10 +20,5 @@
         }
         var usersCount = participants.length;
         $("#users-count").text(usersCount);
-    };
-
-    $.connection.hub.start().done(function () {
-        var room = discussionId;
-        participantsHub.server.joinVisitor(room);
-    });
+    };  
 });

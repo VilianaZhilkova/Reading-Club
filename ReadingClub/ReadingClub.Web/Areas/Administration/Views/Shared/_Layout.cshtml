@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/Gridmvc")
     @Scripts.Render("~/bundles/modernizr")
+
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -16,25 +18,96 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Reading club", "Index", "Home", new { area = "Administration" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Discussions <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("Discussions waiting for approvement", "Index", "Discussions")</li>
+                            <li class="divider"></li>
+                            <li>@Html.ActionLink("Discussions on site", "DiscussionsOnSite", "Discussions")</li>
+                            <li class="divider"></li>
+                            <li>@Html.ActionLink("Deleted Discussions", "DeletedDiscussions", "Discussions")</li>
+                            <li class="divider"></li>
+                            <li>@Html.ActionLink("Add new discussion", "AddDiscussion", "Discussions")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Books <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("Books waiting for approvement", "Index", "Books")</li>
+                            <li class="divider"></li>
+                            <li>@Html.ActionLink("Books on site", "BooksOnSite", "Books")</li>
+                            <li class="divider"></li>
+                            <li>@Html.ActionLink("Deleted Books", "DeletedBooks", "Books")</li>
+                            <li class="divider"></li>
+                            <li>@Html.ActionLink("Add new book", "AddBook", "Books")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Authors <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("All authors", "AllAuthors", "Authors")</li>
+                            <li class="divider"></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Users <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("Users on site", "UsersOnSite", "Users")</li>
+                            <li class="divider"></li>
+                            <li>@Html.ActionLink("Administrators", "Administrators", "Users")</li>
+                            <li class="divider"></li>
+                            <li>@Html.ActionLink("Deleted users", "DeletedUsers", "Users")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Comments <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("Comments on site", "CommentsOnSite", "Comments")</li>
+                            <li class="divider"></li>
+                            <li>@Html.ActionLink("Deleted comments", "DeletedComments", "Comments")</li>
+                        </ul>
+                    </li>
                 </ul>
+                @Html.Partial("_LoginPartial")
+                @using (Html.BeginForm("Search", "Home", FormMethod.Get, new { @id = "search-form", @class = "nav navbar-form navbar-right", @role = "search" }))
+                {
+                    <div class="form-group input-group">
+                        <select class="form-control" name="searchIn">
+                            <option name="searchIn">Discussions</option>
+                            <option name="searchIn">Books</option>
+                        </select>
+                    </div>
+                    <div class="form-group input-group">
+                        <input type="text" name="searchText" class="form-control" placeholder="Search by book title">
+                        <span class="input-group-btn">
+                            <button id="search-button" class="btn btn-default" type="submit">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                    </div>
+                }
             </div>
         </div>
     </div>
 
     <div class="container body-content">
         @RenderBody()
-        <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <hr />
+            <p>&copy; 2017 - Viliana Zhilkova</p>
+            <p>vilianazhilkova@abv.bg</p>
         </footer>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryajax")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/gridmvc")
     @RenderSection("scripts", required: false)
 </body>
+
 </html>

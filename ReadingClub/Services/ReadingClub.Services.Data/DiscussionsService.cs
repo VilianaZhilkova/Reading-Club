@@ -46,5 +46,23 @@ namespace ReadingClub.Services.Data
             discussion.Users.Remove(user);
             this.unitOfWork.Commit();
         }
+
+        // administrator
+
+        public IQueryable<Discussion> GetAllDeletedDiscussion()
+        {
+            return this.discussions.GetAll.Where(x => x.IsDeleted);
+        }
+
+        public IQueryable<Discussion> GetAllDiscussionsWaitingForApprovement()
+        {
+            return this.discussions.GetAll.Where(x => !(x.IsApproved) && x.IsDeleted);
+        }
+
+        public void Update(Discussion discussion)
+        {
+            this.discussions.Update(discussion);
+            this.unitOfWork.Commit();
+        }
     }
 }

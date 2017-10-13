@@ -34,6 +34,11 @@ textarea {
     margin-top: 50px;
 }
 
+.grid-colums {
+    font-size: 12px;
+}
+
+
 .row {
     margin: 50px;
 }

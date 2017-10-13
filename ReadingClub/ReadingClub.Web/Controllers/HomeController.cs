@@ -33,7 +33,12 @@ namespace ReadingClub.Web.Controllers
         }
 
         public ActionResult Index(HomePageViewModel model)
-        {            
+        {
+            if (User.IsInRole("Admin"))
+            {
+                return RedirectToAction("Index", "Home", new { area = "Administration" });
+            }
+
             var currentDate = DateTime.UtcNow;
             var currentDiscussions = this.discussionsService.GetAllApprovedDiscussions()
                      .To<DiscussionViewModel>()

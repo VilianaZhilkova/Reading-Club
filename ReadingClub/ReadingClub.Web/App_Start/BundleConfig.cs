@@ -19,6 +19,9 @@ namespace ReadingClub.Web
             bundles.Add(new ScriptBundle("~/bundles/jquerysignalR").Include(
                       "~/Scripts/jquery.signalR-2.1.1.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/gridmvc").Include(
+                      "~/Scripts/gridmvc.js"));
+
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
@@ -43,6 +46,9 @@ namespace ReadingClub.Web
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/Content/Gridmvc").Include(
+                      "~/Content/Gridmvc.css"));
         }
     }
 }
