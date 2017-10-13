@@ -46,6 +46,16 @@ namespace ReadingClub.Web.Areas.Administration.Controllers
             return View(discussionsOnSite);
         }
 
+        [HttpGet]
+        public ActionResult DiscussionsForApproval()
+        {
+            var discussionsOnSite = this.discussionsService.GetAllDiscussionsForApproval()
+                .To<AdminDiscussionViewModel>()
+                .OrderBy(d => d.StartDate)
+                .ToList();
+            return View(discussionsOnSite);
+        }
+
         public ActionResult DeleteDiscussion(string discussionId)
         {
             var discussion = this.discussionsService.GetById(int.Parse(discussionId));
@@ -62,6 +72,15 @@ namespace ReadingClub.Web.Areas.Administration.Controllers
             this.discussionsService.Update(discussion);
 
             return RedirectToAction("DiscussionsOnSite");
+        }
+
+        public ActionResult ApproveDiscussion(string discussionId)
+        {
+            var discussion = this.discussionsService.GetById(int.Parse(discussionId));
+            discussion.IsApproved = true;
+            this.discussionsService.Update(discussion);
+
+            return RedirectToAction("DiscussionsForApproval");
         }
     }
 }

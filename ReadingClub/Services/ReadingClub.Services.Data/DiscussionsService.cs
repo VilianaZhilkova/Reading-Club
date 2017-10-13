@@ -49,14 +49,14 @@ namespace ReadingClub.Services.Data
 
         // administrator
 
-        public IQueryable<Discussion> GetAllDeletedDiscussion()
+        public IQueryable<Discussion> GetAllDeletedDiscussions()
         {
             return this.discussions.GetAll.Where(x => x.IsDeleted);
         }
 
-        public IQueryable<Discussion> GetAllDiscussionsWaitingForApprovement()
+        public IQueryable<Discussion> GetAllDiscussionsForApproval()
         {
-            return this.discussions.GetAll.Where(x => !(x.IsApproved) && x.IsDeleted);
+            return this.discussions.GetAll.Where(x => !(x.IsApproved) && !(x.IsDeleted));
         }
 
         public void Update(Discussion discussion)

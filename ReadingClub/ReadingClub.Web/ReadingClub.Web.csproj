@@ -322,6 +322,7 @@
     <Content Include="Areas\Administration\Views\Home\Index.cshtml" />
     <Content Include="Grid.mvc.readme" />
     <Content Include="Areas\Administration\Views\Discussions\DiscussionsOnSite.cshtml" />
+    <Content Include="Areas\Administration\Views\Discussions\DiscussionsForApproval.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\gridmvc.js" />
     <Content Include="Scripts\gridmvc.lang.ru.js" />

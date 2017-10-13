@@ -15,9 +15,9 @@ namespace ReadingClub.Services.Data.Contracts
 
         void RemoveUserFromDiscussion(Discussion discussion, User user);
 
-        IQueryable<Discussion> GetAllDeletedDiscussion();
+        IQueryable<Discussion> GetAllDeletedDiscussions();
 
-        IQueryable<Discussion> GetAllDiscussionsWaitingForApprovement();
+        IQueryable<Discussion> GetAllDiscussionsForApproval();
 
         void Update(Discussion discussion);
     }
