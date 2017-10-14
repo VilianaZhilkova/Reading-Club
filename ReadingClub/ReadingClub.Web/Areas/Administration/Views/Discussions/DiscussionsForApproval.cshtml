@@ -21,7 +21,6 @@
     .Sortable(true)
     .Sanitized(false)
     .Encoded(false)
-    .SetWidth(500)
     .Css("grid-colums");
     columns.Add(d => d.NumberOfParticipants).Titled("Participants").Sortable(true).Filterable(true).Css("grid-colums");
     columns.Add(d => d.MaximumNumberOfParticipants).Titled("Maximum Participants").Filterable(true).Sortable(true).Css("grid-colums");
@@ -30,11 +29,11 @@
     columns.Add(d => d.Book.Author).Titled("Book Author").SetWidth(200).Filterable(true).Sortable(true).Css("grid-colums");
     columns.Add(d => d.Creator).Titled("Creator").SetWidth(200).Filterable(true).Sortable(true).Css("grid-colums");
 
-    columns.Add(d => d.IsApproved).Titled("Disapprove")
+    columns.Add(d => d.IsApproved).Titled("Approve")
     .Sanitized(false)
     .Encoded(false)
     .SetWidth(200)
-    .RenderValueAs(x => @Html.ActionLink("Approve", "ApproveDiscussion", "Discussions", new { discussionId = x.Id }, new { onclick = "return confirm('Are you sure you want to approve this discussion?');", @class = "btn btn-danger", @role = "button" }))
+    .RenderValueAs(x => @Html.ActionLink("Approve", "ApproveDiscussion", "Discussions", new { discussionId = x.Id }, new { onclick = "return confirm('Are you sure you want to approve this discussion?');", @class = "btn btn-success", @role = "button" }))
     .Css("grid-colums");
 
     columns.Add(d => d.IsDeleted).Titled("Deleted")

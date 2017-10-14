@@ -1,0 +1,35 @@
+﻿@using GridMvc.Html
+@using ReadingClub.Web.Areas.Administration.ViewModels.Comments
+@model IEnumerable<AdminCommentViewModel>
+
+@if (Request.IsAuthenticated && User.IsInRole("Admin"))
+{
+    @Html.Grid(Model).Columns(columns =>
+{
+    columns.Add(d => d.Id).Titled("Id").SetWidth(10).Sortable(true).Filterable(true).Css("grid-colums");
+    columns.Add(d => d.Content).Titled("Content").Sortable(true).Filterable(true).Css("grid-colums");
+    columns.Add(d => d.Author).Titled("Author").Sortable(true).Filterable(true).Css("grid-colums ");
+    columns.Add(d => d.Date).Titled("Date")
+    .RenderValueAs(d => Html.DisplayFor(x => d.Date))
+    .SetWidth(200)
+    .Sortable(true)
+    .Sanitized(false)
+    .Encoded(false)
+    .Css("grid-colums");
+    columns.Add(d => d.DiscussionId).Titled("Discussion Id").SetWidth(10).Sortable(true).Filterable(true).Css("grid-colums");
+    columns.Add(d => d.DiscussionSubject).Titled("Discussion Subject").Filterable(true).Sortable(true).Css("grid-colums");
+
+
+    columns.Add(d => d.IsDeleted).Titled("Delete")
+    .SetWidth(200)
+    .Sanitized(false)
+    .Encoded(false)
+    .RenderValueAs(x => @Html.ActionLink("Delete", "DeleteComment", "Comments", new { commentId = x.Id }, new { onclick = "return confirm('Are you sure you want to delete this comment?');", @class = "btn btn-danger", @role = "button" }))
+    .Css("grid-colums");
+}).WithPaging(4)
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/timeParser")
+}
+

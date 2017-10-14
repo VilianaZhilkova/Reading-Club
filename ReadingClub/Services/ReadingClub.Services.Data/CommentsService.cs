@@ -1,7 +1,9 @@
-﻿using ReadingClub.Data.Models;
+﻿using System;
+using System.Linq;
+
+using ReadingClub.Data.Models;
 using ReadingClub.Data.Common.Contracts;
 using ReadingClub.Services.Data.Contracts;
-using System;
 
 namespace ReadingClub.Services.Data
 {
@@ -14,6 +16,22 @@ namespace ReadingClub.Services.Data
             this.comments = comments;
             this.unitOfWork = unitOfWork;
         }
+
+        public IQueryable<Comment> GetAllComments()
+        {
+            return this.comments.GetAll;
+        }
+
+        public IQueryable<Comment> GetAllCommentsWithDeleted()
+        {
+            return this.comments.GetAllWithDeleted;
+        }
+
+        public Comment GetById(int id)
+        {
+            return this.comments.GetById(id);
+        }
+
         public void AddComment(string content, DateTime date, User currentUser, Discussion discussion)
         {
             var comment = new Comment
@@ -25,6 +43,12 @@ namespace ReadingClub.Services.Data
             };
 
             this.comments.Add(comment);
+            this.unitOfWork.Commit();
+        }
+
+        public void Update(Comment comment)
+        {
+            this.comments.Update(comment);
             this.unitOfWork.Commit();
         }
     }
