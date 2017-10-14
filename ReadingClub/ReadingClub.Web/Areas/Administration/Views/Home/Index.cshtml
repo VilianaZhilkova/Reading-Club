@@ -1,7 +1,60 @@
-﻿
-@{
-    ViewBag.Title = "Index";
-}
+﻿@using ReadingClub.Web.Areas.Administration.ViewModels.Home
+@model AdminHomeViewModel
 
-<h2>Adminstration</h2>
+<h3></h3>
+<table class="table table-striped table-hover ">
+    <thead>
+        <tr>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>Disussions</strong></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>All discussions</td>
+            <td>@Model.ApprovedDiscussionsCount</td>
+        </tr>
+        <tr>
+            <td>Discussions for approval</td>
+            <td>@Model.DiscussionsForApprovalCount</td>
+        </tr>
+        <tr>
+            <td><strong>Books</strong></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>All books</td>
+            <td>@Model.ApprovedBooksCount</td>
+        </tr>
+        <tr>
+            <td>Books for approval</td>
+            <td>@Model.BooksForApprovalCount</td>
+        </tr>
+        <tr>
+            <td><strong>Authors</strong></td>
+            <td>@Model.AuthorsCount</td>
+        </tr>
+        <tr>
+            <td><strong>Comments</strong></td>
+            <td>@Model.CommentsCount</td>
+        </tr>
+        <tr>
+            <td><strong>Users</strong></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Users</td>
+            <td>@Model.UsersCount</td>
+        </tr>
+        <tr>
+            <td>Administrators</td>
+            <td>@Model.AdministratorsCount</td>
+        </tr>
+ 
+</tbody>
+</table> 
 

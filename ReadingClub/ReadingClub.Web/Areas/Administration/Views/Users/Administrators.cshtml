@@ -2,6 +2,8 @@
 @using ReadingClub.Web.Areas.Administration.ViewModels.Users
 @model IEnumerable<AdminUserViewModel>
 
+<h2>Administrators</h2>
+
 @if (Request.IsAuthenticated && User.IsInRole("Admin"))
 {
     @Html.Grid(Model).Columns(columns =>

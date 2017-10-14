@@ -2,6 +2,8 @@
 @using ReadingClub.Web.Areas.Administration.ViewModels.Discussions
 @model IEnumerable<AdminDiscussionViewModel>
 
+<h2>Discussions</h2>
+
 @if (Request.IsAuthenticated && User.IsInRole("Admin"))
 {
     @Html.Grid(Model).Columns(columns =>
@@ -29,14 +31,14 @@
     columns.Add(d => d.Book.Author).Titled("Book Author").SetWidth(200).Filterable(true).Sortable(true).Css("grid-colums");
     columns.Add(d => d.Creator).Titled("Creator").SetWidth(200).Filterable(true).Sortable(true).Css("grid-colums");
 
-    columns.Add(d => d.IsApproved).Titled("Disapprove")
+    columns.Add().Titled("Disapprove")
     .Sanitized(false)
     .Encoded(false)
     .SetWidth(200)
     .RenderValueAs(x => @Html.ActionLink("Disapprove", "DisapproveDiscussion", "Discussions", new { discussionId = x.Id }, new { onclick = "return confirm('Are you sure you want to disapprove this discussion?');", @class = "btn btn-danger", @role = "button" }))
     .Css("grid-colums");
 
-    columns.Add(d => d.IsDeleted).Titled("Delete")
+    columns.Add().Titled("Delete")
     .SetWidth(200)
     .Sanitized(false)
     .Encoded(false)

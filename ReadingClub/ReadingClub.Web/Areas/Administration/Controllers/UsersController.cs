@@ -19,6 +19,7 @@ using System.Threading.Tasks;
 
 namespace ReadingClub.Web.Areas.Administration.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class UsersController : Controller
     {
         private readonly IUsersService usersService;

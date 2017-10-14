@@ -61,7 +61,7 @@ namespace ReadingClub.Services.Data
 
         public IQueryable<Discussion> GetAllDiscussionsForApproval()
         {
-            return this.discussions.GetAll.Where(x => !(x.IsApproved) && !(x.IsDeleted));
+            return this.discussions.GetAll.Where(x => !(x.IsApproved));
         }
 
         public void Update(Discussion discussion)

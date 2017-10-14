@@ -16,6 +16,7 @@ using ReadingClub.Data.Models;
 
 namespace ReadingClub.Web.Areas.Administration.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class DiscussionsController : Controller
     {
         private readonly IDiscussionsService discussionsService;

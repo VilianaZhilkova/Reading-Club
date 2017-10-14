@@ -2,6 +2,8 @@
 @using ReadingClub.Web.Areas.Administration.ViewModels.Books
 @model IEnumerable<AdminBookViewModel>
 
+<h2>Deleted books</h2>
+
 @if (Request.IsAuthenticated && User.IsInRole("Admin"))
 {
     @Html.Grid(Model).Columns(columns =>
@@ -19,7 +21,7 @@
     .Encoded(false)
     .Css("grid-colums");
 
-    columns.Add(d => d.IsDeleted).Titled("Restore")
+    columns.Add().Titled("Restore")
     .SetWidth(200)
     .Sanitized(false)
     .Encoded(false)

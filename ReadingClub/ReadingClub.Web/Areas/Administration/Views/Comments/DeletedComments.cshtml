@@ -2,6 +2,8 @@
 @using ReadingClub.Web.Areas.Administration.ViewModels.Comments
 @model IEnumerable<AdminCommentViewModel>
 
+<h2>Deleted Comments</h2>
+
 @if (Request.IsAuthenticated && User.IsInRole("Admin"))
 {
     @Html.Grid(Model).Columns(columns =>

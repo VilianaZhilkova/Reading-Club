@@ -263,6 +263,7 @@
     <Compile Include="Areas\Administration\ViewModels\Books\AdminBookViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\Comments\AdminCommentViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\Discussions\AdminDiscussionViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\Home\AdminHomeViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\Users\AdminUserViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BooksController.cs" />

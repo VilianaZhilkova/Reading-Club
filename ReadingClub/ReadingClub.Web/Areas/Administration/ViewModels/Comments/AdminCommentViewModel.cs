@@ -22,8 +22,6 @@ namespace ReadingClub.Web.Areas.Administration.ViewModels.Comments
 
         public string DiscussionSubject { get; set; }
 
-        public bool IsDeleted { get; set; }
-
         public void CreateMappings(IMapperConfigurationExpression configuration)
         {
             configuration.CreateMap<Comment, AdminCommentViewModel>()

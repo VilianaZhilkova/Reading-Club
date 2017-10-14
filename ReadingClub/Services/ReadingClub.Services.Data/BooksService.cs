@@ -49,7 +49,7 @@ namespace ReadingClub.Services.Data
 
         public IQueryable<Book> GetAllBooksForApproval()
         {
-            return this.books.GetAll.Where(x => !(x.IsApproved) && !(x.IsDeleted));
+            return this.books.GetAll.Where(x => !(x.IsApproved));
         }
 
         public void Update(Book book)

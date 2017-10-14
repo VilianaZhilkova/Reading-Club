@@ -2,6 +2,8 @@
 @using ReadingClub.Web.Areas.Administration.ViewModels.Discussions
 @model IEnumerable<AdminDiscussionViewModel>
 
+<h2>Discussions for approval</h2>
+
 @if (Request.IsAuthenticated && User.IsInRole("Admin"))
 {
     @Html.Grid(Model).Columns(columns =>
@@ -29,7 +31,7 @@
     columns.Add(d => d.Book.Author).Titled("Book Author").SetWidth(200).Filterable(true).Sortable(true).Css("grid-colums");
     columns.Add(d => d.Creator).Titled("Creator").SetWidth(200).Filterable(true).Sortable(true).Css("grid-colums");
 
-    columns.Add(d => d.IsApproved).Titled("Approve")
+    columns.Add().Titled("Approve")
     .Sanitized(false)
     .Encoded(false)
     .SetWidth(200)

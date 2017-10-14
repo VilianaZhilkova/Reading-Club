@@ -2,6 +2,8 @@
 @using ReadingClub.Web.Areas.Administration.ViewModels.Comments
 @model IEnumerable<AdminCommentViewModel>
 
+<h2>Comments</h2>
+
 @if (Request.IsAuthenticated && User.IsInRole("Admin"))
 {
     @Html.Grid(Model).Columns(columns =>
@@ -20,7 +22,7 @@
     columns.Add(d => d.DiscussionSubject).Titled("Discussion Subject").Filterable(true).Sortable(true).Css("grid-colums");
 
 
-    columns.Add(d => d.IsDeleted).Titled("Delete")
+    columns.Add().Titled("Delete")
     .SetWidth(200)
     .Sanitized(false)
     .Encoded(false)
