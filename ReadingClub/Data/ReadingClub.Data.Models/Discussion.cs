@@ -29,12 +29,12 @@ namespace ReadingClub.Data.Models
         public DateTime EndDate { get; set; }
 
         [Required]
-        [MinLength(Constants.MinDiscussionSubjectLength)]
-        [MaxLength(Constants.MaxDiscussionSubjectLength)]
+        [MinLength(StringLengthConstants.MinDiscussionSubjectLength)]
+        [MaxLength(StringLengthConstants.MaxDiscussionSubjectLength)]
         public string Subject { get; set; }
 
         [Required]
-        [Range(Constants.MinNumberOfParticipants, Constants.MaxNumberOfParticipants)]
+        [Range(NumericConstants.MinNumberOfParticipants, NumericConstants.MaxNumberOfParticipants)]
         public int MaximumNumberOfParticipants { get; set; }
 
         [InverseProperty("Discussions")]

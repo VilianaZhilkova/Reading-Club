@@ -51,7 +51,7 @@ namespace ReadingClub.Web.Controllers
         {
             var currentDate = DateTime.UtcNow;
             var discussions = new List<DiscussionViewModel>();
-            if (discussionStatus == Common.Constants.DiscussionStatusUpcoming)
+            if (discussionStatus == TextConstants.DiscussionStatusUpcoming)
             {
                 discussions = this.discussionsService.GetAllApprovedDiscussions()
                     .To<DiscussionViewModel>()
@@ -60,7 +60,7 @@ namespace ReadingClub.Web.Controllers
                     .ThenBy(d => d.EndDate)
                     .ToList();
             }
-            else if (discussionStatus == Common.Constants.DiscussionStatusCurrent)
+            else if (discussionStatus == TextConstants.DiscussionStatusCurrent)
             {
                 discussions = this.discussionsService.GetAllApprovedDiscussions()
                      .To<DiscussionViewModel>()
@@ -87,7 +87,7 @@ namespace ReadingClub.Web.Controllers
             this.discussionUsersData.GetData();
             if (discussionId == null)
             {
-                return RedirectToAction("Index", new { discussionStatus = Common.Constants.DiscussionStatusUpcoming });
+                return RedirectToAction("Index", new { discussionStatus = TextConstants.DiscussionStatusUpcoming });
             }
 
             var discussion = this.discussionsService.GetById((int)discussionId);
@@ -125,8 +125,8 @@ namespace ReadingClub.Web.Controllers
                 var book = this.booksService.GetById(bookId);
                 discussion.Book = book;
                 this.discussionsService.AddDiscussion(discussion);
-                //change url
-                return RedirectToAction("Index", "Home");
+
+                return RedirectToAction("GetById", "Discussions", new { discussionId = discussion.Id });
             }
 
             return View(model);

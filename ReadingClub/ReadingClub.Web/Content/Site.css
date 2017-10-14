@@ -1,14 +1,15 @@
 ﻿body {
     background-image: url('images/background.jpg');
     padding-top: 50px;
-    margin-top: 50px;
-    margin-bottom: 120px;
+    height: 100%;
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+    padding-bottom: 50px;
+    position: relative;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -44,10 +45,9 @@ textarea {
 }
 
 footer {
-    position: fixed;
-    height: 100px;
+    position:absolute;
+    height: 50px;
     bottom: 0px;
     left: 30px;
     right: 30px;
-    margin-bottom: 20px;
 }

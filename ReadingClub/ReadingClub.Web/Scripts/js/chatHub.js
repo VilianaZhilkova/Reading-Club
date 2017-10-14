@@ -7,6 +7,10 @@
         chatHub.server.joinVisitor(room);
     });
 
+    chatHub.client.sendError = function () {
+        alert("Comment must be between 10 and 300 characters long");
+    }
+
     chatHub.client.addNewCommentToPage = function (content, username) {
         $("#comments").append("<p><span id=comment-author><strong>" + username + ": </strong></span><span id=comment-content>" + content + "</span></p>");
     };

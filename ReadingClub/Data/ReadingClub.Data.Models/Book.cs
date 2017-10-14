@@ -15,16 +15,16 @@ namespace ReadingClub.Data.Models
         }
 
         [Required]
-        [MinLength(Constants.MinBookTitleLength)]
-        [MaxLength(Constants.MaxBookTitleLength)]
+        [MinLength(StringLengthConstants.MinBookTitleLength)]
+        [MaxLength(StringLengthConstants.MaxBookTitleLength)]
         public string Title { get; set; }
 
         [Required]
         public virtual Author Author { get; set; }
 
         [Required]
-        [MinLength(Constants.MinBookDescriptionLength)]
-        [MaxLength(Constants.MaxBookDescriptionLength)]
+        [MinLength(StringLengthConstants.MinBookDescriptionLength)]
+        [MaxLength(StringLengthConstants.MaxBookDescriptionLength)]
         public string Description { get; set; }
 
         public virtual ICollection<Discussion> Discussions

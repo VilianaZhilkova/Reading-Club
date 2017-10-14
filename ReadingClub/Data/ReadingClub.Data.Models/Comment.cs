@@ -19,8 +19,8 @@ namespace ReadingClub.Data.Models
         public DateTime Date { get; set; }
 
         [Required]
-        [MinLength(Constants.MinCommentContentLength)]
-        [MaxLength(Constants.MaxCommentContentLength)]
+        [MinLength(StringLengthConstants.MinCommentContentLength)]
+        [MaxLength(StringLengthConstants.MaxCommentContentLength)]
         public string Content { get; set; }
 
         [Required]

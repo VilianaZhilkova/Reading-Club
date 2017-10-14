@@ -7,6 +7,7 @@ using ReadingClub.Services.Data.Contracts;
 using AutoMapper;
 using Microsoft.AspNet.Identity;
 using ReadingClub.Data.Models;
+using ReadingClub.Common;
 
 namespace ReadingClub.Web.Hubs
 {
@@ -30,6 +31,10 @@ namespace ReadingClub.Web.Hubs
 
         public void AddComment(string content, int discussionId)
         {
+            if(content.Length < StringLengthConstants.MinCommentContentLength || StringLengthConstants.MaxCommentContentLength < content.Length)
+            {
+                Clients.Client(Context.ConnectionId).SendError();
+            }
             var date = DateTime.UtcNow;
             var currentUserUserName = System.Web.HttpContext.Current.User.Identity.GetUserName();
             var currentUser = this.usersService.GetUserByUserName(currentUserUserName);

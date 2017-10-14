@@ -17,8 +17,8 @@ namespace ReadingClub.Data.Models
 
         [Required]
         [Index(IsUnique = true)]
-        [MinLength(Constants.MinAuthorNameLength)]
-        [MaxLength(Constants.MaxAuthorNameLength)]
+        [MinLength(StringLengthConstants.MinAuthorNameLength)]
+        [MaxLength(StringLengthConstants.MaxAuthorNameLength)]
         public string Name { get; set; }
 
         public virtual ICollection<Book> Books
