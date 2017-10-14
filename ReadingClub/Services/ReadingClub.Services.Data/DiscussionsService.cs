@@ -29,6 +29,12 @@ namespace ReadingClub.Services.Data
         {
             return this.discussions.GetById(id);
         }
+
+        public Discussion GetByIdWithDeleted(int id)
+        {
+            return this.discussions.GetByIdWithDeleted(id);
+        }
+
         public void AddDiscussion(Discussion discussion)
         {
             this.discussions.Add(discussion);
@@ -47,11 +53,10 @@ namespace ReadingClub.Services.Data
             this.unitOfWork.Commit();
         }
 
-        // administrator
-
         public IQueryable<Discussion> GetAllDeletedDiscussions()
         {
-            return this.discussions.GetAll.Where(x => x.IsDeleted);
+            this.discussions.GetAll.Where(x => x.IsDeleted);
+            return this.discussions.GetAllWithDeleted.Where(x => x.IsDeleted); ;
         }
 
         public IQueryable<Discussion> GetAllDiscussionsForApproval()

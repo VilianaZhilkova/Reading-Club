@@ -30,21 +30,20 @@
     columns.Add(d => d.Book.Author).Titled("Book Author").SetWidth(200).Filterable(true).Sortable(true).Css("grid-colums");
     columns.Add(d => d.Creator).Titled("Creator").SetWidth(200).Filterable(true).Sortable(true).Css("grid-colums");
 
-    columns.Add(d => d.IsApproved).Titled("Disapprove")
+    columns.Add(d => d.IsApproved).Titled("Approved")
+    .SetWidth(200)
     .Sanitized(false)
     .Encoded(false)
-    .SetWidth(200)
-    .RenderValueAs(x => @Html.ActionLink("Approve", "ApproveDiscussion", "Discussions", new { discussionId = x.Id }, new { onclick = "return confirm('Are you sure you want to approve this discussion?');", @class = "btn btn-danger", @role = "button" }))
     .Css("grid-colums");
 
-    columns.Add(d => d.IsDeleted).Titled("Deleted")
+    columns.Add(d => d.IsDeleted).Titled("Restore")
     .SetWidth(200)
     .Sanitized(false)
     .Encoded(false)
+    .RenderValueAs(x => @Html.ActionLink("Restore", "RestoreDiscussion", "Discussions", new { discussionId = x.Id }, new { onclick = "return confirm('Are you sure you want to restore this discussion?');", @class = "btn btn-success", @role = "button" }))
     .Css("grid-colums");
 }).WithPaging(4)
 }
-
 
 @section Scripts {
     @Scripts.Render("~/bundles/timeParser")

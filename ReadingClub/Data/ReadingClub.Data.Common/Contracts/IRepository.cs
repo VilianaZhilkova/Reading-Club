@@ -14,6 +14,8 @@ namespace ReadingClub.Data.Common.Contracts
 
         T GetById(int id);
 
+        T GetByIdWithDeleted(int id);
+
         void Add(T entity);
 
         void Delete(T entity);

@@ -9,6 +9,8 @@ namespace ReadingClub.Services.Data.Contracts
 
         Discussion GetById(int id);
 
+        Discussion GetByIdWithDeleted(int id);
+
         void AddDiscussion(Discussion discussion);
 
         void AddUserToDiscussion(Discussion discussion, User user);

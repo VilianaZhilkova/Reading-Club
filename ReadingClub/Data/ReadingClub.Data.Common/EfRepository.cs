@@ -53,6 +53,13 @@ namespace ReadingClub.Data.Common
             return item;
         }
 
+        public T GetByIdWithDeleted(int id)
+        {
+            var item = this.DbSet.Find(id);
+
+            return item;
+        }
+
         public void Add(T entity)
         {
             this.DbSet.Add(entity);
