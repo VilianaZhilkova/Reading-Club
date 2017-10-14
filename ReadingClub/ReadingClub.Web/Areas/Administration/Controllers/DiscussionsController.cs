@@ -19,21 +19,17 @@ namespace ReadingClub.Web.Areas.Administration.Controllers
     public class DiscussionsController : Controller
     {
         private readonly IDiscussionsService discussionsService;
-        private readonly IUsersService usersService;
-        private readonly IBooksService booksService;
         private readonly IMapper mapper;
 
-        public DiscussionsController(IDiscussionsService discussionsService, IUsersService usersService, IBooksService booksService, IMapper mapper)
+        public DiscussionsController(IDiscussionsService discussionsService, IMapper mapper)
         {
             this.discussionsService = discussionsService;
-            this.usersService = usersService;
-            this.booksService = booksService;
             this.mapper = mapper;
         }
         // GET: Administration/Discussions
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("DiscussionsOnSite");
         }
 
         [HttpGet]
@@ -101,7 +97,5 @@ namespace ReadingClub.Web.Areas.Administration.Controllers
 
             return RedirectToAction("DiscussionsForApproval");
         }
-
-
     }
 }

@@ -30,9 +30,31 @@ namespace ReadingClub.Services.Data
             return this.books.GetById(id);
         }
 
+        public Book GetByIdWithDeleted(int id)
+        {
+            return this.books.GetByIdWithDeleted(id);
+        }
+
         public void AddBook(Book book)
         {
             this.books.Add(book);
+            this.unitOfWork.Commit();
+        }
+
+        public IQueryable<Book> GetAllDeletedBooks()
+        {
+            this.books.GetAll.Where(x => x.IsDeleted);
+            return this.books.GetAllWithDeleted.Where(x => x.IsDeleted); ;
+        }
+
+        public IQueryable<Book> GetAllBooksForApproval()
+        {
+            return this.books.GetAll.Where(x => !(x.IsApproved) && !(x.IsDeleted));
+        }
+
+        public void Update(Book book)
+        {
+            this.books.Update(book);
             this.unitOfWork.Commit();
         }
     }

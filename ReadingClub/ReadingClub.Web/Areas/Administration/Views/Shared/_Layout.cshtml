@@ -35,7 +35,7 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Books <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li>@Html.ActionLink("Books waiting for approval", "Index", "Books")</li>
+                            <li>@Html.ActionLink("Books waiting for approval", "BooksForApproval", "Books")</li>
                             <li class="divider"></li>
                             <li>@Html.ActionLink("Books on site", "BooksOnSite", "Books")</li>
                             <li class="divider"></li>
@@ -45,7 +45,7 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Authors <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li>@Html.ActionLink("All authors", "AllAuthors", "Authors")</li>
+                            <li>@Html.ActionLink("All authors", "AuthorsOnSite", "Authors")</li>
                             <li class="divider"></li>
                         </ul>
                     </li>
@@ -69,27 +69,9 @@
                     </li>
                 </ul>
                 @Html.Partial("_LoginPartial")
-                @using (Html.BeginForm("Search", "Home", FormMethod.Get, new { @id = "search-form", @class = "nav navbar-form navbar-right", @role = "search" }))
-                {
-                    <div class="form-group input-group">
-                        <select class="form-control" name="searchIn">
-                            <option name="searchIn">Discussions</option>
-                            <option name="searchIn">Books</option>
-                        </select>
-                    </div>
-                    <div class="form-group input-group">
-                        <input type="text" name="searchText" class="form-control" placeholder="Search by book title">
-                        <span class="input-group-btn">
-                            <button id="search-button" class="btn btn-default" type="submit">
-                                <span class="glyphicon glyphicon-search"></span>
-                            </button>
-                        </span>
-                    </div>
-                }
             </div>
         </div>
     </div>
-
     <div class="container body-content">
         @RenderBody()
         <footer>

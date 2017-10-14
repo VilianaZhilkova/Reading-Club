@@ -35,7 +35,9 @@ namespace ReadingClub.Web.Areas.Administration.ViewModels.Discussions
         public void CreateMappings(IMapperConfigurationExpression configuration)
         {
             configuration.CreateMap<Discussion, AdminDiscussionViewModel>()
-                .ForMember(x => x.Creator, opt => opt.MapFrom(x => x.Creator.UserName));
+                .ForMember(x => x.Creator, opt => opt.MapFrom(x => x.Creator.UserName))
+                .ForMember(x => x.NumberOfParticipants, opt => opt.MapFrom(x => x.Users.Count))
+                .ForMember(x => x.NumberOfComments, opt => opt.MapFrom(x => x.Comments.Count));
         }
     }
 }

@@ -253,8 +253,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
+    <Compile Include="Areas\Administration\Controllers\BooksController.cs" />
     <Compile Include="Areas\Administration\Controllers\DiscussionsController.cs" />
     <Compile Include="Areas\Administration\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Administration\ViewModels\Books\AdminBookViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\Discussions\AdminDiscussionViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BooksController.cs" />
@@ -323,6 +325,9 @@
     <Content Include="Grid.mvc.readme" />
     <Content Include="Areas\Administration\Views\Discussions\DiscussionsOnSite.cshtml" />
     <Content Include="Areas\Administration\Views\Discussions\DiscussionsForApproval.cshtml" />
+    <Content Include="Areas\Administration\Views\Books\DeletedBooks.cshtml" />
+    <Content Include="Areas\Administration\Views\Books\BooksForApproval.cshtml" />
+    <Content Include="Areas\Administration\Views\Books\BooksOnSite.cshtml" />
     <None Include="Areas\Administration\Views\Discussions\DeletedDiscussions.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\gridmvc.js" />
@@ -400,7 +405,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Administration\ViewModels\Books\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
