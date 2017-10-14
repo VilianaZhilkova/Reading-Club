@@ -1,0 +1,16 @@
+﻿@using GridMvc.Html
+@using ReadingClub.Web.Areas.Administration.ViewModels.Authors
+@model IEnumerable<AdminAuthorViewModel>
+
+@if (Request.IsAuthenticated && User.IsInRole("Admin"))
+{
+    @Html.Grid(Model).Columns(columns =>
+{
+    columns.Add(d => d.Id).Titled("Id").SetWidth(10).Sortable(true).Filterable(true).Css("grid-colums");
+    columns.Add(d => d.Name).Titled("Name").Sortable(true).Filterable(true).Css("grid-colums");
+
+    columns.Add(d => d.NumberOfBooks).Titled("Books Count").Sortable(true).Filterable(true).Css("grid-colums");
+
+}).WithPaging(10)
+}
+

@@ -3,6 +3,7 @@
 using ReadingClub.Data.Models;
 using ReadingClub.Services.Data.Contracts;
 using ReadingClub.Data.Common.Contracts;
+using System;
 
 namespace ReadingClub.Services.Data
 {
@@ -19,7 +20,12 @@ namespace ReadingClub.Services.Data
         public Author GetBookAuthorByName(string authorName)
         {
             return this.authors.GetAll.Where(a => a.Name == authorName).FirstOrDefault();
-
         }
+
+        public IQueryable<Author> GetAuthorsWithDeleted()
+        {
+            return this.authors.GetAllWithDeleted;
+        }
+
     }
 }

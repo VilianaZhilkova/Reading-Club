@@ -253,9 +253,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
+    <Compile Include="Areas\Administration\Controllers\AuthorsController.cs" />
     <Compile Include="Areas\Administration\Controllers\BooksController.cs" />
     <Compile Include="Areas\Administration\Controllers\DiscussionsController.cs" />
     <Compile Include="Areas\Administration\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Administration\ViewModels\Authors\AdminAuthorViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\Books\AdminBookViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\Discussions\AdminDiscussionViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -328,6 +330,7 @@
     <Content Include="Areas\Administration\Views\Books\DeletedBooks.cshtml" />
     <Content Include="Areas\Administration\Views\Books\BooksForApproval.cshtml" />
     <Content Include="Areas\Administration\Views\Books\BooksOnSite.cshtml" />
+    <Content Include="Areas\Administration\Views\Authors\Index.cshtml" />
     <None Include="Areas\Administration\Views\Discussions\DeletedDiscussions.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\gridmvc.js" />
