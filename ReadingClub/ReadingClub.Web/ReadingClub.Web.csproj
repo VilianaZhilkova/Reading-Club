@@ -258,10 +258,12 @@
     <Compile Include="Areas\Administration\Controllers\CommentsController.cs" />
     <Compile Include="Areas\Administration\Controllers\DiscussionsController.cs" />
     <Compile Include="Areas\Administration\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Administration\Controllers\UsersController.cs" />
     <Compile Include="Areas\Administration\ViewModels\Authors\AdminAuthorViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\Books\AdminBookViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\Comments\AdminCommentViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\Discussions\AdminDiscussionViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\Users\AdminUserViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BooksController.cs" />
     <Compile Include="Controllers\DiscussionsController.cs" />
@@ -336,6 +338,8 @@
     <Content Include="Areas\Administration\Views\Comments\CommentsOnSite.cshtml" />
     <Content Include="Areas\Administration\Views\Comments\DeletedComments.cshtml" />
     <None Include="Areas\Administration\Views\Discussions\DeletedDiscussions.cshtml" />
+    <Content Include="Areas\Administration\Views\Users\UsersOnSite.cshtml" />
+    <Content Include="Areas\Administration\Views\Users\Administrators.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\gridmvc.js" />
     <Content Include="Scripts\gridmvc.lang.ru.js" />

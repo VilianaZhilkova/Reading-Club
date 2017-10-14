@@ -23,5 +23,10 @@ namespace ReadingClub.Services.Data
         {
             return this.users.GetAll.Where(u => u.UserName == userName).FirstOrDefault();
         }
+
+        public IQueryable<User> GetAllUsers()
+        {
+            return this.users.GetAll;
+        }
     }
 }

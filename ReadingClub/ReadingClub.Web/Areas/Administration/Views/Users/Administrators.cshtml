@@ -1,0 +1,22 @@
+﻿@using GridMvc.Html
+@using ReadingClub.Web.Areas.Administration.ViewModels.Users
+@model IEnumerable<AdminUserViewModel>
+
+@if (Request.IsAuthenticated && User.IsInRole("Admin"))
+{
+    @Html.Grid(Model).Columns(columns =>
+{
+    columns.Add(d => d.Id).Titled("Id").SetWidth(250).Sortable(true).Filterable(true).Css("grid-colums");
+    columns.Add(d => d.UserName).Titled("Username").Sortable(true).Filterable(true).Css("grid-colums");
+
+    columns.Add(d => d.Email).Titled("E-mail").Sortable(true).Filterable(true).Css("grid-colums");
+
+    columns.Add().Titled("Change role")
+    .SetWidth(200)
+    .Sanitized(false)
+    .Encoded(false)
+    .RenderValueAs(x => @Html.ActionLink("Change To User", "ChangeRoleToUser", "Users", new { userName = x.UserName }, new { onclick = "return confirm('Are you sure you want to chage this user role to User?');", @class = "btn btn-success", @role = "button" }))
+    .Css("grid-colums");
+}).WithPaging(4)
+}
+

@@ -23,6 +23,8 @@ namespace ReadingClub.Web.App_Start
     using Services.Data.Contracts;
     using Services.Web;
     using Services.Web.Contracts;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
 
     public static class NinjectConfig 
     {
@@ -96,6 +98,9 @@ namespace ReadingClub.Web.App_Start
 
             kernel.Bind<IMapper>().ToMethod(ctx => Mapper.Instance);
             kernel.Bind<ICacheService>().To<HttpCacheService>().InRequestScope();
+
+            kernel.Bind(typeof(ApplicationUserManager)).ToSelf().InRequestScope();
+            kernel.Bind(typeof(IUserStore<>)).To(typeof(UserStore<>)).InRequestScope();
         }
 
         private class NinjectSignalRDependencyResolver : DefaultDependencyResolver
