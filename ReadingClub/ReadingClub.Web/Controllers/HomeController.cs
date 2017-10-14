@@ -16,6 +16,7 @@ using ReadingClub.Data.Models;
 using ReadingClub.Web.Hubs.Data;
 using ReadingClub.Web.ViewModels.Home;
 using ReadingClub.Web.ViewModels.Books;
+using Bytes2you.Validation;
 
 namespace ReadingClub.Web.Controllers
 {
@@ -27,6 +28,9 @@ namespace ReadingClub.Web.Controllers
 
         public HomeController(IDiscussionsService discussionsService, IBooksService booksService, IMapper mapper)
         {
+            Guard.WhenArgument(discussionsService, nameof(discussionsService)).IsNull().Throw();
+            Guard.WhenArgument(booksService, nameof(booksService)).IsNull().Throw();
+            Guard.WhenArgument(mapper, nameof(mapper)).IsNull().Throw();
             this.discussionsService = discussionsService;
             this.booksService = booksService;
             this.mapper = mapper;
@@ -34,6 +38,7 @@ namespace ReadingClub.Web.Controllers
 
         public ActionResult Index(HomePageViewModel model)
         {
+            Guard.WhenArgument(model, nameof(model)).IsNull().Throw();
             if (User.IsInRole("Admin"))
             {
                 return RedirectToAction("Index", "Home", new { area = "Administration" });

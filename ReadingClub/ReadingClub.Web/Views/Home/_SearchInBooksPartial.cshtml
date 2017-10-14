@@ -1,6 +1,7 @@
 ﻿@using ReadingClub.Web.ViewModels.Home
 @model SearchViewModel
 
+<div class="search">
 @if (Model.Books.Count() > 0)
 {
     foreach (var book in Model.Books)
@@ -11,3 +12,4 @@
         </div>
     }
 }
+</div>

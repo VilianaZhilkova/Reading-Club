@@ -1,4 +1,5 @@
-﻿using ReadingClub.Data.Common.Contracts;
+﻿using Bytes2you.Validation;
+using ReadingClub.Data.Common.Contracts;
 using ReadingClub.Data.Models;
 using System.Configuration;
 using System.Data;
@@ -13,6 +14,7 @@ namespace ReadingClub.Web.Hubs.Data
 
         public DiscussionUsersData(IRepository<Discussion> discussions)
         {
+            Guard.WhenArgument(discussions, nameof(discussions)).IsNull().Throw();
             this.discussions = discussions;
         }
         public void GetData()

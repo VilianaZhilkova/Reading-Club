@@ -8,6 +8,7 @@ using ReadingClub.Data.Models;
 using ReadingClub.Services.Data.Contracts;
 using ReadingClub.Services.Web.Contracts;
 using ReadingClub.Web.ViewModels.Books;
+using Bytes2you.Validation;
 
 namespace ReadingClub.Web.Controllers
 {
@@ -20,6 +21,11 @@ namespace ReadingClub.Web.Controllers
 
         public BooksController(IBooksService booksService, IAuthorsService authorsService, ICacheService cacheService, IMapper mapper)
         {
+            Guard.WhenArgument(booksService, nameof(booksService)).IsNull().Throw();
+            Guard.WhenArgument(authorsService, nameof(authorsService)).IsNull().Throw();
+            Guard.WhenArgument(cacheService, nameof(cacheService)).IsNull().Throw();
+            Guard.WhenArgument(mapper, nameof(mapper)).IsNull().Throw();
+
             this.booksService = booksService;
             this.authorsService = authorsService;
             this.cacheService = cacheService;

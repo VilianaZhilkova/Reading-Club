@@ -14,6 +14,7 @@ using ReadingClub.Web.ViewModels.Discussions;
 using ReadingClub.Services.Data.Contracts;
 using ReadingClub.Data.Models;
 using ReadingClub.Web.Hubs.Data;
+using Bytes2you.Validation;
 
 namespace ReadingClub.Web.Controllers
 {
@@ -27,6 +28,12 @@ namespace ReadingClub.Web.Controllers
 
         public DiscussionsController(IDiscussionsService discussionsService, IUsersService usersService, IBooksService booksService, IDiscussionUsersData discussionUsersData, IMapper mapper)
         {
+            Guard.WhenArgument(discussionsService, nameof(discussionsService)).IsNull().Throw();
+            Guard.WhenArgument(usersService, nameof(usersService)).IsNull().Throw();
+            Guard.WhenArgument(booksService, nameof(booksService)).IsNull().Throw();
+            Guard.WhenArgument(discussionUsersData, nameof(discussionUsersData)).IsNull().Throw();
+            Guard.WhenArgument(mapper, nameof(mapper)).IsNull().Throw();
+
             this.discussionsService = discussionsService;
             this.usersService = usersService;
             this.booksService = booksService;
@@ -69,7 +76,7 @@ namespace ReadingClub.Web.Controllers
                      .ThenBy(d => d.EndDate)
                      .ToList();
             }
-            else
+            else if(discussionStatus == TextConstants.DiscussionStatusPassed)
             {
                 discussions = this.discussionsService.GetAllApprovedDiscussions()
                     .To<DiscussionViewModel>()
@@ -78,17 +85,22 @@ namespace ReadingClub.Web.Controllers
                     .ThenByDescending(d => d.EndDate)
                     .ToList();
             }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return this.PartialView(discussions);
         }
 
         [HttpGet]
         public ActionResult GetById(int? discussionId)
         {
-            this.discussionUsersData.GetData();
             if (discussionId == null)
             {
                 return RedirectToAction("Index", new { discussionStatus = TextConstants.DiscussionStatusUpcoming });
             }
+
+            this.discussionUsersData.GetData();
 
             var discussion = this.discussionsService.GetById((int)discussionId);
             discussion.Comments = discussion.Comments.Where(x => x.IsDeleted == false).OrderBy(x => x.Date).ToList();
@@ -137,6 +149,8 @@ namespace ReadingClub.Web.Controllers
         [Authorize]
         public PartialViewResult Join(int id)
         {
+            Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(0).Throw();
+
             this.discussionUsersData.GetData();
             var discussion = this.discussionsService.GetById(id);
 
@@ -162,6 +176,8 @@ namespace ReadingClub.Web.Controllers
         [Authorize]
         public PartialViewResult Leave(int id)
         {
+            Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(0).Throw();
+
             this.discussionUsersData.GetData();
             var discussion = this.discussionsService.GetById(id);
             var currentUserUserName = System.Web.HttpContext.Current.User.Identity.GetUserName();

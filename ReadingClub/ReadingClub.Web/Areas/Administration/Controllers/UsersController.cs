@@ -16,6 +16,7 @@ using ReadingClub.Data.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using System.Threading.Tasks;
+using Bytes2you.Validation;
 
 namespace ReadingClub.Web.Areas.Administration.Controllers
 {
@@ -28,6 +29,9 @@ namespace ReadingClub.Web.Areas.Administration.Controllers
 
         public UsersController(IUsersService usersService, IMapper mapper, ApplicationUserManager userManager)
         {
+            Guard.WhenArgument(usersService, nameof(usersService)).IsNull().Throw();
+            Guard.WhenArgument(mapper, nameof(mapper)).IsNull().Throw();
+            Guard.WhenArgument(userManager, nameof(userManager)).IsNull().Throw();
             this.usersService = usersService;
             this.userManager = userManager;
             this.mapper = mapper;
@@ -92,6 +96,10 @@ namespace ReadingClub.Web.Areas.Administration.Controllers
 
         public async Task<ActionResult> ChangeRoleToAdmin(string userName)
         {
+            if(userName == null)
+            {
+                return RedirectToAction("UsersOnSite");
+            }
             var user = this.usersService.GetUserByUserName(userName);
             await this.UserManager.RemoveFromRolesAsync(user.Id, "User");
             UserManager.AddToRole(user.Id, "Admin");
@@ -101,6 +109,10 @@ namespace ReadingClub.Web.Areas.Administration.Controllers
 
         public async Task<ActionResult> ChangeRoleToUser(string userName)
         {
+            if(userName == null)
+            {
+                return RedirectToAction("Administrators");
+            }
             var user = this.usersService.GetUserByUserName(userName);
             await this.UserManager.RemoveFromRolesAsync(user.Id, "Admin");
             UserManager.AddToRole(user.Id, "User");

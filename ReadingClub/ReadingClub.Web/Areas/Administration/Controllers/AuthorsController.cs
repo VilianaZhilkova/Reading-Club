@@ -13,11 +13,11 @@ using ReadingClub.Web.Infrastructure.Mapping;
 using ReadingClub.Web.Areas.Administration.ViewModels.Authors;
 using ReadingClub.Services.Data.Contracts;
 using ReadingClub.Data.Models;
+using Bytes2you.Validation;
 
 namespace ReadingClub.Web.Areas.Administration.Controllers
 {
     [Authorize(Roles = "Admin")]
-
     public class AuthorsController : Controller
     {
         private readonly IAuthorsService authorsService;
@@ -25,6 +25,8 @@ namespace ReadingClub.Web.Areas.Administration.Controllers
 
         public AuthorsController(IAuthorsService authorsService, IMapper mapper)
         {
+            Guard.WhenArgument(authorsService, nameof(authorsService)).IsNull().Throw();
+            Guard.WhenArgument(mapper, nameof(mapper)).IsNull().Throw();
             this.authorsService = authorsService;
             this.mapper = mapper;
         }

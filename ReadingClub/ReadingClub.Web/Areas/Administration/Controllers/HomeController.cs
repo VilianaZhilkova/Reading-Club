@@ -16,6 +16,7 @@ using ReadingClub.Data.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using System.Threading.Tasks;
+using Bytes2you.Validation;
 
 namespace ReadingClub.Web.Areas.Administration.Controllers
 {
@@ -31,6 +32,12 @@ namespace ReadingClub.Web.Areas.Administration.Controllers
 
         public HomeController(IUsersService usersService, IDiscussionsService discussionsService, IBooksService booksService, ICommentsService commentsService, IAuthorsService authorService, ApplicationUserManager userManager)
         {
+            Guard.WhenArgument(usersService, nameof(usersService)).IsNull().Throw();
+            Guard.WhenArgument(discussionsService, nameof(discussionsService)).IsNull().Throw();
+            Guard.WhenArgument(booksService, nameof(booksService)).IsNull().Throw();
+            Guard.WhenArgument(commentsService, nameof(commentsService)).IsNull().Throw();
+            Guard.WhenArgument(authorService, nameof(authorService)).IsNull().Throw();
+            Guard.WhenArgument(userManager, nameof(userManager)).IsNull().Throw();
             this.usersService = usersService;
             this.discussionsService = discussionsService;
             this.booksService = booksService;
@@ -51,8 +58,9 @@ namespace ReadingClub.Web.Areas.Administration.Controllers
             }
         }
         // GET: Administration/Home
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(AdminHomeViewModel model)
         {
+            Guard.WhenArgument(model, nameof(model)).IsNull().Throw();
             var apporvedDiscussions = this.discussionsService.GetAllApprovedDiscussions();
             var discussionsForApproval = this.discussionsService.GetAllDiscussionsForApproval();
             var approvedBooks = this.booksService.GetAllApprovedBooks();
@@ -78,18 +86,14 @@ namespace ReadingClub.Web.Areas.Administration.Controllers
                     administrators.Add(user);
                 }
             }
-
-            var model = new AdminHomeViewModel
-            {
-                ApprovedDiscussionsCount = apporvedDiscussions.Count(),
-                DiscussionsForApprovalCount = discussionsForApproval.Count(),
-                ApprovedBooksCount = approvedBooks.Count(),
-                BooksForApprovalCount = booksForApproval.Count(),
-                AuthorsCount = authors.Count(),
-                CommentsCount = comments.Count(),
-                AdministratorsCount = administrators.Count(),
-                UsersCount = users.Count(),
-            };
+            model.ApprovedDiscussionsCount = apporvedDiscussions.Count();
+            model.DiscussionsForApprovalCount = discussionsForApproval.Count();
+            model.ApprovedBooksCount = approvedBooks.Count();
+            model.BooksForApprovalCount = booksForApproval.Count();
+            model.AuthorsCount = authors.Count();
+            model.CommentsCount = comments.Count();
+            model.AdministratorsCount = administrators.Count();
+            model.UsersCount = users.Count();
 
             return View(model);
         }

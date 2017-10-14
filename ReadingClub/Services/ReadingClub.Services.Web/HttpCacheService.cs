@@ -3,6 +3,7 @@ using System.Web;
 using System.Web.Caching;
 
 using ReadingClub.Services.Web.Contracts;
+using Bytes2you.Validation;
 
 namespace ReadingClub.Services.Web
 {
@@ -12,6 +13,9 @@ namespace ReadingClub.Services.Web
 
         public T Get<T>(string itemName, Func<T> getDataFunc, int durationInSeconds)
         {
+            Guard.WhenArgument(itemName, nameof(itemName)).IsNullOrWhiteSpace().Throw();
+            Guard.WhenArgument(durationInSeconds, nameof(durationInSeconds)).IsLessThanOrEqual(0).Throw();
+
             if (HttpRuntime.Cache[itemName] == null)
             {
                 lock (LockObject)

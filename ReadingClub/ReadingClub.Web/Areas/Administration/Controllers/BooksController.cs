@@ -13,6 +13,7 @@ using ReadingClub.Web.Infrastructure.Mapping;
 using ReadingClub.Web.Areas.Administration.ViewModels.Books;
 using ReadingClub.Services.Data.Contracts;
 using ReadingClub.Data.Models;
+using Bytes2you.Validation;
 
 namespace ReadingClub.Web.Areas.Administration.Controllers
 {
@@ -25,6 +26,8 @@ namespace ReadingClub.Web.Areas.Administration.Controllers
 
         public BooksController(IBooksService booksService, IMapper mapper)
         {
+            Guard.WhenArgument(booksService, nameof(booksService)).IsNull().Throw();
+            Guard.WhenArgument(mapper, nameof(mapper)).IsNull().Throw();
             this.booksService = booksService;
             this.mapper = mapper;
         }
@@ -69,6 +72,11 @@ namespace ReadingClub.Web.Areas.Administration.Controllers
 
         public ActionResult RestoreBook(string bookId)
         {
+            if(bookId == null)
+            {
+                return RedirectToAction("DeletedBooks");
+            }
+
             var book = this.booksService.GetByIdWithDeleted(int.Parse(bookId));
             book.IsDeleted = false;
             this.booksService.Update(book);
@@ -78,6 +86,11 @@ namespace ReadingClub.Web.Areas.Administration.Controllers
 
         public ActionResult DeleteBook(string bookId)
         {
+            if (bookId == null)
+            {
+                return RedirectToAction("BooksOnSite");
+            }
+
             var book = this.booksService.GetById(int.Parse(bookId));
             book.IsDeleted = true;
             this.booksService.Update(book);
@@ -87,6 +100,10 @@ namespace ReadingClub.Web.Areas.Administration.Controllers
 
         public ActionResult DisapproveBook(string bookId)
         {
+            if(bookId == null)
+            {
+                return RedirectToAction("BooksOnSite");
+            }
             var book = this.booksService.GetById(int.Parse(bookId));
             book.IsApproved = false;
             this.booksService.Update(book);
@@ -96,6 +113,10 @@ namespace ReadingClub.Web.Areas.Administration.Controllers
 
         public ActionResult ApproveBook(string bookId)
         {
+            if(bookId == null)
+            {
+                return RedirectToAction("BooksForApproval");
+            }
             var book = this.booksService.GetById(int.Parse(bookId));
             book.IsApproved = true;
             this.booksService.Update(book);

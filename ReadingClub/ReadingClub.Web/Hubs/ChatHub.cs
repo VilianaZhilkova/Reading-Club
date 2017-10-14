@@ -8,6 +8,7 @@ using AutoMapper;
 using Microsoft.AspNet.Identity;
 using ReadingClub.Data.Models;
 using ReadingClub.Common.Constants;
+using Bytes2you.Validation;
 
 namespace ReadingClub.Web.Hubs
 {
@@ -19,6 +20,10 @@ namespace ReadingClub.Web.Hubs
 
         public ChatHub(ICommentsService commentsService, IUsersService usersService, IDiscussionsService discussionsService)
         {
+            Guard.WhenArgument(commentsService, nameof(commentsService)).IsNull().Throw();
+            Guard.WhenArgument(usersService, nameof(usersService)).IsNull().Throw();
+            Guard.WhenArgument(discussionsService, nameof(discussionsService)).IsNull().Throw();
+
             this.commentsService = commentsService;
             this.usersService = usersService;
             this.discussionsService = discussionsService;
@@ -26,6 +31,7 @@ namespace ReadingClub.Web.Hubs
 
         public void JoinVisitor(int discussionId)
         {
+            Guard.WhenArgument(discussionId, nameof(discussionId)).IsLessThanOrEqual(0).Throw();
             Groups.Add(Context.ConnectionId, discussionId.ToString());
         }
 
@@ -35,6 +41,8 @@ namespace ReadingClub.Web.Hubs
             {
                 Clients.Client(Context.ConnectionId).SendError();
             }
+            Guard.WhenArgument(discussionId, nameof(discussionId)).IsLessThanOrEqual(0).Throw();
+
             var date = DateTime.UtcNow;
             var currentUserUserName = System.Web.HttpContext.Current.User.Identity.GetUserName();
             var currentUser = this.usersService.GetUserByUserName(currentUserUserName);

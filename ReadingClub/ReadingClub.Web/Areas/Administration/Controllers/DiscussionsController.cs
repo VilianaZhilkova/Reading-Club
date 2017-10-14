@@ -13,6 +13,7 @@ using ReadingClub.Web.Infrastructure.Mapping;
 using ReadingClub.Web.Areas.Administration.ViewModels.Discussions;
 using ReadingClub.Services.Data.Contracts;
 using ReadingClub.Data.Models;
+using Bytes2you.Validation;
 
 namespace ReadingClub.Web.Areas.Administration.Controllers
 {
@@ -24,6 +25,8 @@ namespace ReadingClub.Web.Areas.Administration.Controllers
 
         public DiscussionsController(IDiscussionsService discussionsService, IMapper mapper)
         {
+            Guard.WhenArgument(discussionsService, nameof(discussionsService)).IsNull().Throw();
+            Guard.WhenArgument(mapper, nameof(mapper)).IsNull().Throw();
             this.discussionsService = discussionsService;
             this.mapper = mapper;
         }
@@ -65,6 +68,10 @@ namespace ReadingClub.Web.Areas.Administration.Controllers
 
         public ActionResult RestoreDiscussion(string discussionId)
         {
+            if(discussionId == null)
+            {
+                return RedirectToAction("DeletedDiscussions");
+            }
             var discussion = this.discussionsService.GetByIdWithDeleted(int.Parse(discussionId));
             discussion.IsDeleted = false;
             this.discussionsService.Update(discussion);
@@ -74,6 +81,10 @@ namespace ReadingClub.Web.Areas.Administration.Controllers
 
         public ActionResult DeleteDiscussion(string discussionId)
         {
+            if (discussionId == null)
+            {
+                return RedirectToAction("DiscussionsOnSite");
+            }
             var discussion = this.discussionsService.GetById(int.Parse(discussionId));
             discussion.IsDeleted = true;
             this.discussionsService.Update(discussion);
@@ -83,6 +94,10 @@ namespace ReadingClub.Web.Areas.Administration.Controllers
 
         public ActionResult DisapproveDiscussion(string discussionId)
         {
+            if (discussionId == null)
+            {
+                return RedirectToAction("DiscussionsOnSite");
+            }
             var discussion = this.discussionsService.GetById(int.Parse(discussionId));
             discussion.IsApproved = false;
             this.discussionsService.Update(discussion);
@@ -92,6 +107,10 @@ namespace ReadingClub.Web.Areas.Administration.Controllers
 
         public ActionResult ApproveDiscussion(string discussionId)
         {
+            if (discussionId == null)
+            {
+                return RedirectToAction("DiscussionsForApproval");
+            }
             var discussion = this.discussionsService.GetById(int.Parse(discussionId));
             discussion.IsApproved = true;
             this.discussionsService.Update(discussion);
