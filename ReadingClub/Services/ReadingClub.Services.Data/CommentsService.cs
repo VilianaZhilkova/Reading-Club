@@ -5,6 +5,8 @@ using ReadingClub.Data.Models;
 using ReadingClub.Data.Common.Contracts;
 using ReadingClub.Services.Data.Contracts;
 
+using Bytes2you.Validation;
+
 namespace ReadingClub.Services.Data
 {
     public class CommentsService : ICommentsService
@@ -13,6 +15,8 @@ namespace ReadingClub.Services.Data
         private readonly IUnitOfWork unitOfWork;
         public CommentsService(IRepository<Comment> comments, IUnitOfWork unitOfWork)
         {
+            Guard.WhenArgument(comments, nameof(comments)).IsNull().Throw();
+            Guard.WhenArgument(unitOfWork, nameof(unitOfWork)).IsNull().Throw();
             this.comments = comments;
             this.unitOfWork = unitOfWork;
         }
@@ -29,11 +33,17 @@ namespace ReadingClub.Services.Data
 
         public Comment GetById(int id)
         {
+            Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(0).Throw();
             return this.comments.GetById(id);
         }
 
         public void AddComment(string content, DateTime date, User currentUser, Discussion discussion)
         {
+            Guard.WhenArgument(content, nameof(content)).IsNullOrWhiteSpace().Throw();
+            Guard.WhenArgument(date, nameof(date)).IsEqual(DateTime.UtcNow.AddMinutes(-5)).Throw();
+            Guard.WhenArgument(currentUser, nameof(currentUser)).IsNull().Throw();
+            Guard.WhenArgument(discussion, nameof(discussion)).IsNull().Throw();
+
             var comment = new Comment
             {
                 Author = currentUser,
@@ -48,6 +58,7 @@ namespace ReadingClub.Services.Data
 
         public void Update(Comment comment)
         {
+            Guard.WhenArgument(comment, nameof(comment)).IsNull().Throw();
             this.comments.Update(comment);
             this.unitOfWork.Commit();
         }

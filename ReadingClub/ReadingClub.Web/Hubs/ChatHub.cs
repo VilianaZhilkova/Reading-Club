@@ -7,7 +7,7 @@ using ReadingClub.Services.Data.Contracts;
 using AutoMapper;
 using Microsoft.AspNet.Identity;
 using ReadingClub.Data.Models;
-using ReadingClub.Common;
+using ReadingClub.Common.Constants;
 
 namespace ReadingClub.Web.Hubs
 {

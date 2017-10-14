@@ -8,7 +8,7 @@ using Microsoft.AspNet.Identity;
 
 using AutoMapper;
 
-using ReadingClub.Common;
+using ReadingClub.Common.Constants;
 using ReadingClub.Web.Infrastructure.Mapping;
 using ReadingClub.Web.ViewModels.Discussions;
 using ReadingClub.Services.Data.Contracts;

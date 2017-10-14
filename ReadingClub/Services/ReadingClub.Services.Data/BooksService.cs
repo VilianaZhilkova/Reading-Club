@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using ReadingClub.Data.Common.Contracts;
 using ReadingClub.Data.Models;
 using ReadingClub.Services.Data.Contracts;
+using Bytes2you.Validation;
 
 namespace ReadingClub.Services.Data
 {
@@ -16,6 +17,8 @@ namespace ReadingClub.Services.Data
         private readonly IUnitOfWork unitOfWork;
         public BooksService(IRepository<Book> books, IUnitOfWork unitOfWork)
         {
+            Guard.WhenArgument(books, nameof(books)).IsNull().Throw();
+            Guard.WhenArgument(unitOfWork, nameof(unitOfWork)).IsNull().Throw();
             this.books = books;
             this.unitOfWork = unitOfWork;
         }
@@ -27,16 +30,19 @@ namespace ReadingClub.Services.Data
 
         public Book GetById(int id)
         {
+            Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(0).Throw();
             return this.books.GetById(id);
         }
 
         public Book GetByIdWithDeleted(int id)
         {
+            Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(0).Throw();
             return this.books.GetByIdWithDeleted(id);
         }
 
         public void AddBook(Book book)
         {
+            Guard.WhenArgument(book, nameof(book)).IsNull().Throw();
             this.books.Add(book);
             this.unitOfWork.Commit();
         }
@@ -54,6 +60,7 @@ namespace ReadingClub.Services.Data
 
         public void Update(Book book)
         {
+            Guard.WhenArgument(book, nameof(book)).IsNull().Throw();
             this.books.Update(book);
             this.unitOfWork.Commit();
         }

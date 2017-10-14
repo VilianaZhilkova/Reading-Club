@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ReadingClub.Common
+namespace ReadingClub.Common.Constants
 {
     public class NumericConstants
     {

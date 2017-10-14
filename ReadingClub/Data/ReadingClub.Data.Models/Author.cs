@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-using ReadingClub.Common;
+using ReadingClub.Common.Constants;
 using ReadingClub.Data.Models.Abstracts;
 
 namespace ReadingClub.Data.Models

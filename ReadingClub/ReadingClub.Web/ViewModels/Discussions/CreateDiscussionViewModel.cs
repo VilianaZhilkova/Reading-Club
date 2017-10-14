@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 using ReadingClub.Data.Models;
 using ReadingClub.Web.Infrastructure.Mapping.Contracts;
-using ReadingClub.Common;
+using ReadingClub.Common.Constants;
 
 namespace ReadingClub.Web.ViewModels.Discussions
 {

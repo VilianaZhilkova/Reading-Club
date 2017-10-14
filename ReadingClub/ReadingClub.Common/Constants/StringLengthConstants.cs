@@ -1,4 +1,4 @@
-﻿namespace ReadingClub.Common
+﻿namespace ReadingClub.Common.Constants
 {
     public class StringLengthConstants
     {
