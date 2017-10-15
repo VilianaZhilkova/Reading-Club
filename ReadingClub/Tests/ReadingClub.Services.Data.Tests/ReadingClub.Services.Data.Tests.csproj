@@ -59,6 +59,12 @@
     <Compile Include="AuthorsService\ConstructorShould.cs" />
     <Compile Include="AuthorsService\GetAuthorsWithDeletedShould.cs" />
     <Compile Include="AuthorsService\GetBookAuthorByNameShould.cs" />
+    <Compile Include="CommentService\AddCommentShould.cs" />
+    <Compile Include="CommentService\ConstructorShould.cs" />
+    <Compile Include="CommentService\GetAllCommentsShould.cs" />
+    <Compile Include="CommentService\GetAllCommentsWithDeletedShould.cs" />
+    <Compile Include="CommentService\GetByIdShould.cs" />
+    <Compile Include="CommentService\UpdateShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

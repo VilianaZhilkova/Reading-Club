@@ -41,7 +41,7 @@ namespace ReadingClub.Services.Data
         public void AddComment(string content, DateTime date, User currentUser, Discussion discussion)
         {
             Guard.WhenArgument(content, nameof(content)).IsNullOrWhiteSpace().Throw();
-            Guard.WhenArgument(date, nameof(date)).IsEqual(DateTime.UtcNow.AddMinutes(-5)).Throw();
+            Guard.WhenArgument(date, nameof(date)).IsLessThanOrEqual(DateTime.UtcNow.AddMinutes(-5)).Throw();
             Guard.WhenArgument(currentUser, nameof(currentUser)).IsNull().Throw();
             Guard.WhenArgument(discussion, nameof(discussion)).IsNull().Throw();
 

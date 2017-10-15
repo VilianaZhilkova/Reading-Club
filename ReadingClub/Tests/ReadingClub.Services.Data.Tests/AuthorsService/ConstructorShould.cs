@@ -36,5 +36,16 @@ namespace ReadingClub.Services.Data.Tests.AutorsService
 
             Assert.DoesNotThrow(() => new AuthorsService(mockedRepository.Object, mockedUnitOfWork.Object));
         }
+
+        [Test]
+        public void CreateInstanceOfAuthorServiceWhenParametersAreNotNull()
+        {
+            var mockedUnitOfWork = new Mock<IUnitOfWork>();
+            var mockedRepository = new Mock<IRepository<Author>>();
+
+            var authorService = new AuthorsService(mockedRepository.Object, mockedUnitOfWork.Object);
+
+            Assert.IsInstanceOf<AuthorsService>(authorService);
+        }
     }
 }

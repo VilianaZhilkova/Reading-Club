@@ -10,10 +10,11 @@ using ReadingClub.Data.Models;
 
 namespace ReadingClub.Services.Data.Tests.AutorsService
 {
+    [TestFixture]
     public class GetAuthorsWithDeletedShould
     {
         [Test]
-        public void CallAuthorsRepositoryGetAllWithDeletedMethodWhenAuthorNameParameterIsValid()
+        public void CallAuthorsRepositoryGetAllWithDeletedMethod()
         {
             var mockedUnitOfWork = new Mock<IUnitOfWork>();
             var mockedRepository = new Mock<IRepository<Author>>();
