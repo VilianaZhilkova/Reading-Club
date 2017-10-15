@@ -16,7 +16,7 @@ namespace ReadingClub.Services.Data.Tests.AutorsService
             var mockedUnitOfWork = new Mock<IUnitOfWork>();
 
             Assert.That(() => new AuthorsService(null, mockedUnitOfWork.Object),
-                            Throws.ArgumentNullException.With.Message.Contains("null"));
+                            Throws.ArgumentNullException.With.Message.Contains("authors"));
         }
 
         [Test]
@@ -25,7 +25,7 @@ namespace ReadingClub.Services.Data.Tests.AutorsService
             var mockedRepository = new Mock<IRepository<Author>>();
 
             Assert.That(() => new AuthorsService(mockedRepository.Object, null),
-                            Throws.ArgumentNullException.With.Message.Contains("null"));
+                            Throws.ArgumentNullException.With.Message.Contains("unitOfWork"));
         }
 
         [Test]

@@ -23,7 +23,7 @@ namespace ReadingClub.Services.Data.Tests.AutorsService
             var authorsService = new AuthorsService(mockedRepository.Object, mockedUnitOfWork.Object);
 
             Assert.That(() => authorsService.GetBookAuthorByName(null),
-                            Throws.ArgumentNullException.With.Message.Contains("null"));
+                            Throws.ArgumentNullException.With.Message.Contains("authorName"));
         }
 
         [TestCase("")]
@@ -35,7 +35,8 @@ namespace ReadingClub.Services.Data.Tests.AutorsService
 
             var authorsService = new AuthorsService(mockedRepository.Object, mockedUnitOfWork.Object);
 
-            Assert.Throws<ArgumentException>(() => authorsService.GetBookAuthorByName(invalidAuthorName));
+            Assert.That(() => authorsService.GetBookAuthorByName(null),
+                Throws.ArgumentNullException.With.Message.Contains("authorName"));
         }
 
         [Test]
