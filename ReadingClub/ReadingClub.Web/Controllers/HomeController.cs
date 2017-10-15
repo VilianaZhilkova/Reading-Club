@@ -90,17 +90,20 @@ namespace ReadingClub.Web.Controllers
                 model.Discussions = new HashSet<DiscussionViewModel>();
                 return this.View(model);
             }
+            else if(searchIn == "discussions")
+            {
+                var discussions = this.discussionsService.GetAllApprovedDiscussions()
+                        .Where(x => x.Book.Title.Contains(searchText))
+                        .To<DiscussionViewModel>()
+                        .OrderBy(d => d.StartDate)
+                        .ThenBy(d => d.EndDate)
+                        .ToList();
+                model.Discussions = discussions;
+                model.Books = new HashSet<BookViewModel>();
 
-            var discussions = this.discussionsService.GetAllApprovedDiscussions()
-                    .Where(x => x.Book.Title.Contains(searchText))
-                    .To<DiscussionViewModel>()                
-                    .OrderBy(d => d.StartDate)
-                    .ThenBy(d => d.EndDate)
-                    .ToList();
-            model.Discussions = discussions;
-            model.Books = new HashSet<BookViewModel>();
-
-            return this.View(model);
+                return this.View(model);
+            }
+            return this.RedirectToAction("Index");
         }
 
         public ActionResult About()
