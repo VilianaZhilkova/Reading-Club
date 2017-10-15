@@ -9,5 +9,5 @@ environment:
   COVERALLS_REPO_TOKEN:
     secure: EgHe63fcBJrMyS8MgrTq4eU4aWcwUrLsF
 after_test: 
-  - packages\OpenCover.4.6.519\tools\OpenCover.Console.exe -register:user -filter:"+[*]*" -target:"packages\NUnit.ConsoleRunner.3.6.1\tools\nunit3-console.exe" -targetargs:"/domain:single ReadingClub\Tests\ReadingClub.Services.Data.Tests\bin\Debug\ReadingClub.Services.Data.Tests.dll" -output:cover.xml
-  - packages\coveralls.io.1.4.2\tools\coveralls.net.exe --opencover cover.xml
+  - ReadingClub\packages\OpenCover.4.6.519\tools\OpenCover.Console.exe -register:user -filter:"+[*]*" -target:"packages\NUnit.ConsoleRunner.3.6.1\tools\nunit3-console.exe" -targetargs:"/domain:single ReadingClub\Tests\ReadingClub.Services.Data.Tests\bin\Debug\ReadingClub.Services.Data.Tests.dll" -output:cover.xml
+  - ReadingClub\packages\coveralls.io.1.4.2\tools\coveralls.net.exe --opencover cover.xml
