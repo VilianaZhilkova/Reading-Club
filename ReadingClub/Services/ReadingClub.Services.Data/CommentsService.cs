@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Linq;
 
-using ReadingClub.Data.Models;
-using ReadingClub.Data.Common.Contracts;
-using ReadingClub.Services.Data.Contracts;
-
 using Bytes2you.Validation;
+
+using ReadingClub.Data.Common.Contracts;
+using ReadingClub.Data.Models;
+using ReadingClub.Services.Data.Contracts;
 
 namespace ReadingClub.Services.Data
 {
@@ -13,6 +13,7 @@ namespace ReadingClub.Services.Data
     {
         private readonly IRepository<Comment> comments;
         private readonly IUnitOfWork unitOfWork;
+
         public CommentsService(IRepository<Comment> comments, IUnitOfWork unitOfWork)
         {
             Guard.WhenArgument(comments, nameof(comments)).IsNull().Throw();

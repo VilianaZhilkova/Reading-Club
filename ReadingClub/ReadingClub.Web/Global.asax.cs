@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Configuration;
 using System.Data.Entity;
-using System.Linq;
-using System.Web;
+using System.Data.SqlClient;
 using System.Reflection;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 
 using ReadingClub.Data;
-using ReadingClub.Data.Migrations;
-using ReadingClub.Web.Infrastructure;
 using ReadingClub.Web.Infrastructure.Mapping;
-using System.Configuration;
-using System.Data.SqlClient;
 
 namespace ReadingClub.Web
 {

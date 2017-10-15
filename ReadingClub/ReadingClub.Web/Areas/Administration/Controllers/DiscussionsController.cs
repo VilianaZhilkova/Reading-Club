@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
-
-using Microsoft.AspNet.Identity;
 
 using AutoMapper;
 
-using ReadingClub.Common;
-using ReadingClub.Web.Infrastructure.Mapping;
-using ReadingClub.Web.Areas.Administration.ViewModels.Discussions;
-using ReadingClub.Services.Data.Contracts;
-using ReadingClub.Data.Models;
 using Bytes2you.Validation;
+
+using ReadingClub.Services.Data.Contracts;
+using ReadingClub.Web.Areas.Administration.ViewModels.Discussions;
+using ReadingClub.Web.Infrastructure.Mapping;
 
 namespace ReadingClub.Web.Areas.Administration.Controllers
 {
@@ -30,10 +24,11 @@ namespace ReadingClub.Web.Areas.Administration.Controllers
             this.discussionsService = discussionsService;
             this.mapper = mapper;
         }
+        
         // GET: Administration/Discussions
         public ActionResult Index()
         {
-            return RedirectToAction("DiscussionsOnSite");
+            return this.RedirectToAction("DiscussionsOnSite");
         }
 
         [HttpGet]
@@ -43,7 +38,7 @@ namespace ReadingClub.Web.Areas.Administration.Controllers
                 .To<AdminDiscussionViewModel>()
                 .OrderBy(d => d.Id)
                 .ToList();
-            return View(discussionsOnSite);
+            return this.View(discussionsOnSite);
         }
 
         [HttpGet]
@@ -53,7 +48,7 @@ namespace ReadingClub.Web.Areas.Administration.Controllers
                 .To<AdminDiscussionViewModel>()
                 .OrderBy(d => d.StartDate)
                 .ToList();
-            return View(deletedDiscussions);
+            return this.View(deletedDiscussions);
         }
 
         [HttpGet]
@@ -63,59 +58,63 @@ namespace ReadingClub.Web.Areas.Administration.Controllers
                 .To<AdminDiscussionViewModel>()
                 .OrderBy(d => d.StartDate)
                 .ToList();
-            return View(discussionsForApproval);
+            return this.View(discussionsForApproval);
         }
 
         public ActionResult RestoreDiscussion(string discussionId)
         {
-            if(discussionId == null)
+            if (discussionId == null)
             {
-                return RedirectToAction("DeletedDiscussions");
+                return this.RedirectToAction("DeletedDiscussions");
             }
+
             var discussion = this.discussionsService.GetByIdWithDeleted(int.Parse(discussionId));
             discussion.IsDeleted = false;
             this.discussionsService.Update(discussion);
 
-            return RedirectToAction("DeletedDiscussions");
+            return this.RedirectToAction("DeletedDiscussions");
         }
 
         public ActionResult DeleteDiscussion(string discussionId)
         {
             if (discussionId == null)
             {
-                return RedirectToAction("DiscussionsOnSite");
+                return this.RedirectToAction("DiscussionsOnSite");
             }
+
             var discussion = this.discussionsService.GetById(int.Parse(discussionId));
             discussion.IsDeleted = true;
             this.discussionsService.Update(discussion);
 
-            return RedirectToAction("DiscussionsOnSite");
+            return this.RedirectToAction("DiscussionsOnSite");
         }
 
         public ActionResult DisapproveDiscussion(string discussionId)
         {
             if (discussionId == null)
             {
-                return RedirectToAction("DiscussionsOnSite");
+                return this.RedirectToAction("DiscussionsOnSite");
             }
+
             var discussion = this.discussionsService.GetById(int.Parse(discussionId));
             discussion.IsApproved = false;
             this.discussionsService.Update(discussion);
 
-            return RedirectToAction("DiscussionsOnSite");
+            return this.RedirectToAction("DiscussionsOnSite");
         }
 
         public ActionResult ApproveDiscussion(string discussionId)
         {
             if (discussionId == null)
             {
-                return RedirectToAction("DiscussionsForApproval");
+                return this.RedirectToAction("DiscussionsForApproval");
             }
+
             var discussion = this.discussionsService.GetById(int.Parse(discussionId));
             discussion.IsApproved = true;
             this.discussionsService.Update(discussion);
 
-            return RedirectToAction("DiscussionsForApproval");
+            return this.RedirectToAction("DiscussionsForApproval");
         }
     }
 }

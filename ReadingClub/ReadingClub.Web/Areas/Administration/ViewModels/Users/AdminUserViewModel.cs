@@ -1,8 +1,5 @@
-﻿using Microsoft.AspNet.Identity;
-using ReadingClub.Data.Models;
+﻿using ReadingClub.Data.Models;
 using ReadingClub.Web.Infrastructure.Mapping.Contracts;
-using System;
-using System.Collections.Generic;
 
 namespace ReadingClub.Web.Areas.Administration.ViewModels.Users
 {

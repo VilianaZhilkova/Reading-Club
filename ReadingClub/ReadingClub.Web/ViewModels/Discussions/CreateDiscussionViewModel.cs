@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
+using ReadingClub.Common.Constants;
 using ReadingClub.Data.Models;
 using ReadingClub.Web.Infrastructure.Mapping.Contracts;
-using ReadingClub.Common.Constants;
 
 namespace ReadingClub.Web.ViewModels.Discussions
 {
-    public class CreateDiscussionViewModel: IMapTo<Discussion>, IValidatableObject
+    public class CreateDiscussionViewModel : IMapTo<Discussion>, IValidatableObject
     {
         [Required]
         [StringLength(StringLengthConstants.MaxDiscussionSubjectLength,
@@ -36,7 +36,7 @@ namespace ReadingClub.Web.ViewModels.Discussions
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-            if(this.EndDate < this.StartDate)
+            if (this.EndDate < this.StartDate)
             {
                 yield return new ValidationResult(ErrorMessageConstants.InvalidEndDate);
             }
@@ -44,11 +44,10 @@ namespace ReadingClub.Web.ViewModels.Discussions
             {
                 yield return new ValidationResult(ErrorMessageConstants.InvalidDifferenceBetweenStartAndEndTime);
             }
-            else if(this.StartDate < DateTime.UtcNow.AddDays(2))
+            else if (this.StartDate < DateTime.UtcNow.AddDays(2))
             {
                 yield return new ValidationResult(ErrorMessageConstants.InvalidDiscussionStartDate);
             }
-
         }
     }
 }

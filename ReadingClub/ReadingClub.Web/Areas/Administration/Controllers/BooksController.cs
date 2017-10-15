@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
-
-using Microsoft.AspNet.Identity;
 
 using AutoMapper;
 
-using ReadingClub.Common;
-using ReadingClub.Web.Infrastructure.Mapping;
-using ReadingClub.Web.Areas.Administration.ViewModels.Books;
-using ReadingClub.Services.Data.Contracts;
-using ReadingClub.Data.Models;
 using Bytes2you.Validation;
+
+using ReadingClub.Services.Data.Contracts;
+using ReadingClub.Web.Areas.Administration.ViewModels.Books;
+using ReadingClub.Web.Infrastructure.Mapping;
 
 namespace ReadingClub.Web.Areas.Administration.Controllers
 {
@@ -31,10 +25,11 @@ namespace ReadingClub.Web.Areas.Administration.Controllers
             this.booksService = booksService;
             this.mapper = mapper;
         }
+
         // GET: Administration/Books
         public ActionResult Index()
         {
-            return RedirectToAction("BooksOnSite");
+            return this.RedirectToAction("BooksOnSite");
         }
 
         [HttpGet]
@@ -45,7 +40,7 @@ namespace ReadingClub.Web.Areas.Administration.Controllers
                 .OrderBy(d => d.Title)
                 .ThenBy(d  => d.Author)
                 .ToList();
-            return View(booksOnSite);
+            return this.View(booksOnSite);
         }
 
         [HttpGet]
@@ -56,7 +51,7 @@ namespace ReadingClub.Web.Areas.Administration.Controllers
                 .OrderBy(d => d.Title)
                 .ThenBy(d => d.Author)
                 .ToList();
-            return View(deletedBooks);
+            return this.View(deletedBooks);
         }
 
         [HttpGet]
@@ -67,61 +62,63 @@ namespace ReadingClub.Web.Areas.Administration.Controllers
                 .OrderBy(d => d.Title)
                 .ThenBy(d => d.Author)
                 .ToList();
-            return View(booksForApproval);
+            return this.View(booksForApproval);
         }
 
         public ActionResult RestoreBook(string bookId)
         {
-            if(bookId == null)
+            if (bookId == null)
             {
-                return RedirectToAction("DeletedBooks");
+                return this.RedirectToAction("DeletedBooks");
             }
 
             var book = this.booksService.GetByIdWithDeleted(int.Parse(bookId));
             book.IsDeleted = false;
             this.booksService.Update(book);
 
-            return RedirectToAction("DeletedBooks");
+            return this.RedirectToAction("DeletedBooks");
         }
 
         public ActionResult DeleteBook(string bookId)
         {
             if (bookId == null)
             {
-                return RedirectToAction("BooksOnSite");
+                return this.RedirectToAction("BooksOnSite");
             }
 
             var book = this.booksService.GetById(int.Parse(bookId));
             book.IsDeleted = true;
             this.booksService.Update(book);
 
-            return RedirectToAction("BooksOnSite");
+            return this.RedirectToAction("BooksOnSite");
         }
 
         public ActionResult DisapproveBook(string bookId)
         {
-            if(bookId == null)
+            if (bookId == null)
             {
-                return RedirectToAction("BooksOnSite");
+                return this.RedirectToAction("BooksOnSite");
             }
+
             var book = this.booksService.GetById(int.Parse(bookId));
             book.IsApproved = false;
             this.booksService.Update(book);
 
-            return RedirectToAction("BooksOnSite");
+            return this.RedirectToAction("BooksOnSite");
         }
 
         public ActionResult ApproveBook(string bookId)
         {
-            if(bookId == null)
+            if (bookId == null)
             {
-                return RedirectToAction("BooksForApproval");
+                return this.RedirectToAction("BooksForApproval");
             }
+
             var book = this.booksService.GetById(int.Parse(bookId));
             book.IsApproved = true;
             this.booksService.Update(book);
 
-            return RedirectToAction("BooksForApproval");
+            return this.RedirectToAction("BooksForApproval");
         }
     }
 }

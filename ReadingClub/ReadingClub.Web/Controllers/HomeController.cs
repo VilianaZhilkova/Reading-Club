@@ -1,22 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-
-using Microsoft.AspNet.Identity;
 
 using AutoMapper;
 
-using ReadingClub.Common;
-using ReadingClub.Web.Infrastructure.Mapping;
-using ReadingClub.Web.ViewModels.Discussions;
-using ReadingClub.Services.Data.Contracts;
-using ReadingClub.Data.Models;
-using ReadingClub.Web.Hubs.Data;
-using ReadingClub.Web.ViewModels.Home;
-using ReadingClub.Web.ViewModels.Books;
 using Bytes2you.Validation;
+
+using ReadingClub.Services.Data.Contracts;
+using ReadingClub.Web.Infrastructure.Mapping;
+using ReadingClub.Web.ViewModels.Books;
+using ReadingClub.Web.ViewModels.Discussions;
+using ReadingClub.Web.ViewModels.Home;
 
 namespace ReadingClub.Web.Controllers
 {
@@ -41,7 +36,7 @@ namespace ReadingClub.Web.Controllers
             Guard.WhenArgument(model, nameof(model)).IsNull().Throw();
             if (User.IsInRole("Admin"))
             {
-                return RedirectToAction("Index", "Home", new { area = "Administration" });
+                return this.RedirectToAction("Index", "Home", new { area = "Administration" });
             }
 
             var currentDate = DateTime.UtcNow;
@@ -71,19 +66,20 @@ namespace ReadingClub.Web.Controllers
             model.CurrentDiscussions = currentDiscussions;
             model.Books = books;
 
-            return View(model);
+            return this.View(model);
         }
 
         public ActionResult Search(string searchIn, string searchText)
         {
-            if(searchIn == null || searchText == null)
+            if (searchIn == null || searchText == null)
             {
-                return RedirectToAction("Index");
+                return this.RedirectToAction("Index");
             }
+
             var model = new SearchViewModel();
             searchIn = searchIn.ToLower();
             searchText = searchText.ToLower();
-            if(searchIn == "books")
+            if (searchIn == "books")
             {
                 var books = this.booksService.GetAllApprovedBooks()
                     .Where(x => x.Title.Contains(searchText))
@@ -92,7 +88,7 @@ namespace ReadingClub.Web.Controllers
                     .ToList();
                 model.Books = books;
                 model.Discussions = new HashSet<DiscussionViewModel>();
-                return View(model);
+                return this.View(model);
             }
 
             var discussions = this.discussionsService.GetAllApprovedDiscussions()
@@ -104,14 +100,14 @@ namespace ReadingClub.Web.Controllers
             model.Discussions = discussions;
             model.Books = new HashSet<BookViewModel>();
 
-            return View(model);
+            return this.View(model);
         }
 
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
 
-            return View();
+            return this.View();
         }
     }
 }

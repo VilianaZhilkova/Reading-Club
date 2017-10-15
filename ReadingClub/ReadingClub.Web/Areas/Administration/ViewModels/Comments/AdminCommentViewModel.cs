@@ -1,10 +1,9 @@
-﻿using ReadingClub.Data.Models;
-using ReadingClub.Web.Infrastructure.Mapping.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System;
+
 using AutoMapper;
+
+using ReadingClub.Data.Models;
+using ReadingClub.Web.Infrastructure.Mapping.Contracts;
 
 namespace ReadingClub.Web.Areas.Administration.ViewModels.Comments
 {

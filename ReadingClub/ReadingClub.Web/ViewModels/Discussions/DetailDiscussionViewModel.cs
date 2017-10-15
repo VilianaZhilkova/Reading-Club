@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using AutoMapper;
 
 using ReadingClub.Data.Models;
-using ReadingClub.Web.ViewModels.Books;
-using ReadingClub.Web.ViewModels.Users;
 using ReadingClub.Web.Infrastructure.Mapping.Contracts;
+using ReadingClub.Web.ViewModels.Books;
 using ReadingClub.Web.ViewModels.Comments;
+using ReadingClub.Web.ViewModels.Users;
 
 namespace ReadingClub.Web.ViewModels.Discussions
 {

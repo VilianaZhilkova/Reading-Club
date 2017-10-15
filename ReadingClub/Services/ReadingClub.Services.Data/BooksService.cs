@@ -1,20 +1,18 @@
-﻿using ReadingClub.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
+
+using Bytes2you.Validation;
+
 using ReadingClub.Data.Common.Contracts;
 using ReadingClub.Data.Models;
 using ReadingClub.Services.Data.Contracts;
-using Bytes2you.Validation;
 
 namespace ReadingClub.Services.Data
 {
-    public class BooksService: IBooksService
+    public class BooksService : IBooksService
     {
         private readonly IRepository<Book> books;
         private readonly IUnitOfWork unitOfWork;
+
         public BooksService(IRepository<Book> books, IUnitOfWork unitOfWork)
         {
             Guard.WhenArgument(books, nameof(books)).IsNull().Throw();
@@ -49,13 +47,12 @@ namespace ReadingClub.Services.Data
 
         public IQueryable<Book> GetAllDeletedBooks()
         {
-            this.books.GetAll.Where(x => x.IsDeleted);
-            return this.books.GetAllWithDeleted.Where(x => x.IsDeleted); ;
+            return this.books.GetAllWithDeleted.Where(x => x.IsDeleted);
         }
 
         public IQueryable<Book> GetAllBooksForApproval()
         {
-            return this.books.GetAll.Where(x => !(x.IsApproved));
+            return this.books.GetAll.Where(x => !x.IsApproved);
         }
 
         public void Update(Book book)

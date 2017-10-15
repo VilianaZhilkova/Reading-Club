@@ -1,6 +1,5 @@
 namespace ReadingClub.Data.Migrations
 {
-    using System;
     using System.Data.Entity.Migrations;
     
     public partial class Initial : DbMigration
@@ -147,8 +146,7 @@ namespace ReadingClub.Data.Migrations
                 .ForeignKey("dbo.AspNetUsers", t => t.User_Id)
                 .ForeignKey("dbo.Discussions", t => t.Discussion_Id)
                 .Index(t => t.User_Id)
-                .Index(t => t.Discussion_Id);
-            
+                .Index(t => t.Discussion_Id);          
         }
         
         public override void Down()

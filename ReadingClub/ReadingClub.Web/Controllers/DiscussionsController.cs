@@ -1,20 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-
-using Microsoft.AspNet.Identity;
 
 using AutoMapper;
 
+using Bytes2you.Validation;
+
+using Microsoft.AspNet.Identity;
+
 using ReadingClub.Common.Constants;
+using ReadingClub.Data.Models;
+using ReadingClub.Services.Data.Contracts;
+using ReadingClub.Web.Hubs.Data;
 using ReadingClub.Web.Infrastructure.Mapping;
 using ReadingClub.Web.ViewModels.Discussions;
-using ReadingClub.Services.Data.Contracts;
-using ReadingClub.Data.Models;
-using ReadingClub.Web.Hubs.Data;
-using Bytes2you.Validation;
 
 namespace ReadingClub.Web.Controllers
 {
@@ -44,12 +44,12 @@ namespace ReadingClub.Web.Controllers
         // GET: Discussions
         public ActionResult Index(string discussionStatus)
         {
-            if(discussionStatus == null)
+            if (discussionStatus == null)
             {
-                return RedirectToAction("Index", "Home");
+                return this.RedirectToAction("Index", "Home");
             }      
 
-            return View();
+            return this.View();
         }
 
         [OutputCache(Duration = 60, VaryByParam = "discussionStatus")]
@@ -76,7 +76,7 @@ namespace ReadingClub.Web.Controllers
                      .ThenBy(d => d.EndDate)
                      .ToList();
             }
-            else if(discussionStatus == TextConstants.DiscussionStatusPassed)
+            else if (discussionStatus == TextConstants.DiscussionStatusPassed)
             {
                 discussions = this.discussionsService.GetAllApprovedDiscussions()
                     .To<DiscussionViewModel>()
@@ -87,8 +87,9 @@ namespace ReadingClub.Web.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "Home");
+                return this.RedirectToAction("Index", "Home");
             }
+
             return this.PartialView(discussions);
         }
 
@@ -97,7 +98,7 @@ namespace ReadingClub.Web.Controllers
         {
             if (discussionId == null)
             {
-                return RedirectToAction("Index", new { discussionStatus = TextConstants.DiscussionStatusUpcoming });
+                return this.RedirectToAction("Index", new { discussionStatus = TextConstants.DiscussionStatusUpcoming });
             }
 
             this.discussionUsersData.GetData();
@@ -105,14 +106,14 @@ namespace ReadingClub.Web.Controllers
             var discussion = this.discussionsService.GetById((int)discussionId);
             discussion.Comments = discussion.Comments.Where(x => x.IsDeleted == false).OrderBy(x => x.Date).ToList();
             var model = this.mapper.Map<DetailDiscussionViewModel>(discussion);
-            return View(model);
+            return this.View(model);
         }
 
         [HttpGet]
         [Authorize]
         public ActionResult CreateDiscussion(int bookId, string bookTitle)
         {
-            return View();
+            return this.View();
         }
 
         [HttpPost]
@@ -122,7 +123,7 @@ namespace ReadingClub.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var discussion = mapper.Map<Discussion>(model);
+                var discussion = this.mapper.Map<Discussion>(model);
 
                 discussion.StartDate = discussion.StartDate.AddMinutes(model.TimezoneOffset);
                 discussion.EndDate = discussion.EndDate.AddMinutes(model.TimezoneOffset);
@@ -138,11 +139,10 @@ namespace ReadingClub.Web.Controllers
                 discussion.Book = book;
                 this.discussionsService.AddDiscussion(discussion);
 
-                return RedirectToAction("GetById", "Discussions", new { discussionId = discussion.Id });
+                return this.RedirectToAction("GetById", "Discussions", new { discussionId = discussion.Id });
             }
 
-            return View(model);
-
+            return this.View(model);
         }
 
         [HttpPost]
@@ -156,7 +156,7 @@ namespace ReadingClub.Web.Controllers
 
             if (discussion.Users.Count() >= discussion.MaximumNumberOfParticipants)
             {
-                return PartialView("_ButtonsPartial", discussion);
+                return this.PartialView("_ButtonsPartial", discussion);
             }
             else
             {
@@ -165,11 +165,10 @@ namespace ReadingClub.Web.Controllers
                   
                 this.discussionsService.AddUserToDiscussion(discussion, currentUser);
  
-                var model = mapper.Map<DetailDiscussionViewModel>(discussion);
+                var model = this.mapper.Map<DetailDiscussionViewModel>(discussion);
 
-                return PartialView("_ButtonsPartial", model);
-            }
-            
+                return this.PartialView("_ButtonsPartial", model);
+            }            
         }
 
         [HttpPost]
@@ -185,9 +184,9 @@ namespace ReadingClub.Web.Controllers
 
             this.discussionsService.RemoveUserFromDiscussion(discussion, currentUser);
 
-            var model = mapper.Map<DetailDiscussionViewModel>(discussion);
+            var model = this.mapper.Map<DetailDiscussionViewModel>(discussion);
 
-            return PartialView("_ButtonsPartial", model);
+            return this.PartialView("_ButtonsPartial", model);
         }
     }
 }

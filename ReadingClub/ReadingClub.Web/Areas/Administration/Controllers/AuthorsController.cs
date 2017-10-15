@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
-
-using Microsoft.AspNet.Identity;
 
 using AutoMapper;
 
-using ReadingClub.Common;
-using ReadingClub.Web.Infrastructure.Mapping;
-using ReadingClub.Web.Areas.Administration.ViewModels.Authors;
-using ReadingClub.Services.Data.Contracts;
-using ReadingClub.Data.Models;
 using Bytes2you.Validation;
+
+using ReadingClub.Services.Data.Contracts;
+using ReadingClub.Web.Areas.Administration.ViewModels.Authors;
+using ReadingClub.Web.Infrastructure.Mapping;
 
 namespace ReadingClub.Web.Areas.Administration.Controllers
 {
@@ -30,6 +24,7 @@ namespace ReadingClub.Web.Areas.Administration.Controllers
             this.authorsService = authorsService;
             this.mapper = mapper;
         }
+        
         // GET: Administration/Authors
         public ActionResult Index()
         {
@@ -38,7 +33,7 @@ namespace ReadingClub.Web.Areas.Administration.Controllers
                 .To<AdminAuthorViewModel>()
                 .ToList();
 
-            return View(authors);
+            return this.View(authors);
         }
     }
 }

@@ -2,13 +2,14 @@
 using System.Web.Mvc;
 
 using AutoMapper;
-using ReadingClub.Web.Infrastructure.Mapping;
+
+using Bytes2you.Validation;
 
 using ReadingClub.Data.Models;
 using ReadingClub.Services.Data.Contracts;
 using ReadingClub.Services.Web.Contracts;
+using ReadingClub.Web.Infrastructure.Mapping;
 using ReadingClub.Web.ViewModels.Books;
-using Bytes2you.Validation;
 
 namespace ReadingClub.Web.Controllers
 {
@@ -34,34 +35,36 @@ namespace ReadingClub.Web.Controllers
 
         public ActionResult Index()
         {
-            var books = this.cacheService.Get("books", () =>
-            this.booksService.GetAllApprovedBooks()
-                                .OrderBy(b => b.Title)
-                                .ThenBy(b => b.Author)
-                                .To<BookViewModel>()
-                                .ToList(), 30 * 60);
-            return View(books);
+            var books = this.cacheService
+            .Get("books", () => this.booksService.GetAllApprovedBooks()
+            .OrderBy(b => b.Title)
+            .ThenBy(b => b.Author)
+            .To<BookViewModel>()
+            .ToList(), 
+            30 * 60);
+
+            return this.View(books);
         }
 
         [HttpGet]
         public ActionResult GetById(int? bookId)
         {
-            if(bookId == null)
+            if (bookId == null)
             {
-                return RedirectToAction("Index");
+                return this.RedirectToAction("Index");
             }
 
             var book = this.booksService.GetById((int)bookId);
             var model = this.mapper.Map<DetailBookViewModel>(book);
 
-            return View(model);
+            return this.View(model);
         }
 
         [HttpGet]
         [Authorize]
         public ActionResult AddBook()
         {
-            return View();
+            return this.View();
         }
 
         [HttpPost]
@@ -71,22 +74,22 @@ namespace ReadingClub.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var book = mapper.Map<Book>(model);
+                var book = this.mapper.Map<Book>(model);
 
                 var author = this.authorsService.GetBookAuthorByName(model.AuthorName);
-                if(author == null)
+                if (author == null)
                 {
                     author = new Author { Name = model.AuthorName };
                 }
+
                 book.Author = author;
 
                 this.booksService.AddBook(book);
 
-                return RedirectToAction("GetById", "Books", new { bookId = book.Id });
+                return this.RedirectToAction("GetById", "Books", new { bookId = book.Id });
             }
 
-            return View(model);
-
+            return this.View(model);
         }
     }
 }

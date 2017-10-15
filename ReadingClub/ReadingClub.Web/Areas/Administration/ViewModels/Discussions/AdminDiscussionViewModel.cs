@@ -3,8 +3,8 @@
 using AutoMapper;
 
 using ReadingClub.Data.Models;
-using ReadingClub.Web.ViewModels.Books;
 using ReadingClub.Web.Infrastructure.Mapping.Contracts;
+using ReadingClub.Web.ViewModels.Books;
 
 namespace ReadingClub.Web.Areas.Administration.ViewModels.Discussions
 {

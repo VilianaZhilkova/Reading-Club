@@ -8,7 +8,7 @@ using ReadingClub.Data.Models.Abstracts;
 
 namespace ReadingClub.Data.Models
 {
-    public class Discussion: BaseDataModel
+    public class Discussion : BaseDataModel
     {
         private ICollection<User> users;
         private ICollection<Comment> comments;
@@ -44,6 +44,7 @@ namespace ReadingClub.Data.Models
             {
                 return this.users;
             }
+
             set
             {
                 this.users = value;
@@ -63,6 +64,7 @@ namespace ReadingClub.Data.Models
             {
                 return this.comments;
             }
+
             set
             {
                 this.comments = value;

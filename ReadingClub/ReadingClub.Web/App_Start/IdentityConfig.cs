@@ -1,18 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
+
 using System.Security.Claims;
 using System.Threading.Tasks;
-using System.Web;
+
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using ReadingClub.Web.ViewModels;
-using ReadingClub.Data.Models;
+
 using ReadingClub.Data;
+using ReadingClub.Data.Models;
 
 namespace ReadingClub.Web
 {
@@ -45,6 +43,7 @@ namespace ReadingClub.Web
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context) 
         {
             var manager = new ApplicationUserManager(new UserStore<User>(context.Get<MsSqlDbContext>()));
+
             // Configure validation logic for usernames
             manager.UserValidator = new UserValidator<User>(manager)
             {
@@ -86,6 +85,7 @@ namespace ReadingClub.Web
                 manager.UserTokenProvider = 
                     new DataProtectorTokenProvider<User>(dataProtectionProvider.Create("ASP.NET Identity"));
             }
+
             return manager;
         }
     }

@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNet.SignalR;
+﻿using AutoMapper;
 
-using AutoMapper;
+using Microsoft.AspNet.SignalR;
 
 using ReadingClub.Services.Data.Contracts;
 using ReadingClub.Web.ViewModels.Discussions;
@@ -18,6 +18,12 @@ namespace ReadingClub.Web.Hubs
             this.mapper = mapper;
         }
 
+        public static void CheckForChanges()
+        {
+            IHubContext context = GlobalHost.ConnectionManager.GetHubContext<ParticipantsHub>();
+            context.Clients.All.CheckForChanges();
+        }
+
         public void JoinVisitor(int discussionId)
         {
             Groups.Add(Context.ConnectionId, discussionId.ToString());
@@ -26,14 +32,9 @@ namespace ReadingClub.Web.Hubs
         public void UpdateParticipants(int discussionId)
         {
             var discussion = this.discussionsService.GetById(discussionId);
-            var participants = mapper.Map<DetailDiscussionViewModel>(discussion).Users;
+            var participants = this.mapper.Map<DetailDiscussionViewModel>(discussion).Users;
 
             Clients.Group(discussionId.ToString()).UpdateParticipantsList(participants);
-        }
-        public static void CheckForChanges()
-        {
-            IHubContext context = GlobalHost.ConnectionManager.GetHubContext<ParticipantsHub>();
-            context.Clients.All.CheckForChanges();
         }
     }
 }

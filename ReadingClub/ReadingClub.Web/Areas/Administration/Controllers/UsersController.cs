@@ -1,22 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
-using Microsoft.AspNet.Identity;
-
 using AutoMapper;
 
-using ReadingClub.Common;
-using ReadingClub.Web.Infrastructure.Mapping;
-using ReadingClub.Web.Areas.Administration.ViewModels.Users;
-using ReadingClub.Services.Data.Contracts;
-using ReadingClub.Data.Models;
-using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.AspNet.Identity.Owin;
-using System.Threading.Tasks;
 using Bytes2you.Validation;
+
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+
+using ReadingClub.Services.Data.Contracts;
+using ReadingClub.Web.Areas.Administration.ViewModels.Users;
 
 namespace ReadingClub.Web.Areas.Administration.Controllers
 {
@@ -43,15 +39,17 @@ namespace ReadingClub.Web.Areas.Administration.Controllers
             {
                 return this.userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
             }
+
             private set
             {
                 this.userManager = value;
             }
         }
+
         // GET: Administration/Users
         public ActionResult Index()
         {
-            return RedirectToAction("UsersOnSite");
+            return this.RedirectToAction("UsersOnSite");
         }
 
         [HttpGet]
@@ -70,9 +68,9 @@ namespace ReadingClub.Web.Areas.Administration.Controllers
                     usersOnSite.Add(this.mapper.Map<AdminUserViewModel>(user));
                 }
             }
-            return View(usersOnSite);
-        }
 
+            return this.View(usersOnSite);
+        }
 
         [HttpGet]
         public async Task<ActionResult> Administrators()
@@ -83,7 +81,7 @@ namespace ReadingClub.Web.Areas.Administration.Controllers
 
             var administrators = new List<AdminUserViewModel>();
 
-            foreach(var user in users)
+            foreach (var user in users)
             {
                 if (await this.UserManager.IsInRoleAsync(user.Id, "Admin"))
                 {
@@ -91,33 +89,35 @@ namespace ReadingClub.Web.Areas.Administration.Controllers
                 }
             }
 
-            return View(administrators);
+            return this.View(administrators);
         }
 
         public async Task<ActionResult> ChangeRoleToAdmin(string userName)
         {
-            if(userName == null)
+            if (userName == null)
             {
-                return RedirectToAction("UsersOnSite");
+                return this.RedirectToAction("UsersOnSite");
             }
+
             var user = this.usersService.GetUserByUserName(userName);
             await this.UserManager.RemoveFromRolesAsync(user.Id, "User");
-            UserManager.AddToRole(user.Id, "Admin");
+            this.UserManager.AddToRole(user.Id, "Admin");
 
-            return RedirectToAction("UsersOnSite");
+            return this.RedirectToAction("UsersOnSite");
         }
 
         public async Task<ActionResult> ChangeRoleToUser(string userName)
         {
-            if(userName == null)
+            if (userName == null)
             {
-                return RedirectToAction("Administrators");
+                return this.RedirectToAction("Administrators");
             }
+
             var user = this.usersService.GetUserByUserName(userName);
             await this.UserManager.RemoveFromRolesAsync(user.Id, "Admin");
-            UserManager.AddToRole(user.Id, "User");
+            this.UserManager.AddToRole(user.Id, "User");
 
-            return RedirectToAction("Administrators");
+            return this.RedirectToAction("Administrators");
         }
     }
 }

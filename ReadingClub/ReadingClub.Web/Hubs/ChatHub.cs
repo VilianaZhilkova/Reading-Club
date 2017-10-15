@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Microsoft.AspNet.SignalR;
-using ReadingClub.Services.Data.Contracts;
-using AutoMapper;
-using Microsoft.AspNet.Identity;
-using ReadingClub.Data.Models;
-using ReadingClub.Common.Constants;
+
 using Bytes2you.Validation;
+
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.SignalR;
+
+using ReadingClub.Common.Constants;
+using ReadingClub.Services.Data.Contracts;
 
 namespace ReadingClub.Web.Hubs
 {
@@ -37,10 +35,11 @@ namespace ReadingClub.Web.Hubs
 
         public void AddComment(string content, int discussionId)
         {
-            if(content.Length < StringLengthConstants.MinCommentContentLength || StringLengthConstants.MaxCommentContentLength < content.Length)
+            if (content.Length < StringLengthConstants.MinCommentContentLength || StringLengthConstants.MaxCommentContentLength < content.Length)
             {
                 Clients.Client(Context.ConnectionId).SendError();
             }
+
             Guard.WhenArgument(discussionId, nameof(discussionId)).IsLessThanOrEqual(0).Throw();
 
             var date = DateTime.UtcNow;

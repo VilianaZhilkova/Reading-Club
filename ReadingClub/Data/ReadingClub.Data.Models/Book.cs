@@ -6,9 +6,10 @@ using ReadingClub.Data.Models.Abstracts;
 
 namespace ReadingClub.Data.Models
 {
-    public class Book: BaseDataModel
+    public class Book : BaseDataModel
     {
         private ICollection<Discussion> discussions;
+
         public Book()
         {
             this.Discussions = new HashSet<Discussion>();
@@ -33,6 +34,7 @@ namespace ReadingClub.Data.Models
             {
                 return this.discussions;
             }
+
             set
             {
                 this.discussions = value;

@@ -1,10 +1,12 @@
-﻿using Bytes2you.Validation;
-using ReadingClub.Data.Common.Contracts;
-using ReadingClub.Data.Models;
-using System.Configuration;
+﻿using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+
+using Bytes2you.Validation;
+
+using ReadingClub.Data.Common.Contracts;
+using ReadingClub.Data.Models;
 
 namespace ReadingClub.Web.Hubs.Data
 {
@@ -17,6 +19,7 @@ namespace ReadingClub.Web.Hubs.Data
             Guard.WhenArgument(discussions, nameof(discussions)).IsNull().Throw();
             this.discussions = discussions;
         }
+
         public void GetData()
         {
             var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ReadingClubDb"].ConnectionString);
@@ -27,7 +30,7 @@ namespace ReadingClub.Web.Hubs.Data
             var command = new SqlCommand(commandText, connection);
 
             SqlDependency dependency = new SqlDependency(command);
-            dependency.OnChange += new OnChangeEventHandler(dependency_OnChange);
+            dependency.OnChange += new OnChangeEventHandler(this.dependency_OnChange);
 
             if (connection.State == ConnectionState.Closed)
             {
@@ -43,4 +46,3 @@ namespace ReadingClub.Web.Hubs.Data
         }
     }
 }
-

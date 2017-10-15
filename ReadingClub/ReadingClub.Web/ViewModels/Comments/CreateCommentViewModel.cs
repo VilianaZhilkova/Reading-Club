@@ -1,12 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
+using ReadingClub.Common.Constants;
 using ReadingClub.Data.Models;
 using ReadingClub.Web.Infrastructure.Mapping.Contracts;
-using ReadingClub.Common.Constants;
 
 namespace ReadingClub.Web.ViewModels.Comments
 {
-    public class CreateCommentViewModel: IMapFrom<Book>
+    public class CreateCommentViewModel : IMapFrom<Book>
     {
         [Required]
         [StringLength(StringLengthConstants.MaxCommentContentLength,

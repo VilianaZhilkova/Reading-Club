@@ -1,11 +1,10 @@
 ﻿using System.Linq;
 
+using Bytes2you.Validation;
+
+using ReadingClub.Data.Common.Contracts;
 using ReadingClub.Data.Models;
 using ReadingClub.Services.Data.Contracts;
-using ReadingClub.Data.Common.Contracts;
-using System;
-
-using Bytes2you.Validation;
 
 namespace ReadingClub.Services.Data
 {
@@ -13,6 +12,7 @@ namespace ReadingClub.Services.Data
     {
         private readonly IRepository<Author> authors;
         private readonly IUnitOfWork unitOfWork;
+
         public AuthorsService(IRepository<Author> authors, IUnitOfWork unitOfWork)
         {
             Guard.WhenArgument(authors, nameof(authors)).IsNull().Throw();
@@ -31,6 +31,5 @@ namespace ReadingClub.Services.Data
         {
             return this.authors.GetAllWithDeleted;
         }
-
     }
 }

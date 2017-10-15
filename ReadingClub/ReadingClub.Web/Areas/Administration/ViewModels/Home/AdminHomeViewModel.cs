@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace ReadingClub.Web.Areas.Administration.ViewModels.Home
+﻿namespace ReadingClub.Web.Areas.Administration.ViewModels.Home
 {
     public class AdminHomeViewModel
     {
@@ -22,6 +17,5 @@ namespace ReadingClub.Web.Areas.Administration.ViewModels.Home
         public int AdministratorsCount { get; set; }
 
         public int UsersCount { get; set; }
-
     }
 }

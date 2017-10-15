@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 
 using AutoMapper;
+
 using ReadingClub.Web.Infrastructure.Mapping.Contracts;
 
 namespace ReadingClub.Web.Infrastructure.Mapping

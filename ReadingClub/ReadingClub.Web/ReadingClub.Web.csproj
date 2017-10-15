@@ -269,12 +269,18 @@
     <Compile Include="Areas\Administration\ViewModels\Discussions\AdminDiscussionViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\Home\AdminHomeViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\Users\AdminUserViewModel.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AccountController.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Controllers\BooksController.cs" />
-    <Compile Include="Controllers\DiscussionsController.cs" />
+    <Compile Include="Controllers\DiscussionsController.cs">
+      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="GlimpseSecurityPolicy.cs" />
+    <Compile Include="GlimpseSecurityPolicy.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

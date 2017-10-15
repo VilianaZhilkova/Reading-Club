@@ -1,7 +1,7 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 
 using ReadingClub.Data.Common.Contracts;
-using System;
 
 namespace ReadingClub.Data.Common
 {
@@ -15,6 +15,7 @@ namespace ReadingClub.Data.Common
             {
                 throw new ArgumentException("An instance of DbContext is required", nameof(context));
             }
+
             this.context = context;
         }
 

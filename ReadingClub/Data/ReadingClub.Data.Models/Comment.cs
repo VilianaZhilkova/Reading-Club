@@ -6,7 +6,7 @@ using ReadingClub.Data.Models.Abstracts;
 
 namespace ReadingClub.Data.Models
 {
-    public class Comment: BaseDataModel
+    public class Comment : BaseDataModel
     {
         public Comment()
         {

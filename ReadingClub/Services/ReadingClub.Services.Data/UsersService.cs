@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
+
+using ReadingClub.Data.Common.Contracts;
 using ReadingClub.Data.Models;
 using ReadingClub.Services.Data.Contracts;
-using ReadingClub.Data.Common.Contracts;
 
 namespace ReadingClub.Services.Data
 {
@@ -13,6 +10,7 @@ namespace ReadingClub.Services.Data
     {
         private readonly IRepository<User> users;
         private readonly IUnitOfWork unitOfWork;
+
         public UsersService(IRepository<User> users, IUnitOfWork unitOfWork)
         {
             this.users = users;

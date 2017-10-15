@@ -4,31 +4,32 @@
 namespace ReadingClub.Web.App_Start
 {
     using System;
-    using System.Linq;
     using System.Data.Entity;
+    using System.Linq;
     using System.Web;
-
-    using Microsoft.AspNet.SignalR;
-    using Microsoft.Web.Infrastructure.DynamicModuleHelper;
-
+    
     using AutoMapper;
-
-    using Ninject;
-    using Ninject.Web.Common;
-    using Ninject.Extensions.Conventions;
 
     using Data;
     using Data.Common;
     using Data.Common.Contracts;
+
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
+    using Microsoft.AspNet.SignalR;
+    using Microsoft.Web.Infrastructure.DynamicModuleHelper;
+
+    using Ninject;
+    using Ninject.Extensions.Conventions;
+    using Ninject.Web.Common;
+
     using Services.Data.Contracts;
     using Services.Web;
     using Services.Web.Contracts;
-    using Microsoft.AspNet.Identity;
-    using Microsoft.AspNet.Identity.EntityFramework;
 
     public static class NinjectConfig 
     {
-        private static readonly Bootstrapper bootstrapper = new Bootstrapper();
+        private static readonly Bootstrapper Bootstrapper = new Bootstrapper();
 
         /// <summary>
         /// Starts the application
@@ -37,7 +38,7 @@ namespace ReadingClub.Web.App_Start
         {
             DynamicModuleUtility.RegisterModule(typeof(OnePerRequestHttpModule));
             DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
-            bootstrapper.Initialize(CreateKernel);
+            Bootstrapper.Initialize(CreateKernel);
         }
         
         /// <summary>
@@ -45,7 +46,7 @@ namespace ReadingClub.Web.App_Start
         /// </summary>
         public static void Stop()
         {
-            bootstrapper.ShutDown();
+            Bootstrapper.ShutDown();
         }
         
         /// <summary>
@@ -106,6 +107,7 @@ namespace ReadingClub.Web.App_Start
         private class NinjectSignalRDependencyResolver : DefaultDependencyResolver
         {
             private readonly IKernel kernel;
+
             public NinjectSignalRDependencyResolver(IKernel kernel)
             {
                 this.kernel = kernel;
@@ -113,12 +115,12 @@ namespace ReadingClub.Web.App_Start
 
             public override object GetService(Type serviceType)
             {
-                return kernel.TryGet(serviceType) ?? base.GetService(serviceType);
+                return this.kernel.TryGet(serviceType) ?? base.GetService(serviceType);
             }
 
             public override System.Collections.Generic.IEnumerable<object> GetServices(Type serviceType)
             {
-                return kernel.GetAll(serviceType).Concat(base.GetServices(serviceType));
+                return this.kernel.GetAll(serviceType).Concat(base.GetServices(serviceType));
             }
         }
     }

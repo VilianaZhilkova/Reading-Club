@@ -1,9 +1,6 @@
-﻿using System;
-
-using AutoMapper;
+﻿using AutoMapper;
 
 using ReadingClub.Data.Models;
-using ReadingClub.Web.ViewModels.Books;
 using ReadingClub.Web.Infrastructure.Mapping.Contracts;
 
 namespace ReadingClub.Web.Areas.Administration.ViewModels.Books

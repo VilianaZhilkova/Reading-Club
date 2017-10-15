@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
-
-using Microsoft.AspNet.Identity;
 
 using AutoMapper;
 
-using ReadingClub.Common;
-using ReadingClub.Web.Infrastructure.Mapping;
-using ReadingClub.Web.Areas.Administration.ViewModels.Comments;
-using ReadingClub.Services.Data.Contracts;
-using ReadingClub.Data.Models;
 using Bytes2you.Validation;
+
+using ReadingClub.Services.Data.Contracts;
+using ReadingClub.Web.Areas.Administration.ViewModels.Comments;
+using ReadingClub.Web.Infrastructure.Mapping;
 
 namespace ReadingClub.Web.Areas.Administration.Controllers
 {
@@ -30,10 +24,11 @@ namespace ReadingClub.Web.Areas.Administration.Controllers
             this.commentsService = commentsService;
             this.mapper = mapper;
         }
+
         // GET: Administration/Comments
         public ActionResult Index()
         {
-            return RedirectToAction("CommentsOnSite");
+            return this.RedirectToAction("CommentsOnSite");
         }
 
         [HttpGet]
@@ -43,7 +38,7 @@ namespace ReadingClub.Web.Areas.Administration.Controllers
                 .To<AdminCommentViewModel>()
                 .OrderBy(d => d.Date)
                 .ToList();
-            return View(commentsOnSite);
+            return this.View(commentsOnSite);
         }
 
         [HttpGet]
@@ -54,21 +49,21 @@ namespace ReadingClub.Web.Areas.Administration.Controllers
                 .To<AdminCommentViewModel>()
                 .OrderBy(d => d.Date)
                 .ToList();
-            return View(deletedComments);
+            return this.View(deletedComments);
         }
 
         public ActionResult DeleteComment(string commentId)
         {
-            if(commentId == null)
+            if (commentId == null)
             {
-                return RedirectToAction("CommentsOnSite");
+                return this.RedirectToAction("CommentsOnSite");
             }
+
             var comment = this.commentsService.GetById(int.Parse(commentId));
             comment.IsDeleted = true;
             this.commentsService.Update(comment);
 
-            return RedirectToAction("CommentsOnSite");
+            return this.RedirectToAction("CommentsOnSite");
         }
-
     }
 }

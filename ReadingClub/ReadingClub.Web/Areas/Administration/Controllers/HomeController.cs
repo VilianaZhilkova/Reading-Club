@@ -1,22 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
-using Microsoft.AspNet.Identity;
-
-using AutoMapper;
-
-using ReadingClub.Common;
-using ReadingClub.Web.Infrastructure.Mapping;
-using ReadingClub.Web.Areas.Administration.ViewModels.Home;
-using ReadingClub.Services.Data.Contracts;
-using ReadingClub.Data.Models;
-using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.AspNet.Identity.Owin;
-using System.Threading.Tasks;
 using Bytes2you.Validation;
+
+using Microsoft.AspNet.Identity.Owin;
+
+using ReadingClub.Data.Models;
+using ReadingClub.Services.Data.Contracts;
+using ReadingClub.Web.Areas.Administration.ViewModels.Home;
 
 namespace ReadingClub.Web.Areas.Administration.Controllers
 {
@@ -52,11 +46,13 @@ namespace ReadingClub.Web.Areas.Administration.Controllers
             {
                 return this.userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
             }
+
             private set
             {
                 this.userManager = value;
             }
         }
+
         // GET: Administration/Home
         public async Task<ActionResult> Index(AdminHomeViewModel model)
         {
@@ -86,6 +82,7 @@ namespace ReadingClub.Web.Areas.Administration.Controllers
                     administrators.Add(user);
                 }
             }
+
             model.ApprovedDiscussionsCount = apporvedDiscussions.Count();
             model.DiscussionsForApprovalCount = discussionsForApproval.Count();
             model.ApprovedBooksCount = approvedBooks.Count();
@@ -95,7 +92,7 @@ namespace ReadingClub.Web.Areas.Administration.Controllers
             model.AdministratorsCount = administrators.Count();
             model.UsersCount = users.Count();
 
-            return View(model);
+            return this.View(model);
         }
     }
 }

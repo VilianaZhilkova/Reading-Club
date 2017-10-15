@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-using AutoMapper;
+﻿using AutoMapper;
 
 using ReadingClub.Data.Models;
 using ReadingClub.Web.Infrastructure.Mapping.Contracts;
@@ -23,7 +20,6 @@ namespace ReadingClub.Web.ViewModels.Books
         // upcoming discussions
         // current discussions
         // passed discussions
-
         public void CreateMappings(IMapperConfigurationExpression configuration)
         {
             configuration.CreateMap<Book, DetailBookViewModel>()
