@@ -25,6 +25,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadingClub.Services.Data",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadingClub.Services.Web", "Services\ReadingClub.Services.Web\ReadingClub.Services.Web.csproj", "{C6F6A37B-FB1F-4FCF-9F7A-DFE40B3706B1}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{3F38B090-1845-4FDC-86B9-C9FC00D460F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadingClub.Services.Data.Tests", "Tests\ReadingClub.Services.Data.Tests\ReadingClub.Services.Data.Tests.csproj", "{D3EAC911-EAEF-4C97-B644-DBDE269139A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadingClub.Web.Tests", "Tests\ReadingClub.Web.Tests\ReadingClub.Web.Tests.csproj", "{87E70569-81AE-42F5-AEDB-27F6C0B34394}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadingClub.Services.Web.Tests", "Tests\ReadingClub.Services.Web.Tests\ReadingClub.Services.Web.Tests.csproj", "{52EFCC9F-D92D-4A4F-9EAC-D899269A958C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +71,18 @@ Global
 		{C6F6A37B-FB1F-4FCF-9F7A-DFE40B3706B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C6F6A37B-FB1F-4FCF-9F7A-DFE40B3706B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C6F6A37B-FB1F-4FCF-9F7A-DFE40B3706B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3EAC911-EAEF-4C97-B644-DBDE269139A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3EAC911-EAEF-4C97-B644-DBDE269139A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3EAC911-EAEF-4C97-B644-DBDE269139A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3EAC911-EAEF-4C97-B644-DBDE269139A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87E70569-81AE-42F5-AEDB-27F6C0B34394}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87E70569-81AE-42F5-AEDB-27F6C0B34394}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87E70569-81AE-42F5-AEDB-27F6C0B34394}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87E70569-81AE-42F5-AEDB-27F6C0B34394}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52EFCC9F-D92D-4A4F-9EAC-D899269A958C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52EFCC9F-D92D-4A4F-9EAC-D899269A958C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52EFCC9F-D92D-4A4F-9EAC-D899269A958C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52EFCC9F-D92D-4A4F-9EAC-D899269A958C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -75,5 +95,8 @@ Global
 		{CA2C2188-E37B-44F3-A339-65C4B955C1B8} = {9EC26AB4-902D-41A9-84F6-3D80B631494C}
 		{3FE56AFD-9DFD-471E-AC81-1B70294AA18B} = {CD502845-44DF-4F33-B925-7B2062E205E4}
 		{C6F6A37B-FB1F-4FCF-9F7A-DFE40B3706B1} = {CD502845-44DF-4F33-B925-7B2062E205E4}
+		{D3EAC911-EAEF-4C97-B644-DBDE269139A2} = {3F38B090-1845-4FDC-86B9-C9FC00D460F8}
+		{87E70569-81AE-42F5-AEDB-27F6C0B34394} = {3F38B090-1845-4FDC-86B9-C9FC00D460F8}
+		{52EFCC9F-D92D-4A4F-9EAC-D899269A958C} = {3F38B090-1845-4FDC-86B9-C9FC00D460F8}
 	EndGlobalSection
 EndGlobal
