@@ -111,8 +111,12 @@ namespace ReadingClub.Web.Controllers
 
         [HttpGet]
         [Authorize]
-        public ActionResult CreateDiscussion(int bookId, string bookTitle)
+        public ActionResult CreateDiscussion(int? bookId, string bookTitle)
         {
+            if (bookId == null || bookTitle == null)
+            {
+                return this.RedirectToAction("Index", "Books");
+            }
             return this.View();
         }
 

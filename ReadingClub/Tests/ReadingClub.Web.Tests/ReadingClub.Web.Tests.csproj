@@ -94,8 +94,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BooksController\ConstructorShould.cs" />
+    <Compile Include="BooksController\GetByIdShould.cs" />
+    <Compile Include="DiscussionsController\GetByIdShould.cs" />
+    <Compile Include="DiscussionsController\IndexShould.cs" />
     <Compile Include="DiscussionsController\ConstructorShould.cs" />
     <Compile Include="HomeController\AboutShould.cs" />
+    <Compile Include="DiscussionsController\HttpGetCreateDiscussionShould.cs" />
     <Compile Include="HomeController\SearchShould.cs" />
     <Compile Include="HomeController\ConstructorShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -9,7 +9,7 @@ using ReadingClub.Services.Web.Contracts;
 using ReadingClub.Web.Controllers;
 using ReadingClub.Web.Hubs.Data;
 
-namespace ReadingClub.Web.Tests.DiscussionsControllers
+namespace ReadingClub.Web.Tests.DiscussionControllers
 {
     [TestFixture]
     public class ConstructorShould

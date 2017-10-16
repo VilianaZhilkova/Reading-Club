@@ -20,44 +20,45 @@ namespace ReadingClub.Web.Tests.HomeControllers
     [TestFixture]
     public class SearchShould
     {
-        
-         [Test]
-         public void RedirectToIndexWhenSearchInParameterIsNull()
+
+        [Test]
+        public void RedirectToIndexWhenSearchInParameterIsNull()
         {
+            var searchString = "test";
             var mockedDiscussionService = new Mock<IDiscussionsService>();
             var mockedBooksService = new Mock<IBooksService>();
             var mockedMapper = new Mock<IMapper>();
 
             var homeController = new HomeController(mockedDiscussionService.Object, mockedBooksService.Object, mockedMapper.Object);
 
-            var searchString = "test";
             homeController.WithCallTo(x => x.Search(null, searchString)).ShouldRedirectToRoute("");
         }
 
         [Test]
         public void RedirectToIndexWhenSearchStringParameterIsNull()
         {
+            var searchIn = "test";
             var mockedDiscussionService = new Mock<IDiscussionsService>();
             var mockedBooksService = new Mock<IBooksService>();
             var mockedMapper = new Mock<IMapper>();
 
             var homeController = new HomeController(mockedDiscussionService.Object, mockedBooksService.Object, mockedMapper.Object);
 
-            var searchIn = "test";
             homeController.WithCallTo(x => x.Search(searchIn, null)).ShouldRedirectToRoute("");
         }
 
         [Test]
         public void RedirectToIndexWhenSearchInParameterIsNotValid()
         {
+            var searchIn = "test";
+            var searchString = "book";
+
             var mockedDiscussionService = new Mock<IDiscussionsService>();
             var mockedBooksService = new Mock<IBooksService>();
             var mockedMapper = new Mock<IMapper>();
 
             var homeController = new HomeController(mockedDiscussionService.Object, mockedBooksService.Object, mockedMapper.Object);
 
-            var searchIn = "test";
-            var searchString = "book";
             homeController.WithCallTo(x => x.Search(searchIn, searchString)).ShouldRedirectToRoute("");
         }
 
@@ -83,9 +84,11 @@ namespace ReadingClub.Web.Tests.HomeControllers
         {
             var searchIn = "books";
             var searchString = "test";
+
             var mockedDiscussionService = new Mock<IDiscussionsService>();
             var mockedBooksService = new Mock<IBooksService>();
             var mockedMapper = new Mock<IMapper>();
+
             mockedMapper.Setup(m => m.Map<DiscussionViewModel>(It.IsAny<Discussion>()))
             .Returns(new DiscussionViewModel());
             var homeController = new HomeController(mockedDiscussionService.Object, mockedBooksService.Object, mockedMapper.Object);
