@@ -17,9 +17,6 @@ namespace ReadingClub.Web.ViewModels.Books
 
         public bool IsApproved { get; set; }
 
-        // upcoming discussions
-        // current discussions
-        // passed discussions
         public void CreateMappings(IMapperConfigurationExpression configuration)
         {
             configuration.CreateMap<Book, DetailBookViewModel>()

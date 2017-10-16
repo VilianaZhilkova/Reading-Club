@@ -136,7 +136,7 @@ namespace ReadingClub.Data.Migrations
                 .Index(t => t.Name, unique: true, name: "RoleNameIndex");
             
             CreateTable(
-                "dbo.UserDiscussions",
+                "dbo.DiscussionUsers",
                 c => new
                     {
                         User_Id = c.String(nullable: false, maxLength: 128),
@@ -157,13 +157,13 @@ namespace ReadingClub.Data.Migrations
             DropForeignKey("dbo.Comments", "Author_Id", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
-            DropForeignKey("dbo.UserDiscussions", "Discussion_Id", "dbo.Discussions");
-            DropForeignKey("dbo.UserDiscussions", "User_Id", "dbo.AspNetUsers");
+            DropForeignKey("dbo.DiscussionUsers", "Discussion_Id", "dbo.Discussions");
+            DropForeignKey("dbo.DiscussionUsers", "User_Id", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.Discussions", "Book_Id", "dbo.Books");
             DropForeignKey("dbo.Books", "Author_Id", "dbo.Authors");
-            DropIndex("dbo.UserDiscussions", new[] { "Discussion_Id" });
-            DropIndex("dbo.UserDiscussions", new[] { "User_Id" });
+            DropIndex("dbo.DiscussionUsers", new[] { "Discussion_Id" });
+            DropIndex("dbo.DiscussionUsers", new[] { "User_Id" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
@@ -176,7 +176,7 @@ namespace ReadingClub.Data.Migrations
             DropIndex("dbo.Discussions", new[] { "CreatorId" });
             DropIndex("dbo.Books", new[] { "Author_Id" });
             DropIndex("dbo.Authors", new[] { "Name" });
-            DropTable("dbo.UserDiscussions");
+            DropTable("dbo.DiscussionUsers");
             DropTable("dbo.AspNetRoles");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetUserLogins");

@@ -10,16 +10,12 @@
 }
 else
 {
-    <h3>@Model.Title</h3>
-    <h3>@Model.Author</h3>
-    <h3>@Model.Description</h3>
+    <p><strong>Title: </strong>@Model.Title</p>
+    <p><strong>Author: </strong>@Model.Author</p>
+    <p><strong>Description: </strong>@Model.Description</p>
 }
 
 @if (User.Identity.IsAuthenticated && Model.IsApproved == true)
 {
     @Html.ActionLink("Create discussion", "CreateDiscussion", "Discussions", new { bookId = Model.Id, bookTitle = Model.Title }, new { @class = "btn btn-success btn-sm", role = "button" })
 }
-
-@* upcoming discussions *@
-@* current discussions *@
-@* passed discussions *@
