@@ -142,7 +142,7 @@ namespace ReadingClub.Data.Migrations
                 discussion.Users.Add(userManager.Users.ToList().First(x => x.UserName == usersUserNames[i + 1]));
                 context.Discussions.Add(discussion);
                 context.SaveChanges();
-                if (i == 2)
+                if (i == 0)
                 {
                     for(var j = 0; j < 3; j++)
                     {
