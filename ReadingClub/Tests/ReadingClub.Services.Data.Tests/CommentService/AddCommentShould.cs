@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System;
 
 using Moq;
 
@@ -7,13 +6,13 @@ using NUnit.Framework;
 
 using ReadingClub.Data.Common.Contracts;
 using ReadingClub.Data.Models;
-using System;
 
 namespace ReadingClub.Services.Data.Tests.CommentService
 {
     [TestFixture]
     public class AddCommentShould
     {
+        [Test]
         public void ThrowArgumentNullExceptionWithProperMessageWhenContentlsNull()
         {
             var mockedRepository = new Mock<IRepository<Comment>>();

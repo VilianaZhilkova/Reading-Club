@@ -1,13 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-using Moq;
+﻿using Moq;
 
 using NUnit.Framework;
 
 using ReadingClub.Data.Common.Contracts;
 using ReadingClub.Data.Models;
-using System;
 
 namespace ReadingClub.Services.Data.Tests.CommentService
 {

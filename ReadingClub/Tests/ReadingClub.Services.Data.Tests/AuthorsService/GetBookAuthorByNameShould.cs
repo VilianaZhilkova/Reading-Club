@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 using Moq;
@@ -35,8 +34,8 @@ namespace ReadingClub.Services.Data.Tests.AutorsService
 
             var authorsService = new AuthorsService(mockedRepository.Object, mockedUnitOfWork.Object);
 
-            Assert.That(() => authorsService.GetBookAuthorByName(null),
-                Throws.ArgumentNullException.With.Message.Contains("authorName"));
+            Assert.That(() => authorsService.GetBookAuthorByName(invalidAuthorName),
+                Throws.ArgumentException.With.Message.Contains("authorName"));
         }
 
         [Test]

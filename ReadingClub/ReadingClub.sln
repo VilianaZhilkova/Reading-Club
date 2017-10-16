@@ -31,8 +31,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadingClub.Services.Data.T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadingClub.Web.Tests", "Tests\ReadingClub.Web.Tests\ReadingClub.Web.Tests.csproj", "{87E70569-81AE-42F5-AEDB-27F6C0B34394}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadingClub.Services.Web.Tests", "Tests\ReadingClub.Services.Web.Tests\ReadingClub.Services.Web.Tests.csproj", "{52EFCC9F-D92D-4A4F-9EAC-D899269A958C}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -79,10 +77,6 @@ Global
 		{87E70569-81AE-42F5-AEDB-27F6C0B34394}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{87E70569-81AE-42F5-AEDB-27F6C0B34394}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{87E70569-81AE-42F5-AEDB-27F6C0B34394}.Release|Any CPU.Build.0 = Release|Any CPU
-		{52EFCC9F-D92D-4A4F-9EAC-D899269A958C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{52EFCC9F-D92D-4A4F-9EAC-D899269A958C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{52EFCC9F-D92D-4A4F-9EAC-D899269A958C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{52EFCC9F-D92D-4A4F-9EAC-D899269A958C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -97,6 +91,5 @@ Global
 		{C6F6A37B-FB1F-4FCF-9F7A-DFE40B3706B1} = {CD502845-44DF-4F33-B925-7B2062E205E4}
 		{D3EAC911-EAEF-4C97-B644-DBDE269139A2} = {3F38B090-1845-4FDC-86B9-C9FC00D460F8}
 		{87E70569-81AE-42F5-AEDB-27F6C0B34394} = {3F38B090-1845-4FDC-86B9-C9FC00D460F8}
-		{52EFCC9F-D92D-4A4F-9EAC-D899269A958C} = {3F38B090-1845-4FDC-86B9-C9FC00D460F8}
 	EndGlobalSection
 EndGlobal
